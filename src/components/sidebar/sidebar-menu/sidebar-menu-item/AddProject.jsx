@@ -101,7 +101,7 @@ export default function AddProject() {
                       id="project-name"
                       name="project-name"
                       type="text"
-                      placeholder="Add the name of the new project here"
+                      placeholder="ABC Ltd"
                       value={projName}
                       className="block w-full rounded-md border-0 py-1.5 text-sm shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6 dark:text-drkbg"
                     />
@@ -116,7 +116,7 @@ export default function AddProject() {
                       htmlFor="project-img"
                       className="block text-sm font-medium leading-6"
                     >
-                      Project image
+                      Project logo
                     </label>
                   </div>
                   <div className="mt-2 w-[50px]">
@@ -133,36 +133,6 @@ export default function AddProject() {
               </div>
             </div>
           </div>
-          {/* <div className="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end">
-            <div
-              className="flex basis-1/3 cursor-pointer flex-col items-center justify-center gap-2"
-              onClick={() => projImgUpload.current.click()}
-            >
-              <div
-                ref={projImgFrame}
-                className="flex h-[100px] w-[100px] items-center justify-center rounded-full border-[1px] border-[#365dff] bg-blue-100"
-              >
-                {projImg ? (
-                  <img
-                    src={projImg}
-                    alt="Profile Picture"
-                    className="h-full w-full rounded-full object-cover"
-                  />
-                ) : (
-                  <PiCameraBold className="text-2xl text-blue-950" />
-                )}
-              </div>
-              <p className="text-xs">{projImg ? null : `Add project image`}</p>
-              <input
-                type="file"
-                name="fileInput"
-                id="fileInput"
-                className="hidden"
-                ref={projImgUpload}
-                onChange={handleImgChange}
-              />
-            </div>
-          </div> */}
           <div className="mt-5 flex items-center justify-end gap-6">
             <button
               type="button"

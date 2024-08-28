@@ -2,13 +2,20 @@ import { useRef, useState } from "react";
 
 import Modal from "../../ui-components/Modal";
 
-import { PiPlusBold, PiCameraBold, PiUserPlusBold } from "react-icons/pi";
+import {
+  PiPlusBold,
+  PiCameraBold,
+  PiUserPlusBold,
+  PiUserCirclePlusBold,
+  PiUserFocusBold,
+} from "react-icons/pi";
 import ddlogo from "../../../assets/DDLogo.png";
 
 export default function MainViewMembers() {
-  const [profileImg, setProfileImg] = useState(null);
-  const userImgUpload = useRef(null);
-  const userImgFrame = useRef(null);
+  const [memberName, setMemberName] = useState("");
+  const [memberImg, setMemberImg] = useState(null);
+  const memberImgUpload = useRef(null);
+  const memberImgFrame = useRef(null);
   const formRef = useRef(null);
 
   function handleImgChange(event) {
@@ -16,17 +23,26 @@ export default function MainViewMembers() {
 
     if (event.target.files && event.target.files[0]) {
       reader.onload = function (e) {
-        setProfileImg(e.target.result);
-        userImgFrame.current.src = e.target.result;
+        setMemberImg(e.target.result);
+        memberImgFrame.current.src = e.target.result;
       };
 
       reader.readAsDataURL(event.target.files[0]);
     }
   }
 
+  function handleMemberName(event) {
+    setMemberName(event.target.value);
+  }
+
   function handleClickCancelBtn() {
     formRef.current.reset();
-    setProfileImg(null);
+    setMemberImg(null);
+    setMemberName("");
+  }
+
+  function handleClickSubmit() {
+    console.log("form needs to be filled out");
   }
 
   return (
@@ -50,8 +66,8 @@ export default function MainViewMembers() {
       <div>
         <Modal
           trigger={
-            <button className="btn-transition flex cursor-pointer items-center whitespace-nowrap rounded-md bg-[#365dff] p-3  text-sm font-normal text-white hover:bg-indigo-500">
-              <div className="md:flex items-center hidden">
+            <button className="btn-transition flex cursor-pointer items-center whitespace-nowrap rounded-md bg-[#365dff] p-3 text-sm font-normal text-white">
+              <div className="hidden items-center md:flex">
                 <PiPlusBold />
                 <p>&nbsp;Add Member</p>
               </div>
@@ -59,85 +75,89 @@ export default function MainViewMembers() {
             </button>
           }
         >
-          <p className="pb-4 text-center text-xl font-semibold leading-7">
-            Add a new member
-          </p>
           <form
             ref={formRef}
             className="flex h-[100%] flex-col justify-between gap-5"
           >
-            <div className="flex justify-between gap-5">
-              {/* image upload */}
-              <div
-                className="flex basis-1/3 cursor-pointer flex-col items-center justify-center gap-2"
-                onClick={() => userImgUpload.current.click()}
-              >
-                <div
-                  ref={userImgFrame}
-                  className="flex h-[100px] w-[100px] items-center justify-center rounded-full border-[1px] border-[#365dff] bg-blue-100"
-                >
-                  {profileImg ? (
-                    <img
-                      src={profileImg}
-                      alt="Profile Picture"
-                      className="h-full w-full rounded-full object-cover"
-                    />
-                  ) : (
-                    <PiCameraBold className="text-2xl text-blue-950" />
-                  )}
+            <div className="space-y-12">
+              <div className="">
+                <div className="flex gap-4">
+                  <h2 className="text-lg font-semibold leading-7">
+                    Add a new member
+                  </h2>
                 </div>
-                <p className="text-xs">
-                  {profileImg ? null : `Add profile picture`}
-                </p>
-                <input
-                  type="file"
-                  name="fileInput"
-                  id="fileInput"
-                  className="hidden"
-                  ref={userImgUpload}
-                  onChange={handleImgChange}
-                />
-              </div>
-              {/* fields */}
-              <div className="flex basis-2/3 items-end">
-                <div className="flex items-center gap-10">
-                  <div className="flex flex-col gap-1">
-                    <label
-                      htmlFor="card-title"
-                      className="text-sm font-medium leading-6"
-                    >
-                      First name
-                    </label>
-
-                    <input
-                      id="card-title"
-                      name="card-title"
-                      type="text"
-                      placeholder="Add first name"
-                      className="rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:text-drkbg"
-                    />
+                <div
+                  className="mt-4 flex basis-1/3 cursor-pointer flex-col items-center justify-center gap-2"
+                  onClick={() => memberImgUpload.current.click()}
+                >
+                  <div
+                    ref={memberImgFrame}
+                    className={`flex h-[100px] w-[100px] items-center justify-center rounded-full borderd-[1px] ${!memberImg ? "border-[#365dff]" : null} bg-blue-100`}
+                  >
+                    {memberImg ? (
+                      <img
+                        src={memberImg}
+                        alt="Profile Picture"
+                        className="h-full w-full rounded-full object-cover"
+                      />
+                    ) : (
+                      <PiCameraBold className="text-2xl text-blue-950" />
+                    )}
                   </div>
+                </div>
+                <p className="mt-2 text-center font-semibold dark:text-white">
+                  {memberName}
+                </p>
 
-                  <div className="flex flex-col gap-1">
-                    <label
-                      htmlFor="card-title"
-                      className="block text-sm font-medium leading-6"
-                    >
-                      Last name
-                    </label>
-
-                    <input
-                      id="card-title"
-                      name="card-title"
-                      type="text"
-                      placeholder="Add last name"
-                      className="rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:text-drkbg"
-                    />
+                <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                  <div className="sm:col-span-full">
+                    <div className="flex items-center gap-2">
+                      <PiUserCirclePlusBold className="text-xl" />
+                      <label
+                        htmlFor="project-name"
+                        className="block text-sm font-medium leading-6"
+                      >
+                        Full name
+                      </label>
+                    </div>
+                    <div className="mt-2">
+                      <input
+                        onChange={handleMemberName}
+                        id="project-name"
+                        name="project-name"
+                        type="text"
+                        placeholder="John Smith..."
+                        value={memberName}
+                        className="block w-full rounded-md border-0 py-1.5 text-sm shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6 dark:text-drkbg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                  <div className="sm:col-span-full">
+                    <div className="flex items-center gap-2">
+                      <PiUserFocusBold className="text-xl" />
+                      <label
+                        htmlFor="project-img"
+                        className="block text-sm font-medium leading-6"
+                      >
+                        Profile pic
+                      </label>
+                    </div>
+                    <div className="mt-2 w-[50px]">
+                      <input
+                        type="file"
+                        name="fileInput"
+                        id="fileInput"
+                        ref={memberImgUpload}
+                        onChange={handleImgChange}
+                        className="text-sm"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            {/* buttons */}
             <div className="mt-5 flex items-center justify-end gap-6">
               <button
                 type="button"
@@ -148,7 +168,9 @@ export default function MainViewMembers() {
               </button>
               <button
                 type="submit"
-                className="rounded-md bg-[#365dff] px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                disabled={!memberName || !memberImg}
+                className={`rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${memberName && memberImg ? "bg-[#365dff] text-white" : "bg-gray-400 text-white"}`}
+                onClick={handleClickSubmit}
               >
                 Add Member
               </button>
