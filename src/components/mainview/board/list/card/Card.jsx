@@ -49,8 +49,13 @@ export default function Card({ card, categories }) {
             trigger={
               <PiDotsThreeOutlineVerticalFill className="cursor-pointer" />
             }
+            pos={`right-[0px]`}
+            className="dark:bg-red-500"
           >
-            <p>this is the card dots menu</p>
+            <nav className="flex flex-col gap-2 text-sm">
+              <a href="#">Edit</a>
+              <a href="#">Delete</a>
+            </nav>
           </DropMenu>
         </div>
         <div className="flex flex-col gap-3">
