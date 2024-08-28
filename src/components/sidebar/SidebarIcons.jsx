@@ -98,7 +98,7 @@ export default function SidebarIcons() {
               alt={icon.iconText}
               title={icon.iconText}
               key={icon.id}
-              className={`${icon.active ? `border-l-[6px] border-l-[#365dff] text-[#365dff] dark:border-l-[#00ccff] dark:text-[#00ccff]` : null} flex h-[50px] w-full cursor-pointer items-center justify-center transition-all duration-400 ease-in-out`}
+              className={`${icon.active ? `border-l-[6px] border-l-[#365dff] text-[#365dff]` : null} flex h-[50px] w-full cursor-pointer items-center justify-center transition-all duration-400 ease-in-out`}
               onClick={() => handleClickIcon(icon.id)}
             >
               {icon.active ? icon.activeIcon : icon.icon}
