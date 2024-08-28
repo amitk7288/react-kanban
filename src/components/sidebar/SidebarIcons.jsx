@@ -24,42 +24,42 @@ const sidebarIcons = [
   {
     id: 1,
     icon: <PiSquaresFour />,
-    activeicon: <PiSquaresFourDuotone />,
+    activeIcon: <PiSquaresFourDuotone />,
     iconText: "Projects",
     active: false,
   },
   {
     id: 2,
     icon: <PiColumns />,
-    activeicon: <PiColumnsDuotone />,
+    activeIcon: <PiColumnsDuotone />,
     iconText: "Board",
-    active: false,
+    active: true,
   },
   {
     id: 3,
     icon: <PiTimer />,
-    activeicon: <PiTimerDuotone />,
+    activeIcon: <PiTimerDuotone />,
     iconText: "Time Management",
     active: false,
   },
   {
     id: 4,
     icon: <PiCalendarDots />,
-    activeicon: <PiCalendarDotDuotone />,
+    activeIcon: <PiCalendarDotDuotone />,
     iconText: "Timeline",
     active: false,
   },
   {
     id: 5,
-    icon: <PiChatsCircleDuotone />,
-    activeicon: <PiChatsCircleDuotone />,
+    icon: <PiChatsCircle />,
+    activeIcon: <PiChatsCircleDuotone />,
     iconText: "Chat",
     active: false,
   },
   {
     id: 6,
     icon: <PiQuestion />,
-    activeicon: <PiQuestionDuotone />,
+    activeIcon: <PiQuestionDuotone />,
     iconText: "FAQ's",
     active: false,
   },
@@ -73,11 +73,17 @@ const sidebarIcons = [
 ];
 
 export default function SidebarIcons() {
-  const [isActive, setIsActive] = useState(sidebarIcons);
+  const [icons, setIcons] = useState(sidebarIcons);
 
-  const handleClickIcon = (icon) => {
-    // finsish this off!
-  };
+  function handleClickIcon(clickedIconID) {
+    setIcons((prevState) =>
+      prevState.map((icon) =>
+        icon.id === clickedIconID
+          ? { ...icon, active: true }
+          : { ...icon, active: false },
+      ),
+    );
+  }
 
   return (
     <div className="flex w-[20%] flex-col items-center justify-between border-r pb-10 pt-5 dark:border-drkbrd dark:bg-drkbg dark:text-drkcol">
@@ -86,16 +92,16 @@ export default function SidebarIcons() {
           <img src={logo} alt="" />
         </div>
         <div className="flex w-full flex-col items-center gap-[4vh] text-3xl text-[#959697] dark:text-drkcol">
-          {sidebarIcons.map((icon) => (
+          {icons.map((icon) => (
             <a
               href="#"
               alt={icon.iconText}
               title={icon.iconText}
               key={icon.id}
-              className={`${isActive ? `border-l-[#365dff] text-[#365dff] dark:border-l-[#00ccff] dark:text-[#00ccff]` : null} flex h-[50px] w-full cursor-pointer items-center justify-center border-l-[6px]`}
-              onClick={() => handleClickIcon(icon.iconText)}
+              className={`${icon.active ? `border-l-[6px] border-l-[#365dff] text-[#365dff] dark:border-l-[#00ccff] dark:text-[#00ccff]` : null} flex h-[50px] w-full cursor-pointer items-center justify-center transition-all duration-400 ease-in-out`}
+              onClick={() => handleClickIcon(icon.id)}
             >
-              {icon.icon}
+              {icon.active ? icon.activeIcon : icon.icon}
             </a>
           ))}
         </div>
