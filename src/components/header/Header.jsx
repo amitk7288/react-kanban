@@ -123,17 +123,10 @@ const menuIconLinks = [
             )}
           </div>
           <div className="hidden lg:flex lg:items-center lg:gap-4">
-            <DropMenu
-              trigger={
-                <PiGear
-                  onClick={() => handleClick("settings")}
-                  className="relative cursor-pointer bg-transparent text-[25px] dark:text-drkcol"
-                />
-              }
-              isOpen={isOpen.settings}
-            >
-              <p>Settings</p>
-            </DropMenu>
+            <PiGear
+              onClick={() => handleClick("settings")}
+              className="relative cursor-pointer bg-transparent text-[25px] dark:text-drkcol"
+            />
             <DropMenu
               trigger={
                 <PiBell
@@ -141,9 +134,10 @@ const menuIconLinks = [
                   className="cursor-pointer text-[25px] dark:text-drkcol"
                 />
               }
+              pos={`left-0`}
               isOpen={isOpen.notifications}
             >
-              <p>Notifcations</p>
+              <p className="text-sm">Notifcations</p>
             </DropMenu>
             {theme === "dark" ? (
               <PiSun
@@ -165,6 +159,7 @@ const menuIconLinks = [
                   <p className="text-sm font-medium">Dev Dreamer</p>
                 </div>
               }
+              pos={`right-0`}
             >
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-2">

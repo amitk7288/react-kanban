@@ -1,4 +1,4 @@
-import {PiCircleFill, PiDotsThreeOutlineVerticalFill} from "react-icons/pi";
+import {PiCircleFill} from "react-icons/pi";
 
 export default function ListTitle({ title, numCards, listColor }) {
   return (
@@ -10,9 +10,6 @@ export default function ListTitle({ title, numCards, listColor }) {
           <div className="mx-1.5 flex w-fit items-center justify-center rounded-xl bg-white px-4 py-1 text-sm font-semibold dark:border-drkbrd dark:bg-drkbg dark:text-drkcol">
             <p className="font-medium">{numCards}</p>
           </div>
-        </div>
-        <div>
-          <PiDotsThreeOutlineVerticalFill />
         </div>
       </div>
     </>
