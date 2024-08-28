@@ -2,9 +2,10 @@ import { useRef, useState } from "react";
 
 import Modal from "../../../ui-components/Modal";
 
-import { PiPlusBold, PiCameraBold } from "react-icons/pi"
+import { PiPlusBold, PiCameraBold, PiFolderPlusBold, PiImageBold } from "react-icons/pi"
 
 export default function AddProject() {
+  const [projName, setProjName] = useState("");
   const [projImg, setProjImg] = useState(null);
   const projImgUpload = useRef(null);
   const projImgFrame = useRef(null);
@@ -23,9 +24,19 @@ export default function AddProject() {
     }
   }
 
+  function handleChangeProjName(event) {
+    setProjName(event.target.value)
+  }
+
   function handleClickCancelBtn() {
     formRef.current.reset();
     setProjImg(null);
+    setProjName("");
+  }
+
+  function handleClickSubmit() {
+   
+    console.log('form needs to be filled out');
   }
 
 
@@ -39,15 +50,90 @@ export default function AddProject() {
           </button>
         }
       >
-        <p className="mb-5 text-center text-xl font-semibold leading-7">
-          Add a new project
-        </p>
         <form
           ref={formRef}
           className="flex h-[100%] flex-col justify-between gap-5"
         >
-          <div className="flex flex-col sm:flex-row sm:items-end items-center justify-between gap-6">
-            {/* image upload */}
+          <div className="space-y-12">
+            <div className="">
+              <div className="flex gap-4">
+                <h2 className="text-lg font-semibold leading-7">
+                  Add a new project
+                </h2>
+              </div>
+              <div
+                className="mt-4 flex basis-1/3 cursor-pointer flex-col items-center justify-center gap-2"
+                onClick={() => projImgUpload.current.click()}
+              >
+                <div
+                  ref={projImgFrame}
+                  className={`flex h-[100px] w-[100px] items-center justify-center rounded-full border-[1px] ${!projImg ? "border-[#365dff]" : null} bg-blue-100`}
+                >
+                  {projImg ? (
+                    <img
+                      src={projImg}
+                      alt="Profile Picture"
+                      className="h-full w-full rounded-full object-cover"
+                    />
+                  ) : (
+                    <PiCameraBold className="text-2xl text-blue-950" />
+                  )}
+                </div>
+              </div>
+              <p className="mt-2 text-center font-semibold dark:text-white">
+                {projName}
+              </p>
+
+              <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="sm:col-span-full">
+                  <div className="flex items-center gap-2">
+                    <PiFolderPlusBold className="text-xl" />
+                    <label
+                      htmlFor="project-name"
+                      className="block text-sm font-medium leading-6"
+                    >
+                      Project name
+                    </label>
+                  </div>
+                  <div className="mt-2">
+                    <input
+                      onChange={handleChangeProjName}
+                      id="project-name"
+                      name="project-name"
+                      type="text"
+                      placeholder="Add the name of the new project here"
+                      value={projName}
+                      className="block w-full rounded-md border-0 py-1.5 text-sm shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6 dark:text-drkbg"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="sm:col-span-full">
+                  <div className="flex items-center gap-2">
+                    <PiImageBold className="text-xl" />
+                    <label
+                      htmlFor="project-img"
+                      className="block text-sm font-medium leading-6"
+                    >
+                      Project image
+                    </label>
+                  </div>
+                  <div className="mt-2 w-[50px]">
+                    <input
+                      type="file"
+                      name="fileInput"
+                      id="fileInput"
+                      ref={projImgUpload}
+                      onChange={handleImgChange}
+                      className="text-sm"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* <div className="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end">
             <div
               className="flex basis-1/3 cursor-pointer flex-col items-center justify-center gap-2"
               onClick={() => projImgUpload.current.click()}
@@ -66,9 +152,7 @@ export default function AddProject() {
                   <PiCameraBold className="text-2xl text-blue-950" />
                 )}
               </div>
-              <p className="text-xs">
-                {projImg ? null : `Add project image`}
-              </p>
+              <p className="text-xs">{projImg ? null : `Add project image`}</p>
               <input
                 type="file"
                 name="fileInput"
@@ -78,29 +162,7 @@ export default function AddProject() {
                 onChange={handleImgChange}
               />
             </div>
-            {/* fields */}
-            <div className="flex basis-2/3 items-end">
-              <div className="flex items-center gap-10">
-                <div className="flex flex-col gap-1">
-                  <label
-                    htmlFor="proj-name"
-                    className="text-sm font-medium leading-6"
-                  >
-                    Project name
-                  </label>
-
-                  <input
-                    id="proj-name"
-                    name="proj-name"
-                    type="text"
-                    placeholder="Add project name"
-                    className="rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:text-drkbg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* buttons */}
+          </div> */}
           <div className="mt-5 flex items-center justify-end gap-6">
             <button
               type="button"
@@ -111,7 +173,9 @@ export default function AddProject() {
             </button>
             <button
               type="submit"
-              className="rounded-md bg-[#365dff] px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              disabled={!projName || !projImg}
+              className={`rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${projName && projImg ? "bg-[#365dff] text-white" : "bg-gray-400 text-white"}`}
+              onClick={handleClickSubmit}
             >
               Add Project
             </button>
