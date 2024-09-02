@@ -1,12 +1,13 @@
 import Header from "./components/header/Header";
-import MainView from "./components/mainview/MainView";
+// import MainView from "./components/mainview/MainView";
+import { Outlet } from "react-router-dom";
 import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
   return (
     <div className="relative">
       <Header />
-      <MainView />
+      <Outlet />
       <Sidebar />
       {/*
         - additional views/components needed
