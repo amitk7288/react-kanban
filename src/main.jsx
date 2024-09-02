@@ -10,6 +10,9 @@ import Overview from "./routes/Overview.jsx";
 import Tasks from "./routes/Tasks.jsx";
 import Notes from "./routes/Notes.jsx";
 import Questions from "./routes/Questions.jsx";
+import ListView from "./routes/ListView.jsx";
+import TableView from "./routes/TableView.jsx";
+import BoardView from "./routes/BoardView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,20 +25,32 @@ const router = createBrowserRouter([
         element: <MainView />,
         children: [
           {
-            path: "overview/:overviewId",
+            path: ":overviewId/overview",
             element: <Overview />,
           },
           {
-            path: "tasks/:tasksId",
+            path: ":tasksId/tasks",
             element: <Tasks />,
           },
           {
-            path: "notes/:notesId",
+            path: ":notesId/notes",
             element: <Notes />,
           },
           {
-            path: "questions/:questionsId",
+            path: ":questionsId/questions",
             element: <Questions />,
+          },
+          {
+            path: ":boardId/boardview",
+            element: <BoardView />,
+          },
+          {
+            path: ":listviewId/listview",
+            element: <ListView />,
+          },
+          {
+            path: ":tableviewId/tableview",
+            element: <TableView />,
           },
         ],
       },

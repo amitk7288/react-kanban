@@ -14,24 +14,28 @@ export default function MainViewNav() {
     {
       id: 1,
       name: "Overview",
+      path: "1/overview",
       active: false,
       icon: <PiDiamondsFourBold className="text-xl" />,
     },
     {
       id: 2,
       name: "Tasks",
+      path: "1/tasks",
       active: true,
       icon: <PiCheckCircleBold className="text-xl" />,
     },
     {
       id: 3,
       name: "Notes",
+      path: "1/notes",
       active: false,
       icon: <PiPenNibBold className="text-lg" />,
     },
     {
       id: 4,
       name: "Questions",
+      path: "1/questions",
       active: false,
       icon: <PiSealQuestionBold className="text-xl" />,
     },
@@ -51,7 +55,7 @@ export default function MainViewNav() {
       {items.map((item) => (
         <Link
           key={item.id}
-          to={`/${item.name}/1`}
+          to={item.path}
           className={`flex h-full cursor-pointer items-center justify-center ${item.active ? `border-b-2 border-[#365dff]` : null}`}
           onClick={() => handleNavItemClick(item.id)}
         >
