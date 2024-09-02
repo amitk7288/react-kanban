@@ -12,7 +12,6 @@ function App() {
         - additional views/components needed
         D - modal comp child content, used react-dom portal to place it in the body tag as other elements were intefering with it due to their positions sticky etc
         - dark mode (system)
-        W - minimise side panel
         D - mobile view, side scroll etc.
         - drag and drop
         - overview view
