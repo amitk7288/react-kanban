@@ -7,10 +7,10 @@ import {
 
 export default function MainViewNav() {
   return (
-    <nav className="flex items-center sm:gap-4 h-fit">
+    <nav className="flex h-fit items-center sm:gap-4">
       <a
-        href="#"
-        className="flex h-full items-center justify-center cursor-pointer"
+        href={`/overview`}
+        className="flex h-full cursor-pointer items-center justify-center"
       >
         <div className="flex w-fit items-center gap-1.5 rounded-md px-2 py-2">
           <PiDiamondsFourBold className="text-xl" />
@@ -18,8 +18,8 @@ export default function MainViewNav() {
         </div>
       </a>
       <a
-        href="#"
-        className="flex items-center h-full justify-center cursor-pointer border-b-2 border-[#365dff]"
+        href={`/tasks`}
+        className="flex h-full cursor-pointer items-center justify-center border-b-2 border-[#365dff]"
       >
         <div className="flex w-fit items-center gap-1.5 rounded-md px-2 py-2">
           <PiCheckCircleBold className="text-xl" />
@@ -27,8 +27,8 @@ export default function MainViewNav() {
         </div>
       </a>
       <a
-        href="#"
-        className="flex h-full items-center justify-center cursor-pointer"
+        href={`/notes`}
+        className="flex h-full cursor-pointer items-center justify-center"
       >
         <div className="flex w-fit items-center gap-1.5 rounded-md px-2 py-2">
           <PiPenNibBold className="text-lg" />
@@ -36,8 +36,8 @@ export default function MainViewNav() {
         </div>
       </a>
       <a
-        href="#"
-        className="flex h-full items-center justify-center cursor-pointer"
+        href={`/questions`}
+        className="flex h-full cursor-pointer items-center justify-center"
       >
         <div className="flex w-fit items-center gap-1.5 rounded-md px-2 py-2">
           <PiSealQuestionBold className="text-xl" />
