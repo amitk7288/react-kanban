@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import {
   PiSquaresFour,
@@ -7,8 +8,8 @@ import {
   PiColumnsDuotone,
   PiTimer,
   PiTimerDuotone,
-  PiCalendarDots,
-  PiCalendarDotDuotone,
+  PiUsers,
+  PiUsersDuotone,
   PiChatsCircle,
   PiChatsCircleDuotone,
   PiQuestion,
@@ -26,6 +27,7 @@ const sidebarIcons = [
     icon: <PiSquaresFour />,
     activeIcon: <PiSquaresFourDuotone />,
     iconText: "Projects",
+    path: "/projects",
     active: false,
   },
   {
@@ -33,6 +35,7 @@ const sidebarIcons = [
     icon: <PiColumns />,
     activeIcon: <PiColumnsDuotone />,
     iconText: "Board",
+    path: "/board",
     active: true,
   },
   {
@@ -40,13 +43,15 @@ const sidebarIcons = [
     icon: <PiTimer />,
     activeIcon: <PiTimerDuotone />,
     iconText: "Time Management",
+    path: "/time",
     active: false,
   },
   {
     id: 4,
-    icon: <PiCalendarDots />,
-    activeIcon: <PiCalendarDotDuotone />,
-    iconText: "Timeline",
+    icon: <PiUsers />,
+    activeIcon: <PiUsersDuotone />,
+    iconText: "Members",
+    path: "/members",
     active: false,
   },
   {
@@ -54,6 +59,7 @@ const sidebarIcons = [
     icon: <PiChatsCircle />,
     activeIcon: <PiChatsCircleDuotone />,
     iconText: "Chat",
+    path: "/chat",
     active: false,
   },
   {
@@ -61,6 +67,7 @@ const sidebarIcons = [
     icon: <PiQuestion />,
     activeIcon: <PiQuestionDuotone />,
     iconText: "FAQ's",
+    path: "/faq",
     active: false,
   },
   {
@@ -68,6 +75,7 @@ const sidebarIcons = [
     icon: <PiChartBar />,
     activeIcon: <PiChartBarDuotone />,
     iconText: "Analytics",
+    path: `/stats`,
     active: false,
   },
 ];
@@ -89,20 +97,23 @@ export default function SidebarIcons() {
     <div className="flex w-[20%] flex-col items-center justify-between border-r pb-10 pt-5 dark:border-drkbrd dark:bg-drkbg dark:text-drkcol">
       <div className="flex w-full flex-col items-center gap-[5vh]">
         <div className="w-[40px]">
-          <img src={logo} alt="" />
+          <Link to={`/`}>
+            <img src={logo} alt="" />
+          </Link>
         </div>
         <div className="flex w-full flex-col items-center gap-[4vh] text-3xl text-[#959697] dark:text-drkcol">
           {icons.map((icon) => (
-            <a
+            <Link
+              to={`${icon.path}`}
               href="#"
               alt={icon.iconText}
               title={icon.iconText}
               key={icon.id}
-              className={`${icon.active ? `border-l-[6px] border-l-[#365dff] text-[#365dff]` : null} flex h-[50px] w-full cursor-pointer items-center justify-center transition-all duration-400 ease-in-out`}
+              className={`${icon.active ? `border-l-[6px] border-l-[#365dff] text-[#365dff]` : null} duration-400 flex h-[50px] w-full cursor-pointer items-center justify-center transition-all ease-in-out`}
               onClick={() => handleClickIcon(icon.id)}
             >
               {icon.active ? icon.activeIcon : icon.icon}
-            </a>
+            </Link>
           ))}
         </div>
       </div>

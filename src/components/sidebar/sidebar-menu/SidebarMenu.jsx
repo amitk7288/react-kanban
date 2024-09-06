@@ -1,7 +1,6 @@
 import ProjectItems from "./sidebar-menu-item/project-items/ProjectItems";
 import MemberItems from "./sidebar-menu-item/member-items/MemberItems";
 import TimeItem from "./sidebar-menu-item/TimeItem";
-import AddProject from "./sidebar-menu-item/AddProject";
 
 export default function SidebarMenu() {
   return (
@@ -9,7 +8,6 @@ export default function SidebarMenu() {
       <ProjectItems />
       <MemberItems />
       <TimeItem />
-      <AddProject />
     </div>
   );
 }

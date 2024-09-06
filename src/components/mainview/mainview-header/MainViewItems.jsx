@@ -3,25 +3,26 @@ import { Link } from "react-router-dom";
 import { PiKanbanBold, PiTableBold, PiListChecksBold } from "react-icons/pi";
 
 export default function MainViewItems() {
+
     const viewItems = [
       {
         id: 1,
         name: "Board",
-        path: "1/boardview",
+        path: "project/:boardId/board",
         icon: <PiKanbanBold className="text-xl" />,
-        active: false,
+        active: true,
       },
       {
         id: 2,
         name: "Table",
-        path: "1/tableview",
+        path: "project/:boardId/table",
         icon: <PiTableBold className="text-xl" />,
-        active: true,
+        active: false,
       },
       {
         id: 3,
         name: "List",
-        path: "1/listview",
+        path: "project/:boardId/list",
         icon: <PiListChecksBold className="text-xl" />,
         active: false,
       },
@@ -45,7 +46,7 @@ export default function MainViewItems() {
           onClick={() => handleItemClick(item.id)}
         >
           <div
-            className={`duration-400 flex w-fit items-center gap-1 rounded-md ${item.active ? `bg-[#e8f0ff] dark:bg-[#b0ccff] dark:text-[#0f37de]` : `hover:bg-slate-100 dark:hover:bg-[#b0ccff] dark:hover:text-[#0f37de]`} px-2 py-2 text-[#365dff] dark:text-drkcol`}
+            className={`duration-400 flex w-fit items-center gap-1 rounded-md ${item.active ? `bg-[#e8f0ff] dark:bg-[#b0ccff] dark:text-[#0f37de]` : `hover:bg-slate-100 dark:hover:bg-[#b0ccff] dark:text-drkcol dark:hover:text-[#0f37de]`} px-2 py-2 text-[#365dff]`}
           >
             {item.icon}
             <p className="hidden text-sm font-normal md:block">{item.name}</p>

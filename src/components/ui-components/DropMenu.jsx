@@ -4,7 +4,9 @@ export default function DropMenu ({ children, trigger, pos}) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const toggleDropdown = () => {
+  const toggleDropdown = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     setIsOpen((prev) => !prev);
   };
 

@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import store from "./app/store.js";
+import { Provider } from "react-redux";
 
 import ErrorPage from "./components/ui-components/ErrorPage.jsx";
 import MainView from "./components/mainview/MainView.jsx";
@@ -13,6 +15,9 @@ import Questions from "./routes/Questions.jsx";
 import ListView from "./routes/ListView.jsx";
 import TableView from "./routes/TableView.jsx";
 import BoardView from "./routes/BoardView.jsx";
+import AllProjects from "./routes/AllProjects.jsx";
+import AllMembers from "./routes/AllMembers.jsx";
+import Board from "./components/mainview/board/Board.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +30,11 @@ const router = createBrowserRouter([
         element: <MainView />,
         children: [
           {
-            path: ":overviewId/overview",
+            path: "project/:boardId",
+            element: <Board />
+          },
+          {
+            path: "/overview",
             element: <Overview />,
           },
           {
@@ -52,6 +61,14 @@ const router = createBrowserRouter([
             path: ":tableviewId/tableview",
             element: <TableView />,
           },
+          {
+            path: "/projects",
+            element: <AllProjects />,
+          },
+          {
+            path: "/members",
+            element: <AllMembers />,
+          },
         ],
       },
     ],
@@ -60,6 +77,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>,
 );

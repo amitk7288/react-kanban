@@ -1,3 +1,6 @@
+// import { useParams } from "react-router-dom";
+// import { useSelector } from "react-redux";
+
 import DropMenu from "../../../../ui-components/DropMenu";
 
 import {
@@ -11,13 +14,16 @@ import {
 import pic from "/src/assets/members/1.jpg"
 
 export default function Card({ card, categories }) {
-// i dont think the way weve handled the cat colours is correct now because we are using not only dark mode on icon toggle, but also users system preferences, this will need to be updated i think, because we may have a scenario where dark mode is indeed on based on user pref, but there is no dark class in html
 
-// truncate the card titles
+// const { boardId } = useParams();
+// const board = useSelector((state) =>
+//   state.boards.find((board) => board.id === parseInt(boardId, 10)),
+// );
 
-  const isDarkMode = document.documentElement.classList.contains("dark");
-  const cardCategory = categories.find((category) => category.name === card.category);
-  
+const cardCategory = categories.find((category) => category.name === card.category);
+
+
+const isDarkMode = document.documentElement.classList.contains("dark");
 
   return (
     <div className="flex w-[250px] cursor-pointer flex-col rounded-lg border bg-white md:w-[300px] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol">
@@ -50,7 +56,6 @@ export default function Card({ card, categories }) {
               <PiDotsThreeOutlineVerticalFill className="cursor-pointer" />
             }
             pos={`right-[0px]`}
-            className="dark:bg-red-500"
           >
             <nav className="flex flex-col gap-2 text-sm">
               <a href="#">Edit</a>
