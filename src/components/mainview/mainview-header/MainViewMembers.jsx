@@ -12,6 +12,12 @@ import {
 import ddlogo from "../../../assets/DDLogo.png";
 
 export default function MainViewMembers() {
+
+  /**
+   * boardId
+   * members for this board
+   */
+
   const [memberName, setMemberName] = useState("");
   const [memberImg, setMemberImg] = useState(null);
   const memberImgUpload = useRef(null);

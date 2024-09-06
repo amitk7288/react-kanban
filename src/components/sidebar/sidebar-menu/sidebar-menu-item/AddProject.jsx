@@ -1,10 +1,17 @@
 import { useRef, useState } from "react";
+import {useDispatch, useSelector } from "react-redux";
+
+import { addBoard } from "../../../../features/boards/boardsSlice";
 
 import Modal from "../../../ui-components/Modal";
 
 import { PiPlusBold, PiCameraBold, PiFolderPlusBold, PiImageBold } from "react-icons/pi"
 
 export default function AddProject() {
+
+  const dispatch = useDispatch();
+  const boardsLength = useSelector((state) => state.boards.length);
+
   const [projName, setProjName] = useState("");
   const [projImg, setProjImg] = useState(null);
   const projImgUpload = useRef(null);
@@ -34,9 +41,61 @@ export default function AddProject() {
     setProjName("");
   }
 
-  function handleClickSubmit() {
-   
-    console.log('form needs to be filled out');
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formInfo = {
+      id: boardsLength + 1,
+      name: projName,
+      img: projImg,
+      complete: 0,
+      members: [],
+      lists: [
+        {
+          id: 1,
+          name: "To Do",
+          cards: [
+            {
+              id: 1,
+              category: "UX/UI",
+              title: "Wireframing",
+              description:
+                "Create low-fidelity designs that outline the basic structure and layout of the product or service.",
+              progress: "0/8",
+              //members: members[(1, 2)],
+              watchers: 5,
+              comments: 2,
+              files: 3,
+            },
+            {
+              id: 2,
+              category: "Design",
+              title: "First design concepts",
+              description:
+                "Create a concept based on the research and insights gathered during the discovery phase of the project.",
+              progress: "1/5",
+              //members: members[3], // Specific member assigned
+              watchers: 3,
+              comments: 4,
+              files: 1,
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: "In Progress",
+        },
+        {
+          id: 3,
+          name: "Review",
+        },
+        {
+          id: 4,
+          name: "Done",
+        },
+      ],
+    };
+    dispatch(addBoard(formInfo));
+    handleClickCancelBtn();
   }
 
 
@@ -44,14 +103,14 @@ export default function AddProject() {
     <div>
       <Modal
         trigger={
-          <button className="btn-transition 3xl:w-[275px] flex w-[180px] items-center justify-center rounded-lg border-[2px] border-dashed border-blue-600 bg-white p-4 font-medium text-[#365dff] hover:border-blue-600 hover:bg-[#365dff] hover:text-white xl:w-[225px] dark:bg-drkbg2 dark:text-drkcol">
+          <button className="btn-transition flex cursor-pointer items-center whitespace-nowrap rounded-md bg-[#365dff] p-3 text-sm font-normal text-white">
             <PiPlusBold />
-            &nbsp;Add Project
           </button>
         }
       >
         <form
           ref={formRef}
+          onSubmit={handleSubmit}
           className="flex h-[100%] flex-col justify-between gap-5"
         >
           <div className="space-y-12">
@@ -145,7 +204,6 @@ export default function AddProject() {
               type="submit"
               disabled={!projName || !projImg}
               className={`rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${projName && projImg ? "bg-[#365dff] text-white" : "bg-gray-400 text-white"}`}
-              onClick={handleClickSubmit}
             >
               Add Project
             </button>

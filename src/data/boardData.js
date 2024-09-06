@@ -6,7 +6,9 @@ const boards = [
   {
     id: 1,
     name: "PaperClip Ltd",
-    members: members[1, 2, 3, 4, 5, 6],
+    img: "/src/assets/DDLogo.png",
+    complete: 23,
+    members: members[(1, 2, 3, 4, 5, 6)],
     lists: [
       {
         id: 1,
@@ -20,7 +22,7 @@ const boards = [
             description:
               "Create low-fidelity designs that outline the basic structure and layout of the product or service.",
             progress: "0/8",
-            members: members[1, 2],
+            members: members[(1, 2)],
             watchers: 5,
             comments: 2,
             files: 3,
@@ -51,7 +53,7 @@ const boards = [
             description:
               "Identify the key touchpoints and pain points in the customer journey, and develop strategies to improve the overall customer experience.",
             progress: "3/10",
-            members: members[4, 5],
+            members: members[(4, 5)],
             watchers: 4,
             comments: 5,
             files: 2,
@@ -82,7 +84,7 @@ const boards = [
             description:
               "Research competitors and identify weaknesses and strengths of each of them. Compare their product features, quality, and more.",
             progress: "7/7",
-            members: members[1, 2],
+            members: members[(1, 2)],
             watchers: 6,
             comments: 2,
             files: 3,
@@ -113,7 +115,7 @@ const boards = [
             description:
               "Create branded materials such as business cards, flyers, brochures, and social media graphics.",
             progress: "5/5",
-            members: members[4, 5],
+            members: members[(4, 5)],
             watchers: 7,
             comments: 5,
             files: 6,
@@ -125,7 +127,9 @@ const boards = [
   {
     id: 2,
     name: "Web Platform",
-    members: members[1, 3, 5, 6],
+    img: "/src/assets/DDLogo.png",
+    complete: 29,
+    members: members[(1, 3, 5, 6)],
     lists: [
       {
         id: 1,
@@ -139,7 +143,7 @@ const boards = [
             description:
               "Develop a comprehensive design library that includes UI components, patterns, and guidelines.",
             progress: "0/12",
-            members: members[5, 6],
+            members: members[(5, 6)],
             watchers: 4,
             comments: 3,
             files: 2,
@@ -158,7 +162,7 @@ const boards = [
             description:
               "Create branding assets for social media platforms including profile images, cover photos, and post templates.",
             progress: "4/8",
-            members: members[1, 3],
+            members: members[(1, 3)],
             watchers: 5,
             comments: 2,
             files: 5,
@@ -177,7 +181,7 @@ const boards = [
             description:
               "Conduct usability testing sessions to gather feedback on the user interface and identify areas for improvement.",
             progress: "5/7",
-            members: members[2, 4],
+            members: members[(2, 4)],
             watchers: 3,
             comments: 1,
             files: 3,
@@ -196,7 +200,7 @@ const boards = [
             description:
               "Refine the user interface based on feedback and best practices to enhance usability and visual appeal.",
             progress: "6/6",
-            members: members[5, 6],
+            members: members[(5, 6)],
             watchers: 6,
             comments: 4,
             files: 3,
@@ -208,7 +212,9 @@ const boards = [
   {
     id: 3,
     name: "Mobile Loop",
-    members: members[3, 4, 5, 6],
+    img: "/src/assets/DDLogo.png",
+    complete: 16,
+    members: members[(3, 4, 5, 6)],
     lists: [
       {
         id: 1,
@@ -222,7 +228,7 @@ const boards = [
             description:
               "Prepare the development environment by installing necessary tools and dependencies.",
             progress: "0/5",
-            members: members[3, 4],
+            members: members[(3, 4)],
             watchers: 2,
             comments: 1,
             files: 0,
@@ -241,7 +247,7 @@ const boards = [
             description:
               "Create wireframes for the mobile application to outline the structure and layout of key screens.",
             progress: "2/6",
-            members: members[4, 5],
+            members: members[(4, 5)],
             watchers: 4,
             comments: 3,
             files: 2,
@@ -279,7 +285,7 @@ const boards = [
             description:
               "Develop interactive prototypes to simulate the user experience and gather feedback.",
             progress: "5/5",
-            members: members[1, 3],
+            members: members[(1, 3)],
             watchers: 6,
             comments: 4,
             files: 2,
@@ -291,7 +297,9 @@ const boards = [
   {
     id: 4,
     name: "Social Campaign",
-    members: members[1, 2, 3, 4, 5, 6],
+    img: "/src/assets/DDLogo.png",
+    complete: 84,
+    members: members[(1, 2, 3, 4, 5, 6)],
     lists: [
       {
         id: 1,
@@ -305,7 +313,7 @@ const boards = [
             description:
               "Develop a comprehensive strategy for the social media campaign including goals, target audience, and key messages.",
             progress: "0/10",
-            members: members[2, 4],
+            members: members[(2, 4)],
             watchers: 5,
             comments: 3,
             files: 2,
@@ -317,7 +325,7 @@ const boards = [
             description:
               "Create a content calendar that outlines the timing and content of posts for the campaign.",
             progress: "2/8",
-            members: members[3, 6],
+            members: members[(3, 6)],
             watchers: 4,
             comments: 2,
             files: 3,
@@ -374,7 +382,7 @@ const boards = [
             description:
               "Execute the campaign launch, monitor performance, and make adjustments as needed.",
             progress: "8/8",
-            members: members[3, 5, 6],
+            members: members[(3, 5, 6)],
             watchers: 7,
             comments: 5,
             files: 2,
