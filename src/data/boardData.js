@@ -1,14 +1,15 @@
 import listColors from "./listColours";
 import members from "./members";
 
-// Updated boards data
+const getMembersByIds = (ids) => members.filter((member) => ids.includes(member.id));
+
 const boards = [
   {
     id: 1,
     name: "PaperClip Ltd",
     img: "/src/assets/DDLogo.png",
-    complete: 23,
-    members: members[(1, 2, 3, 4, 5, 6)],
+    complete: 12,
+    members: getMembersByIds([1, 2, 3, 4, 5, 6]),
     lists: [
       {
         id: 1,
@@ -128,8 +129,8 @@ const boards = [
     id: 2,
     name: "Web Platform",
     img: "/src/assets/DDLogo.png",
-    complete: 29,
-    members: members[(1, 3, 5, 6)],
+    complete: 23,
+    members: getMembersByIds([1, 3, 5, 6]),
     lists: [
       {
         id: 1,
@@ -211,10 +212,10 @@ const boards = [
   },
   {
     id: 3,
-    name: "Mobile Loop",
+    name: "Dev Dreamer",
     img: "/src/assets/DDLogo.png",
-    complete: 16,
-    members: members[(3, 4, 5, 6)],
+    complete: 100,
+    members: getMembersByIds([3, 4, 5, 6]),
     lists: [
       {
         id: 1,
@@ -228,7 +229,7 @@ const boards = [
             description:
               "Prepare the development environment by installing necessary tools and dependencies.",
             progress: "0/5",
-            members: members[(3, 4)],
+            members: getMembersByIds[(3, 4)],
             watchers: 2,
             comments: 1,
             files: 0,
@@ -298,8 +299,8 @@ const boards = [
     id: 4,
     name: "Social Campaign",
     img: "/src/assets/DDLogo.png",
-    complete: 84,
-    members: members[(1, 2, 3, 4, 5, 6)],
+    complete: 55,
+    members: getMembersByIds([1, 2]),
     lists: [
       {
         id: 1,

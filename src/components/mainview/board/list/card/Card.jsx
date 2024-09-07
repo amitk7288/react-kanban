@@ -1,7 +1,8 @@
-// import { useParams } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import DropMenu from "../../../../ui-components/DropMenu";
+import MemberCircles from "../../../../ui-components/MemberCircles";
 
 import {
   PiDotsThreeOutlineVerticalFill,
@@ -11,14 +12,15 @@ import {
   PiPaperclipBold,
 } from "react-icons/pi";
 
-import pic from "/src/assets/members/1.jpg"
+//import pic from "/src/assets/members/1.jpg"
 
 export default function Card({ card, categories }) {
 
-// const { boardId } = useParams();
-// const board = useSelector((state) =>
-//   state.boards.find((board) => board.id === parseInt(boardId, 10)),
-// );
+const { boardId } = useParams();
+const board = useSelector((state) =>
+  state.boards.find((board) => board.id === parseInt(boardId, 10)),
+);
+const members = board.members;
 
 const cardCategory = categories.find((category) => category.name === card.category);
 
@@ -77,21 +79,10 @@ const isDarkMode = document.documentElement.classList.contains("dark");
         </div>
       </div>
       <div className="flex items-center justify-between p-4">
-        {/* Users */}
-        <div className="flex w-fit gap-1">
-          <div className="h-6 w-6 overflow-hidden rounded-full border-[1px] border-white dark:border-drkbrd">
-            <img src={pic} alt="profilepic" />
-          </div>
-          <div className="relative right-3 h-6 w-6 overflow-hidden rounded-full border-[1px] border-white dark:border-drkbrd">
-            <img src={pic} alt="profilepic" />
-          </div>
-          <div className="relative right-6 h-6 w-6 overflow-hidden rounded-full border-[1px] border-white dark:border-drkbrd">
-            <img src={pic} alt="profilepic" />
-          </div>
-          <div className="relative right-9 h-6 w-6 overflow-hidden rounded-full border-[1px] border-white dark:border-drkbrd">
-            <img src={pic} alt="profilepic" />
-          </div>
+        <div className="relative flex w-fit">
+          <MemberCircles imgs={members} size={25} />
         </div>
+
         {/* Meta */}
         <div className="flex items-center gap-2.5">
           <div className="flex items-center gap-1 text-[#a4a6a8] dark:text-drkcol">

@@ -103,7 +103,7 @@ export default function AddProject() {
     <div>
       <Modal
         trigger={
-          <button className="btn-transition flex cursor-pointer items-center whitespace-nowrap rounded-md bg-[#365dff] p-3 text-sm font-normal text-white">
+          <button className="btn-transition flex cursor-pointer items-center whitespace-nowrap rounded-md bg-[#365dff] text-lg font-normal text-white p-1">
             <PiPlusBold />
           </button>
         }
