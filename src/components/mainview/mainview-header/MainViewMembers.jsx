@@ -1,6 +1,9 @@
 import { useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Modal from "../../ui-components/Modal";
+import MemberCircles from "../../ui-components/MemberCircles";
 
 import {
   PiPlusBold,
@@ -9,14 +12,17 @@ import {
   PiUserCirclePlusBold,
   PiUserFocusBold,
 } from "react-icons/pi";
-import ddlogo from "../../../assets/DDLogo.png";
 
 export default function MainViewMembers() {
 
-  /**
-   * boardId
-   * members for this board
-   */
+  const { boardId } = useParams();
+  const board = useSelector((state) =>
+    state.boards.find((board) => board.id === parseInt(boardId)),
+  );
+
+  const members = board.members;
+  console.log(`boardid is ${boardId}`);
+  
 
   const [memberName, setMemberName] = useState("");
   const [memberImg, setMemberImg] = useState(null);
@@ -52,21 +58,10 @@ export default function MainViewMembers() {
   }
 
   return (
-    <div className="col-start-2 col-end-3 row-start-1 row-end-2 flex items-center justify-self-end">
+    <div className="col-start-2 col-end-3 row-start-1 row-end-2 flex items-center gap-3 justify-self-end">
       <div className="hidden md:block">
-        <div className="flex w-fit gap-1">
-          <div className="h-8 w-8 overflow-hidden rounded-full border-[1px] border-white">
-            <img src={ddlogo} alt="profilepic" />
-          </div>
-          <div className="relative right-3 h-8 w-8 overflow-hidden rounded-full border-[1px] border-white">
-            <img src={ddlogo} alt="profilepic" />
-          </div>
-          <div className="relative right-6 h-8 w-8 overflow-hidden rounded-full border-[1px] border-white">
-            <img src={ddlogo} alt="profilepic" />
-          </div>
-          <div className="relative right-9 h-8 w-8 overflow-hidden rounded-full border-[1px] border-white">
-            <img src={ddlogo} alt="profilepic" />
-          </div>
+        <div className="relative flex w-fit">
+            <MemberCircles imgs={members} size={35} side={`right`}/>
         </div>
       </div>
       <div>
@@ -98,7 +93,7 @@ export default function MainViewMembers() {
                 >
                   <div
                     ref={memberImgFrame}
-                    className={`flex h-[100px] w-[100px] items-center justify-center rounded-full borderd-[1px] ${!memberImg ? "border-[#365dff]" : null} bg-blue-100`}
+                    className={`borderd-[1px] flex h-[100px] w-[100px] items-center justify-center rounded-full ${!memberImg ? "border-[#365dff]" : null} bg-blue-100`}
                   >
                     {memberImg ? (
                       <img

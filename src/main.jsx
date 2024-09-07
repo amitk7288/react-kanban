@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import "./index.css";
 import store from "./app/store.js";
 import { Provider } from "react-redux";
@@ -9,7 +9,6 @@ import { Provider } from "react-redux";
 import ErrorPage from "./components/ui-components/ErrorPage.jsx";
 import MainView from "./components/mainview/MainView.jsx";
 import Overview from "./routes/Overview.jsx";
-import Tasks from "./routes/Tasks.jsx";
 import Notes from "./routes/Notes.jsx";
 import Questions from "./routes/Questions.jsx";
 import ListView from "./routes/ListView.jsx";
@@ -30,35 +29,35 @@ const router = createBrowserRouter([
         element: <MainView />,
         children: [
           {
-            path: "project/:boardId",
-            element: <Board />
+            path: "/", // Define a route for "/"
+            element: <Navigate to="/project/1/tasks" replace />, // Redirect to "/project/1"
           },
           {
-            path: "/overview",
+            path: "project/:boardId/overview",
             element: <Overview />,
           },
           {
-            path: ":tasksId/tasks",
-            element: <Tasks />,
+            path: "project/:boardId/tasks",
+            element: <Board />,
           },
           {
-            path: ":notesId/notes",
+            path: "project/:boardId/notes",
             element: <Notes />,
           },
           {
-            path: ":questionsId/questions",
+            path: "project/:boardId/questions",
             element: <Questions />,
           },
           {
-            path: ":boardId/boardview",
+            path: "project/:boardId/boardview",
             element: <BoardView />,
           },
           {
-            path: ":listviewId/listview",
+            path: "project/:boardId/listview",
             element: <ListView />,
           },
           {
-            path: ":tableviewId/tableview",
+            path: "project/:boardId/tableview",
             element: <TableView />,
           },
           {

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
   PiDiamondsFourBold,
@@ -10,37 +11,45 @@ import {
 } from "react-icons/pi";
 
 export default function MainViewNav() {
-  const navItems = [
-    {
-      id: 1,
-      name: "Overview",
-      path: "project/:boardId/overview",
-      active: false,
-      icon: <PiDiamondsFourBold className="text-xl" />,
-    },
-    {
-      id: 2,
-      name: "Tasks",
-      path: "project/:boardId/tasks",
-      active: true,
-      icon: <PiCheckCircleBold className="text-xl" />,
-    },
-    {
-      id: 3,
-      name: "Notes",
-      path: "project/:boardId/notes",
-      active: false,
-      icon: <PiPenNibBold className="text-lg" />,
-    },
-    {
-      id: 4,
-      name: "Questions",
-      path: "project/:boardId/questions",
-      active: false,
-      icon: <PiSealQuestionBold className="text-xl" />,
-    },
-  ];
-  const [items, setItems] = useState(navItems);
+
+  const { boardId } = useParams();
+
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {    
+    const navItems = [
+      {
+        id: 1,
+        name: "Overview",
+        path: `project/${boardId}/overview`,
+        active: false,
+        icon: <PiDiamondsFourBold className="text-xl" />,
+      },
+      {
+        id: 2,
+        name: "Tasks",
+        path: `project/${boardId}/tasks`,
+        active: true,
+        icon: <PiCheckCircleBold className="text-xl" />,
+      },
+      {
+        id: 3,
+        name: "Notes",
+        path: `project/${boardId}/notes`,
+        active: false,
+        icon: <PiPenNibBold className="text-lg" />,
+      },
+      {
+        id: 4,
+        name: "Questions",
+        path: `project/${boardId}/questions`,
+        active: false,
+        icon: <PiSealQuestionBold className="text-xl" />,
+      },
+    ]
+    setItems(navItems);
+}, [boardId])
+
 
   function handleNavItemClick(itemId) {
     setItems((prevState) => (

@@ -1,33 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { PiKanbanBold, PiTableBold, PiListChecksBold } from "react-icons/pi";
 
 export default function MainViewItems() {
+  const {boardId} = useParams();
+  const [items, setItems] = useState([]);
 
+  useEffect(() => {
     const viewItems = [
       {
         id: 1,
         name: "Board",
-        path: "project/:boardId/board",
+        path: `project/${boardId}/tasks`,
         icon: <PiKanbanBold className="text-xl" />,
         active: true,
       },
       {
         id: 2,
         name: "Table",
-        path: "project/:boardId/table",
+        path: `project/${boardId}/tasks/`,
         icon: <PiTableBold className="text-xl" />,
         active: false,
       },
       {
         id: 3,
         name: "List",
-        path: "project/:boardId/list",
+        path: `project/${boardId}/tasks/`,
         icon: <PiListChecksBold className="text-xl" />,
         active: false,
       },
     ];
-  const [items, setItems] = useState(viewItems);
+    setItems(viewItems);
+  }, [boardId]);
 
   function handleItemClick(itemId) {
     setItems((prevState) => (
