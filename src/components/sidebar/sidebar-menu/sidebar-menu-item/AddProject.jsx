@@ -4,6 +4,7 @@ import {useDispatch, useSelector } from "react-redux";
 import { addBoard } from "../../../../features/boards/boardsSlice";
 
 import Modal from "../../../ui-components/Modal";
+import listColors from "../../../../data/listColours";
 
 import { PiPlusBold, PiCameraBold, PiFolderPlusBold, PiImageBold } from "react-icons/pi"
 
@@ -53,44 +54,26 @@ export default function AddProject() {
         {
           id: 1,
           name: "To Do",
-          cards: [
-            {
-              id: 1,
-              category: "UX/UI",
-              title: "Wireframing",
-              description:
-                "Create low-fidelity designs that outline the basic structure and layout of the product or service.",
-              progress: "0/8",
-              //members: members[(1, 2)],
-              watchers: 5,
-              comments: 2,
-              files: 3,
-            },
-            {
-              id: 2,
-              category: "Design",
-              title: "First design concepts",
-              description:
-                "Create a concept based on the research and insights gathered during the discovery phase of the project.",
-              progress: "1/5",
-              //members: members[3], // Specific member assigned
-              watchers: 3,
-              comments: 4,
-              files: 1,
-            },
-          ],
+          color: listColors["To Do"],
+          cards: [],
         },
         {
           id: 2,
           name: "In Progress",
+          color: listColors["In Progress"],
+          cards: [],
         },
         {
           id: 3,
           name: "Review",
+          color: listColors["Review"],
+          cards: [],
         },
         {
           id: 4,
           name: "Done",
+          color: listColors["Done"],
+          cards: [],
         },
       ],
     };
@@ -103,8 +86,8 @@ export default function AddProject() {
     <div>
       <Modal
         trigger={
-          <button className="btn-transition flex cursor-pointer items-center whitespace-nowrap rounded-md bg-[#365dff] text-lg font-normal text-white p-1">
-            <PiPlusBold />
+          <button className="btn-transition flex cursor-pointer items-center whitespace-nowrap rounded-md bg-[#365dff] text-lg text-white p-1">
+            <PiPlusBold className="font-" />
           </button>
         }
       >

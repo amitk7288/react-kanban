@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import SidebarMenuItem from "../SidebarMenuItem";
 import MemberItem from "./MemberItem"
+import members from "/src/data/members.js";
 
 import { PiUsersThreeBold } from "react-icons/pi";
 
@@ -11,11 +12,9 @@ export default function MemberItems() {
         Team members
       </p>
       <div className="flex w-fit flex-col items-center gap-2.5">
-        <MemberItem />
-        <MemberItem />
-        <MemberItem />
-        <MemberItem />
-        <MemberItem />
+        {members.map((member) => (
+          <MemberItem key={member.id} img={member.img} name={member.name} />
+        ))}
       </div>
       <Link to={`/members`}>
         <div className="text-[#365dff]">

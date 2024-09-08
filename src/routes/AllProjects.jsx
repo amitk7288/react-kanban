@@ -9,7 +9,7 @@ export default function AllProjects() {
   return (
    <CardView title={`All Projects`}>
     {projects.map((project) => (
-      <ProjectCard key={project.id} projectName={project.name} projectImageUrl={project.img} projectCompletion={project.complete} boardId={project.id} />
+      <ProjectCard key={project.id} projectName={project.name} projectImageUrl={project.img} projectCompletion={project.complete} boardId={project.id} members={project.members} />
     ))}
    </CardView>
   );
