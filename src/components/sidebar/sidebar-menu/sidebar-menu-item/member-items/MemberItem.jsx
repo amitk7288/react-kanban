@@ -1,19 +1,20 @@
 import SidebarMenuItem from "../SidebarMenuItem";
-import member from "../../../../../assets/member.png";
 
 import { PiCaretDown, } from "react-icons/pi";
 import { GoDotFill } from "react-icons/go";
 
-export default function MemberItem() {
+export default function MemberItem({img, name}) {
+
+
   return (
     <SidebarMenuItem>
       <div className="flex items-center gap-2">
-        <div className="basis-[40px]">
-          <img src={member} alt="" />
+        <div className="basis-[40px] rounded-full">
+          <img src={img} alt={name} className="rounded-md" />
         </div>
         <div>
           <div>
-            <p className="text-xs xl:text-sm font-medium">Bred Smith</p>
+            <p className="text-xs font-medium xl:text-sm">{name}</p>
           </div>
           <div className="flex items-start gap-1">
             <GoDotFill className="text-green-400" />

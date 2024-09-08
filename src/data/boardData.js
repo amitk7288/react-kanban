@@ -1,7 +1,8 @@
 import listColors from "./listColours";
 import members from "./members";
 
-const getMembersByIds = (ids) => members.filter((member) => ids.includes(member.id));
+const getMembersByIds = (ids) =>
+  members.filter((member) => ids.includes(member.id));
 
 const boards = [
   {
@@ -76,7 +77,7 @@ const boards = [
       {
         id: 3,
         name: "Review",
-        color: listColors["Need Review"],
+        color: listColors["Review"],
         cards: [
           {
             id: 5,
@@ -173,7 +174,7 @@ const boards = [
       {
         id: 3,
         name: "Review",
-        color: listColors["Need Review"],
+        color: listColors["Review"],
         cards: [
           {
             id: 10,
@@ -258,7 +259,7 @@ const boards = [
       {
         id: 3,
         name: "Review",
-        color: listColors["Need Review"],
+        color: listColors["Review"],
         cards: [
           {
             id: 14,
@@ -355,7 +356,7 @@ const boards = [
       {
         id: 3,
         name: "Review",
-        color: listColors["Need Review"],
+        color: listColors["Review"],
         cards: [
           {
             id: 19,

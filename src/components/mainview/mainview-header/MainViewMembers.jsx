@@ -20,8 +20,7 @@ export default function MainViewMembers() {
     state.boards.find((board) => board.id === parseInt(boardId)),
   );
 
-  const members = board.members;
-  console.log(`boardid is ${boardId}`);
+  const members = board ? board.members : [];
   
 
   const [memberName, setMemberName] = useState("");
@@ -53,8 +52,8 @@ export default function MainViewMembers() {
     setMemberName("");
   }
 
-  function handleClickSubmit() {
-    console.log("form needs to be filled out");
+  function handleSubmit(e) {
+    console.log(e);
   }
 
   return (
@@ -79,6 +78,7 @@ export default function MainViewMembers() {
           <form
             ref={formRef}
             className="flex h-[100%] flex-col justify-between gap-5"
+            onSubmit={handleSubmit}
           >
             <div className="space-y-12">
               <div className="">
@@ -171,7 +171,6 @@ export default function MainViewMembers() {
                 type="submit"
                 disabled={!memberName || !memberImg}
                 className={`rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${memberName && memberImg ? "bg-[#365dff] text-white" : "bg-gray-400 text-white"}`}
-                onClick={handleClickSubmit}
               >
                 Add Member
               </button>
