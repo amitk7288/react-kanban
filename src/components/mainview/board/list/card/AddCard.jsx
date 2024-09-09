@@ -11,7 +11,7 @@ import {
 
 import CardChecklist from "./CardChecklist";
 
-export default function AddCard({ list }) {
+export default function AddCard({ list, onClose }) {
   const [watching, setWatching] = useState(false);
   const [chars, setChars] = useState(0);
 
@@ -153,11 +153,12 @@ export default function AddCard({ list }) {
 
           {/* buttons */}
           <div className="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" className="text-sm font-semibold leading-6">
+            <button type="button" className="text-sm font-semibold leading-6" onClick={onClose}>
               Cancel
             </button>
             <button
               type="submit"
+              disabled
               className="rounded-md bg-[#365dff] px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Add Task
