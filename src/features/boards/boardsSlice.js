@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import boardsData from "../../data/boardData";
 
-
 const boardsSlice = createSlice({
   name: "boards",
 
@@ -21,9 +20,16 @@ const boardsSlice = createSlice({
       if (board) {
         board.name = newName;
       }
+    },
+    addBoardMember: (state, action) => {
+      const {id, newMember} = action.payload;
+      const board = state.find((board => board.id === id));
+      if (board) {
+        board.members.push(newMember);
+      }
     }
   }
 });
 
-export const { addBoard, deleteBoard, editBoardName } = boardsSlice.actions;
+export const { deleteBoard, editBoardName, addBoard, addBoardMember } = boardsSlice.actions;
 export default boardsSlice.reducer;

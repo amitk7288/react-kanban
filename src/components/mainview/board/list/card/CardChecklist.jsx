@@ -46,16 +46,13 @@ export default function CardChecklist() {
        setTodoProgress(updatedTodoProgress);
   }, [todos]);
 
-
-
-
   return (
     <>
       <div className="flex items-center gap-2">
         <span className="text-xs">{Math.round(todoProgress)}%</span>
         <div className="h-2.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
           <div
-            className={`h-2.5 rounded-full ${todoProgress === 100 ? `bg-green-500` : `bg-blue-600`}`}
+            className={`duration-400 h-2.5 rounded-full transition-all ease-in-out ${todoProgress === 100 ? `bg-green-500` : `bg-blue-600`}`}
             style={{ width: `${todoProgress}%` }}
           ></div>
         </div>

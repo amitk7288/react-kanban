@@ -20,7 +20,7 @@ export default function MemberCircles({ imgs, size, side = "left" }) {
               right: `${offset}px`,
             }}
           >
-            <img src={i.img} alt={i.name} />
+            <img src={i.img} alt={i.name} className="w-full h-full object-cover" />
           </div>
         );
       })}
