@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addMember } from "../../../features/members/membersSlice";
+import { addBoardMember } from "../../../features/boards/boardsSlice";
 
 import Modal from "../../ui-components/Modal";
 import MemberCircles from "../../ui-components/MemberCircles";
@@ -15,14 +17,17 @@ import {
 
 export default function MainViewMembers() {
 
+  const dispatch = useDispatch();
   const { boardId } = useParams();
   const board = useSelector((state) =>
     state.boards.find((board) => board.id === parseInt(boardId)),
   );
 
   const members = board ? board.members : [];
-  
+  //const membersLength = board ? board.members.length : null;
 
+  //const members = useSelector((state) => state.members); 
+  
   const [memberName, setMemberName] = useState("");
   const [memberImg, setMemberImg] = useState(null);
   const memberImgUpload = useRef(null);
@@ -53,7 +58,28 @@ export default function MainViewMembers() {
   }
 
   function handleSubmit(e) {
-    console.log(e);
+    e.preventDefault();
+    const memberInfo = {
+      id: 100,
+      name: memberName,
+      img: memberImg,
+    };
+
+    // dispatch(addMember(memberInfo));
+    // dispatch(
+    //   addBoardMember({ boardId: parseInt(boardId), member: memberInfo }),
+    // );
+
+    // console.log("Updated Members:", members);
+    // console.log("new member:", memberInfo);
+    
+    dispatch(addMember(memberInfo));
+    dispatch(addBoardMember({ id: parseInt(boardId), newMember: memberInfo }));
+   
+    handleClickCancelBtn();
+
+    console.log(`members ${board.members}`);
+    
   }
 
   return (
@@ -115,7 +141,7 @@ export default function MainViewMembers() {
                     <div className="flex items-center gap-2">
                       <PiUserCirclePlusBold className="text-xl" />
                       <label
-                        htmlFor="project-name"
+                        htmlFor="member-name"
                         className="block text-sm font-medium leading-6"
                       >
                         Full name
@@ -124,8 +150,8 @@ export default function MainViewMembers() {
                     <div className="mt-2">
                       <input
                         onChange={handleMemberName}
-                        id="project-name"
-                        name="project-name"
+                        id="member-name"
+                        name="member-name"
                         type="text"
                         placeholder="John Smith..."
                         value={memberName}
@@ -139,7 +165,7 @@ export default function MainViewMembers() {
                     <div className="flex items-center gap-2">
                       <PiUserFocusBold className="text-xl" />
                       <label
-                        htmlFor="project-img"
+                        htmlFor="member-img"
                         className="block text-sm font-medium leading-6"
                       >
                         Profile pic

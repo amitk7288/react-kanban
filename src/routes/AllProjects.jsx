@@ -7,10 +7,19 @@ export default function AllProjects() {
   const projects = useSelector((state) => state.boards);
 
   return (
-   <CardView title={`All Projects`}>
-    {projects.map((project) => (
-      <ProjectCard key={project.id} projectName={project.name} projectImageUrl={project.img} projectCompletion={project.complete} boardId={project.id} members={project.members} />
-    ))}
-   </CardView>
+    <>
+      <CardView title={`All Projects`}>
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            projectName={project.name}
+            projectImageUrl={project.img}
+            projectCompletion={project.complete}
+            boardId={project.id}
+            members={project.members}
+          />
+        ))}
+      </CardView>
+    </>
   );
 }
