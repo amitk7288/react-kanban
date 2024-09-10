@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { PiKanbanBold, PiTableBold, PiListChecksBold } from "react-icons/pi";
+import { PiKanbanBold, PiListChecksBold } from "react-icons/pi";
+
+//PiTableBold,
 
 export default function MainViewItems() {
   const {boardId} = useParams();
@@ -16,17 +18,17 @@ export default function MainViewItems() {
         icon: <PiKanbanBold className="text-xl" />,
         active: true,
       },
-      {
-        id: 2,
-        name: "Table",
-        path: `project/${boardId}/tasks/`,
-        icon: <PiTableBold className="text-xl" />,
-        active: false,
-      },
+      // {
+      //   id: 2,
+      //   name: "Table",
+      //   path: `project/${boardId}/tasks/`,
+      //   icon: <PiTableBold className="text-xl" />,
+      //   active: false,
+      // },
       {
         id: 3,
         name: "List",
-        path: `project/${boardId}/tasks/`,
+        path: `project/${boardId}/tasks/listview`,
         icon: <PiListChecksBold className="text-xl" />,
         active: false,
       },

@@ -53,7 +53,9 @@ export default function Overview() {
         <p className="text-lg font-medium">{board.name} overview</p>
         <p>
           Completion:{" "}
-          <span className="font-semibold">{percentageComplete}%</span>
+          <span className="font-semibold">
+            {percentageComplete ? percentageComplete : `0`}%
+          </span>
         </p>
         <p>
           Total no. of cards:{" "}
@@ -69,7 +71,10 @@ export default function Overview() {
                 ></div>
                 <p className="flex items-center gap-2">
                   {" "}
-                  <span className="font-semibold border w-[10px] h-[10px] p-3.5 flex justify-center items-center rounded-md bg-white dark:bg-drkbg dark:border-drkcol">{list.cards}</span>in {list.listName}
+                  <span className="flex h-[10px] w-[10px] items-center justify-center rounded-md border bg-white p-3.5 font-semibold dark:border-drkbrd dark:bg-drkbg">
+                    {list.cards}
+                  </span>
+                  in {list.listName}
                 </p>
               </div>
             </div>
@@ -84,8 +89,11 @@ export default function Overview() {
           <span className="font-semibold">{outstandingCards}</span>
         </p>
         <div className="flex items-center gap-3">
-          <p>Active members: </p>
-          <div className="flex gap-2">
+          <p>
+            Active members{" "}
+            <span className="font-semibold">({board.members.length})</span>:{" "}
+          </p>
+          <div className="relative flex -space-x-2">
             {board.members.map((member) => (
               <img
                 key={member.id}
@@ -93,7 +101,7 @@ export default function Overview() {
                 alt={member.name}
                 width={30}
                 height={30}
-                className="rounded-full border"
+                className="rounded-full border-[1px] bg-white"
               />
             ))}
           </div>
