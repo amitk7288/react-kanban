@@ -11,9 +11,8 @@ import MainView from "./components/mainview/MainView.jsx";
 import Overview from "./routes/Overview.jsx";
 import Notes from "./routes/Notes.jsx";
 import Questions from "./routes/Questions.jsx";
-import ListView from "./routes/ListView.jsx";
+import ListView from "./routes/listview/ListView.jsx";
 import TableView from "./routes/TableView.jsx";
-import BoardView from "./routes/BoardView.jsx";
 import AllProjects from "./routes/AllProjects.jsx";
 import AllMembers from "./routes/AllMembers.jsx";
 import Board from "./components/mainview/board/Board.jsx";
@@ -29,8 +28,8 @@ const router = createBrowserRouter([
         element: <MainView />,
         children: [
           {
-            path: "/", // Define a route for "/"
-            element: <Navigate to="/project/1/tasks" replace />, // Redirect to "/project/1"
+            path: "/",
+            element: <Navigate to="/project/1/tasks" replace />,
           },
           {
             path: "project/:boardId/overview",
@@ -49,11 +48,7 @@ const router = createBrowserRouter([
             element: <Questions />,
           },
           {
-            path: "project/:boardId/boardview",
-            element: <BoardView />,
-          },
-          {
-            path: "project/:boardId/listview",
+            path: "project/:boardId/tasks/listview",
             element: <ListView />,
           },
           {

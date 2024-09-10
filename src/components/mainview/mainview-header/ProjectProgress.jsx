@@ -63,7 +63,7 @@ export default function ProjectProgress() {
           </div>
           <div className="w-[auto]">
             <span className="whitespace-nowrap text-sm font-normal text-[#8f959f] dark:text-drkcol">
-              {`${percentageComplete}%`}
+              {percentageComplete ? `${percentageComplete}%` : `0%`}
             </span>
           </div>
         </div>

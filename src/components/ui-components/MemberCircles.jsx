@@ -1,14 +1,11 @@
-
-
 export default function MemberCircles({ imgs, size, side = "left" }) {
   return (
     <>
       {imgs.map((i, index) => {
-        // Calculate the right offset based on the side
         const offset =
           side === "right"
-            ? -(imgs.length - 1 - index) * 10 // Reverse offset for right side with negative values
-            : index * 10; // Normal offset for left side
+            ? -(imgs.length - 1 - index) * 10
+            : index * 10;
 
         return (
           <div

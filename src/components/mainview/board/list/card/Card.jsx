@@ -12,8 +12,6 @@ import {
   PiPaperclipBold,
 } from "react-icons/pi";
 
-//import pic from "/src/assets/members/1.jpg"
-
 export default function Card({ card, categories }) {
 
 const { boardId } = useParams();
