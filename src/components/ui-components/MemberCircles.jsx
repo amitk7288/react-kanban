@@ -13,7 +13,7 @@ export default function MemberCircles({ imgs, size, side = "left" }) {
         return (
           <div
             key={i.id}
-            className="relative overflow-hidden rounded-full border-[1px] border-white"
+            className="relative overflow-hidden rounded-full border-[1px] border-white bg-white"
             style={{
               width: `${size}px`,
               height: `${size}px`,
