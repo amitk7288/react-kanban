@@ -13,18 +13,25 @@ export default function ProjectProgress() {
      return null;
    }
 
-  let progressColour; 
-  if (board.complete < 20) {
+  const totalCards = board.lists.reduce(
+    (total, list) => total + list.cards.length,
+    0,
+  );
+  const completedCards = board.lists[3].cards.length;
+  const percentageComplete = Math.round((completedCards / totalCards) * 100);
+
+  let progressColour;
+  if (percentageComplete < 20) {
     progressColour = `#365dff`;
-  } else if (board.complete < 40) {
+  } else if (percentageComplete < 40) {
     progressColour = `#188af0`;
-  } else if (board.complete < 60) {
+  } else if (percentageComplete < 60) {
     progressColour = `#00b7d8`;
-  } else if (board.complete < 80) {
+  } else if (percentageComplete < 80) {
     progressColour = `#00d4b0`;
-  } else if (board.complete < 90) {
+  } else if (percentageComplete < 90) {
     progressColour = `#07b741`;
-  } else if (board.complete <= 100) {
+  } else if (percentageComplete <= 100) {
     progressColour = `#22c55e`;
   }
 
@@ -38,7 +45,7 @@ export default function ProjectProgress() {
           <p className="whitespace-nowrap font-medium lg:text-lg">
             {board.name}
           </p>
-          {board.complete === 100 ? (
+          {percentageComplete === 100 ? (
             <div className="flex items-center justify-start">
               <RiMedal2Fill className="text-2xl text-[#ffbf00]" />
             </div>
@@ -49,14 +56,14 @@ export default function ProjectProgress() {
             <div
               className="duration-400 h-2.5 rounded-full transition-all ease-in-out"
               style={{
-                width: `${board.complete}%`,
+                width: `${percentageComplete}%`,
                 backgroundColor: progressColour,
               }}
             ></div>
           </div>
           <div className="w-[auto]">
             <span className="whitespace-nowrap text-sm font-normal text-[#8f959f] dark:text-drkcol">
-              {`${board.complete}%`}
+              {`${percentageComplete}%`}
             </span>
           </div>
         </div>

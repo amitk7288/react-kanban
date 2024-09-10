@@ -9,7 +9,6 @@ const boards = [
     id: 1,
     name: "PaperClip Ltd",
     img: "/src/assets/DDLogo.png",
-    complete: 12,
     members: getMembersByIds([1, 2, 3, 4, 5, 6]),
     lists: [
       {
@@ -130,7 +129,6 @@ const boards = [
     id: 2,
     name: "Web Platform",
     img: "/src/assets/DDLogo.png",
-    complete: 23,
     members: getMembersByIds([1, 3, 5, 6]),
     lists: [
       {
@@ -215,7 +213,6 @@ const boards = [
     id: 3,
     name: "Dev Dreamer",
     img: "/src/assets/DDLogo.png",
-    complete: 100,
     members: getMembersByIds([3, 4, 5, 6]),
     lists: [
       {
@@ -300,7 +297,6 @@ const boards = [
     id: 4,
     name: "Social Campaign",
     img: "/src/assets/DDLogo.png",
-    complete: 55,
     members: getMembersByIds([1, 2]),
     lists: [
       {

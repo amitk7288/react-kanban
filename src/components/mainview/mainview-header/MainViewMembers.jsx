@@ -69,8 +69,6 @@ export default function MainViewMembers() {
     dispatch(addBoardMember({ id: parseInt(boardId), newMember: memberInfo }));
    
     handleClickCancelBtn();
-
-    console.log(`members ${board.members}`);
     
   }
 
