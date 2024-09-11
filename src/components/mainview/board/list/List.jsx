@@ -4,7 +4,7 @@ import Card from "./card/Card";
 
 import categories from "../../../../data/categories";
 
-export default function List({ list }) {
+export default function List({ list, zen }) {
   return (
     <li className="no-scrollbar flex h-[100%] w-[300px] flex-col items-center gap-5 overflow-y-auto rounded-lg border p-5 md:w-[350px] dark:border-drkbrd dark:bg-drkbg2">
       <div className="sticky flex flex-col gap-3 rounded-lg bg-[#f7f7f7] dark:bg-drkbg2 dark:text-drkcol">
@@ -23,6 +23,7 @@ export default function List({ list }) {
               card={card}
               list={list}
               categories={categories}
+              zen={zen}
             />
           ))}
         </div>
