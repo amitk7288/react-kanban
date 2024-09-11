@@ -12,7 +12,6 @@ import Overview from "./routes/Overview.jsx";
 import Notes from "./routes/Notes.jsx";
 import Questions from "./routes/Questions.jsx";
 import ListView from "./routes/listview/ListView.jsx";
-import TableView from "./routes/TableView.jsx";
 import AllProjects from "./routes/AllProjects.jsx";
 import AllMembers from "./routes/AllMembers.jsx";
 import Board from "./components/mainview/board/Board.jsx";
@@ -50,10 +49,6 @@ const router = createBrowserRouter([
           {
             path: "project/:boardId/tasks/listview",
             element: <ListView />,
-          },
-          {
-            path: "project/:boardId/tableview",
-            element: <TableView />,
           },
           {
             path: "/projects",
