@@ -10,11 +10,8 @@ const notesSlice = createSlice({
     addNote: (state, action) => {
       state.push(action.payload);
     },
-    deleteNote: (state, action) => {
-      state.push(action.payload);
-    },
   },
 });
 
-export const { addNote, deleteNote } = notesSlice.actions;
+export const { addNote } = notesSlice.actions;
 export default notesSlice.reducer;

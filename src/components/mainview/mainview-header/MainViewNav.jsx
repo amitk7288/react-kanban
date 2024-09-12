@@ -7,7 +7,6 @@ import {
   PiDiamondsFourBold,
   PiCheckCircleBold,
   PiPenNibBold,
-  PiSealQuestionBold,
 } from "react-icons/pi";
 
 export default function MainViewNav() {
@@ -38,13 +37,6 @@ export default function MainViewNav() {
         path: `project/${boardId}/notes`,
         active: false,
         icon: <PiPenNibBold className="text-lg" />,
-      },
-      {
-        id: 4,
-        name: "Questions",
-        path: `project/${boardId}/questions`,
-        active: false,
-        icon: <PiSealQuestionBold className="text-xl" />,
       },
     ]
     setItems(navItems);
