@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import ErrorPage from "./components/ui-components/ErrorPage.jsx";
 import MainView from "./components/mainview/MainView.jsx";
 import Overview from "./routes/Overview.jsx";
-import Notes from "./routes/Notes.jsx";
+import Notes from "./routes/notes/Notes.jsx";
 import Questions from "./routes/Questions.jsx";
 import ListView from "./routes/listview/ListView.jsx";
 import AllProjects from "./routes/AllProjects.jsx";

@@ -14,15 +14,15 @@ function App() {
         - dark mode (system)
         D - mobile view, side scroll etc.
         - drag and drop
-        - overview view
+        D - overview view
         - notes view
         - questions view
         - card open view, upload files, add comments, watch, assign team member
-        - card calculate % compete of tasks and alter colour accordingly
+        D - card calculate % compete of tasks and alter colour accordingly
         - questions view, chat view, barchart?analytics?, calendar, stopwatch, squares?categories view?uxstages, branding etc.
         - filter by category uxstage, team member, by progress 1/5 etc.
-        W - add member to board view (modal)
-        W - dropdown menu options, i.e profile, each card, three dots
+        D - add member to board view (modal)
+         - dropdown menu options, i.e profile, each card, three dots
         - team members dropdown options
         W - add new task view
         - table view, list view
