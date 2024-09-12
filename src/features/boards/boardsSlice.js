@@ -12,7 +12,7 @@ const boardsSlice = createSlice({
       state.push(action.payload);
     },
     deleteBoard: (state, action) => {
-      return state.filter(board => board.id !== action.payload);
+      return state.filter((board) => board.id !== action.payload);
     },
     editBoardName: (state, action) => {
       const { id, newName } = action.payload;
@@ -22,21 +22,31 @@ const boardsSlice = createSlice({
       }
     },
     addBoardMember: (state, action) => {
-      const {id, newMember} = action.payload;
-      const board = state.find((board => board.id === id));
+      const { id, newMember } = action.payload;
+      const board = state.find((board) => board.id === id);
       if (board) {
         board.members.push(newMember);
       }
     },
     addBoardNote: (state, action) => {
-      const {id, newNote} = action.payload;
-      const board = state.find((board => board.id === id));
+      const { id, newNote } = action.payload;
+      const board = state.find((board) => board.id === id);
       if (board) {
         board.notes.push(newNote);
       }
-    }
-  }
+    },
+    addReactionToNote: (state, action) => {
+      const { boardId, noteId, emoji } = action.payload;
+      const board = state.find((board) => board.id === boardId);
+      if (board) {
+        const note = board.notes.find((note) => note.id === noteId);
+        if (note && !note.reactions.includes(emoji)) {
+          note.reactions.push(emoji);
+        }
+      }
+    },
+  },
 });
 
-export const { deleteBoard, editBoardName, addBoard, addBoardMember, addBoardNote } = boardsSlice.actions;
+export const { deleteBoard, editBoardName, addBoard, addBoardMember, addBoardNote, addReactionToNote } = boardsSlice.actions;
 export default boardsSlice.reducer;

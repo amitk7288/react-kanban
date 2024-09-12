@@ -1,4 +1,3 @@
-// categories.js
 const categories = [
   {
     id: 1,
