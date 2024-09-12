@@ -1,8 +1,12 @@
 import listColors from "./listColours";
 import members from "./members";
+import notes from "./notes";
 
 const getMembersByIds = (ids) =>
   members.filter((member) => ids.includes(member.id));
+
+const getNotesByIds = (ids) =>
+  notes.filter((note) => ids.includes(note.id));
 
 const boards = [
   {
@@ -10,6 +14,7 @@ const boards = [
     name: "PaperClip Ltd",
     img: "/src/assets/DDLogo.png",
     members: getMembersByIds([1, 2, 3, 4, 5, 6]),
+    notes: getNotesByIds([1]),
     lists: [
       {
         id: 1,
@@ -130,6 +135,7 @@ const boards = [
     name: "Web Platform",
     img: "/src/assets/DDLogo.png",
     members: getMembersByIds([1, 3, 5, 6]),
+    notes: getNotesByIds([1]),
     lists: [
       {
         id: 1,
@@ -214,6 +220,7 @@ const boards = [
     name: "Dev Dreamer",
     img: "/src/assets/DDLogo.png",
     members: getMembersByIds([3, 4, 5, 6]),
+    notes: getNotesByIds([1]),
     lists: [
       {
         id: 1,
@@ -298,6 +305,7 @@ const boards = [
     name: "Social Campaign",
     img: "/src/assets/DDLogo.png",
     members: getMembersByIds([1, 2]),
+    notes: getNotesByIds([1]),
     lists: [
       {
         id: 1,

@@ -35,7 +35,7 @@ const sidebarIcons = [
     icon: <PiColumns />,
     activeIcon: <PiColumnsDuotone />,
     iconText: "Board",
-    path: "/board",
+    path: "/project/1/tasks",
     active: true,
   },
   {

@@ -6,7 +6,7 @@ export default function CardView({children, title}) {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed right-0 top-[80px] z-[-1] h-[calc(100%_-_80px)] w-full border-x bg-white px-4 pt-4 sm:px-5 sm:pt-5 lg:w-[calc(100%_-_25vw)] 2xl:w-[calc(100%_-_20vw)] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol">
+    <div className="fixed right-0 top-[80px] z-[-1] h-[calc(100%_-_80px)] w-full overflow-y-scroll border-x bg-white px-4 pt-4 pb-4 sm:px-5 sm:pt-5 lg:w-[calc(100%_-_25vw)] 2xl:w-[calc(100%_-_20vw)] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol no-scrollbar">
       <div className="mb-5 flex items-center gap-3">
         <PiArrowCircleLeftBold
           className="cursor-pointer text-2xl"
@@ -14,9 +14,7 @@ export default function CardView({children, title}) {
         />
         <h1 className="text-xl font-medium">{title}</h1>
       </div>
-      <div className="grid grid-cols-4 gap-3">
-        {children}
-      </div>
+      <div className="grid grid-cols-4 gap-3">{children}</div>
     </div>
   );
 }

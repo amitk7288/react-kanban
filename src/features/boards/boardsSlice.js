@@ -27,9 +27,16 @@ const boardsSlice = createSlice({
       if (board) {
         board.members.push(newMember);
       }
+    },
+    addBoardNote: (state, action) => {
+      const {id, newNote} = action.payload;
+      const board = state.find((board => board.id === id));
+      if (board) {
+        board.notes.push(newNote);
+      }
     }
   }
 });
 
-export const { deleteBoard, editBoardName, addBoard, addBoardMember } = boardsSlice.actions;
+export const { deleteBoard, editBoardName, addBoard, addBoardMember, addBoardNote } = boardsSlice.actions;
 export default boardsSlice.reducer;

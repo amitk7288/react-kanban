@@ -22,19 +22,16 @@ const members = board.members;
 
 const cardCategory = categories.find((category) => category.name === card.category);
 
-
-const isDarkMode = document.documentElement.classList.contains("dark");
-
   return (
     <div className="flex w-[240px] cursor-pointer flex-col rounded-lg border bg-white md:w-[300px] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol">
       <div
         className={`flex flex-col gap-4 ${!zen ? `h-[230px] justify-evenly border-b border-b-drkbrd` : ``} p-4`}
       >
         <div className="flex items-center justify-between">
-          {cardCategory &&
-            (isDarkMode ? (
+          {cardCategory && (
+            <>
               <span
-                className={`rounded-full text-xs font-semibold ${!zen ? `px-4 py-2 md:text-sm` : `md:text-xs`}`}
+                className={`hidden dark:inline rounded-full text-xs font-medium ${!zen ? `px-3 py-1 md:text-[12px]` : `md:text-[12px]`}`}
                 style={
                   !zen
                     ? {
@@ -49,9 +46,8 @@ const isDarkMode = document.documentElement.classList.contains("dark");
               >
                 {cardCategory.name}
               </span>
-            ) : (
               <span
-                className={`rounded-full text-xs font-semibold ${!zen ? `px-4 py-2 md:text-sm` : `md:text-xs`}`}
+                className={`dark:hidden rounded-full text-xs font-medium ${!zen ? `px-3 py-1 md:text-[12px]` : `md:text-[12px]`}`}
                 style={
                   !zen
                     ? {
@@ -66,7 +62,8 @@ const isDarkMode = document.documentElement.classList.contains("dark");
               >
                 {cardCategory.name}
               </span>
-            ))}
+            </>
+          )}
           <DropMenu
             trigger={
               <PiDotsThreeOutlineVerticalFill className="cursor-pointer" />

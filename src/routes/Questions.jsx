@@ -11,8 +11,7 @@ export default function Questions() {
 
   return (
     <MainContainerWithHeader>
-      <p>{board.name} questions</p>
-      {console.log(board.lists)}
+      <p className="text-md font-medium">{board.name} questions</p>
     </MainContainerWithHeader>
   );
 }
