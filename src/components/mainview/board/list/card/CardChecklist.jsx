@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 import { PiTrashBold } from "react-icons/pi";
 
-export default function CardChecklist() {
+export default function CardChecklist({onAddItem}) {
   const [todoProgress, setTodoProgress] = useState(0);
   const [showItemInput, setShowItemInput] = useState(false);
   const [todoValue, setTodoValue] = useState("");
@@ -13,20 +13,21 @@ export default function CardChecklist() {
 
   function handleClickAddItem() {
     if (todoValue.trim() !== "") {
-      const newTodo= {
+      const newTodo = {
         id: nextId,
         text: todoValue,
         checked: false,
-      }
+      };
       setTodos((prevTodos) => [...prevTodos, newTodo]);
       setNextId((prevId) => prevId + 1);
       setTodoValue("");
       setShowItemInput(true);
+      onAddItem(newTodo);
     }
   }
 
   function handleKeyPress(event) {
-    if(event.key === "Enter") {
+    if (event.key === "Enter") {
       event.preventDefault();
       handleClickAddItem();
     }
@@ -39,12 +40,18 @@ export default function CardChecklist() {
   }, [showItemInput, todoValue]);
 
   useEffect(() => {
-       const totalTodos = todos.length;
-       const completedTodos = todos.filter((todo) => todo.checked).length;
-       const updatedTodoProgress =
-         totalTodos > 0 ? (completedTodos / totalTodos) * 100 : 0;
-       setTodoProgress(updatedTodoProgress);
+    const totalTodos = todos.length;
+    const completedTodos = todos.filter((todo) => todo.checked).length;
+    const updatedTodoProgress =
+      totalTodos > 0 ? (completedTodos / totalTodos) * 100 : 0;
+    setTodoProgress(updatedTodoProgress);
   }, [todos]);
+
+  function handleCheckedItem(item) {
+    setTodos(
+      todos.map((t) => (t.id === item.id ? { ...t, checked: !t.checked } : t)),
+    );
+  }
 
   return (
     <>
@@ -70,11 +77,7 @@ export default function CardChecklist() {
                     type="checkbox"
                     id={`task-${item.id}`}
                     onChange={() => {
-                      setTodos(
-                        todos.map((t) =>
-                          t.id === item.id ? { ...t, checked: !t.checked } : t,
-                        ),
-                      );
+                      handleCheckedItem(item);
                     }}
                   />
                   <p

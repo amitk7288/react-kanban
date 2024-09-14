@@ -1,4 +1,6 @@
-import { useState} from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addCard } from "../../../../../features/cards/cardsSlice";
 
 import {
   PiCardsBold,
@@ -12,8 +14,15 @@ import {
 import CardChecklist from "./CardChecklist";
 
 export default function AddCard({ list, onClose }) {
+  const cards = useSelector((state) => state.cards);
+  const dispatch = useDispatch();
+
   const [watching, setWatching] = useState(false);
   const [chars, setChars] = useState(0);
+  const [cardTitle, setCardTitle] = useState("");
+  const [cardDesc, setCardDesc] = useState("");
+  const [categoryName, setCategoryName] = useState("UX/UI");
+  const [checklist, setChecklist] = useState([]);
 
   const maxChars = 150;
 
@@ -25,24 +34,46 @@ export default function AddCard({ list, onClose }) {
       setChars(maxChars);
       e.target.value = e.target.value.substring(0, maxChars);
     }
+    setCardDesc(e.target.value);
   }
 
+  function handleAddChecklistItem(item) {
+    setChecklist((prevChecklist) => [...prevChecklist, item]);
+  }
+
+  useEffect(() => {
+    console.log(cards);
+  }, [cards]);
+
+  function handleAddCardSubmit(event) {
+    event.preventDefault();
+    const newCardInfo = {
+      id: 100,
+      category: categoryName,
+      title: cardTitle,
+      description: cardDesc,
+      checklist,
+      progress: "0/8",
+      watchers: 5,
+      comments: 2,
+      files: 3,
+    };
+    dispatch(addCard(newCardInfo));
+  }
 
   return (
-    <div className="lex flex-col">
+    <div className="flex flex-col">
       <div className="flex-1 p-4">
-        <form>
+        <form onSubmit={handleAddCardSubmit}>
           <div className="space-y-12">
             <div className="">
               <div className="flex items-center gap-4">
-                  <h2 className="text-lg font-semibold leading-7">
-                    Add a new task
-                  </h2>
+                <h2 className="text-lg font-semibold leading-7">
+                  Add a new task
+                </h2>
                 <div
                   className="flex w-fit cursor-pointer items-center gap-2 rounded-md bg-slate-300 px-2 py-1.5 text-black dark:bg-slate-700 dark:text-drkcol"
-                  onClick={() => {
-                    setWatching((prev) => !prev);
-                  }}
+                  onClick={() => setWatching((prev) => !prev)}
                 >
                   {watching ? (
                     <>
@@ -57,8 +88,16 @@ export default function AddCard({ list, onClose }) {
                   )}
                 </div>
               </div>
-              <p className="text-sm">In list: {list.name}</p>
-
+              <div className="flex items-center gap-2 text-sm">
+                <p>In list: </p>
+                <div className="flex items-center gap-1">
+                  <span
+                    style={{ backgroundColor: list.color }}
+                    className="inline-block h-[10px] w-[10px] rounded-full"
+                  ></span>
+                  <p className="font-medium">{list.name}</p>
+                </div>
+              </div>
               <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-full">
                   <div className="flex items-center gap-2">
@@ -76,6 +115,8 @@ export default function AddCard({ list, onClose }) {
                       name="card-title"
                       type="text"
                       placeholder="Add the name of the task here"
+                      value={cardTitle}
+                      onChange={(e) => setCardTitle(e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:text-drkbg"
                     />
                   </div>
@@ -91,7 +132,7 @@ export default function AddCard({ list, onClose }) {
                       Description
                     </label>
                     <span
-                      className={`text-xs ${chars >= 140 && "text-red-500"} ${chars < 140 && "text-black dark:text-white"} `}
+                      className={`text-xs ${chars >= 140 && "text-red-500"} ${chars < 140 && "text-black dark:text-white"}`}
                     >
                       {chars}/{maxChars}
                     </span>
@@ -103,6 +144,7 @@ export default function AddCard({ list, onClose }) {
                       type="text"
                       placeholder="Add a short description"
                       rows="3"
+                      value={cardDesc}
                       className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:text-drkbg"
                       onChange={handleChangeChars}
                     />
@@ -124,13 +166,15 @@ export default function AddCard({ list, onClose }) {
                     <select
                       id="card-category"
                       name="card-category"
+                      value={categoryName}
+                      onChange={(e) => setCategoryName(e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 dark:text-drkbg2"
                     >
-                      <option className="">UX/UI</option>
-                      <option className="">Design</option>
-                      <option className="">Branding</option>
-                      <option className="">Marketing</option>
-                      <option className="">Testing</option>
+                      <option>UX/UI</option>
+                      <option>Design</option>
+                      <option>Branding</option>
+                      <option>Marketing</option>
+                      <option>Testing</option>
                     </select>
                   </div>
                 </div>
@@ -139,13 +183,13 @@ export default function AddCard({ list, onClose }) {
                   <div className="mb-1 flex items-center gap-2">
                     <PiCheckSquareBold className="text-xl" />
                     <label
-                      htmlFor="card-description"
+                      htmlFor="card-checklist"
                       className="block text-sm font-medium leading-6"
                     >
                       Checklist
                     </label>
                   </div>
-                  <CardChecklist />
+                  <CardChecklist onAddItem={handleAddChecklistItem} />
                 </div>
               </div>
             </div>
@@ -153,13 +197,16 @@ export default function AddCard({ list, onClose }) {
 
           {/* buttons */}
           <div className="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" className="text-sm font-semibold leading-6" onClick={onClose}>
+            <button
+              type="button"
+              className="cursor-pointer text-sm font-semibold leading-6"
+              onClick={onClose}
+            >
               Cancel
             </button>
             <button
               type="submit"
-              disabled
-              className="rounded-md bg-[#365dff] px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="cursor-pointer rounded-md bg-[#365dff] px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Add Task
             </button>
