@@ -84,7 +84,7 @@ export default function ProjectItem({ projectName, handleDeleteProj, boardId, bo
             }
             pos={`right-[0px]`}
           >
-            <nav className="flex flex-col gap-2 text-sm">
+            <nav className="flex flex-col items-start gap-2 text-sm">
               <button onClick={() => setIsEditing(true)}>Edit</button>
               <button onClick={() => handleDeleteProj(boardId)}>Delete</button>
             </nav>

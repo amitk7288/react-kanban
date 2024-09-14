@@ -45,8 +45,29 @@ const boardsSlice = createSlice({
         }
       }
     },
+    deleteBoardCard: (state, action) => {
+      const { boardId, cardId } = action.payload;
+      console.log(`Deleting card ${cardId} from board ${boardId}`);
+      const board = state.find((board) => board.id === boardId);
+      if (board) {
+        board.lists = board.lists.map((list) => {
+          return {
+            ...list,
+            cards: list.cards.filter((card) => card.id !== cardId),
+          };
+        });
+      }
+    },
   },
 });
 
-export const { deleteBoard, editBoardName, addBoard, addBoardMember, addBoardNote, addReactionToNote } = boardsSlice.actions;
+export const {
+  deleteBoard,
+  editBoardName,
+  addBoard,
+  addBoardMember,
+  addBoardNote,
+  addReactionToNote,
+  deleteBoardCard,
+} = boardsSlice.actions;
 export default boardsSlice.reducer;
