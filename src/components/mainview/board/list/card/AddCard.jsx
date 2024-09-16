@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { addCard } from "../../../../../features/cards/cardsSlice";
+import { addBoardCard } from "../../../../../features/boards/boardsSlice";
 
 import {
   PiCardsBold,
@@ -14,15 +16,37 @@ import {
 import CardChecklist from "./CardChecklist";
 
 export default function AddCard({ list, onClose }) {
+  const {boardId} = useParams();
+    const board = useSelector((state) =>
+      state.boards.find((board) => board.id === parseInt(boardId)),
+    );
   const cards = useSelector((state) => state.cards);
   const dispatch = useDispatch();
+
+  const formRef = useRef(false);
 
   const [watching, setWatching] = useState(false);
   const [chars, setChars] = useState(0);
   const [cardTitle, setCardTitle] = useState("");
   const [cardDesc, setCardDesc] = useState("");
   const [categoryName, setCategoryName] = useState("UX/UI");
-  const [checklist, setChecklist] = useState([]);
+  const [selectedMembers, setSelectedMembers] = useState([]);
+  const [checklistItems, setChecklistItems] = useState([]);
+
+  function toggleMemberSelection(memberId) {
+    setSelectedMembers((prevSelected) =>
+      prevSelected.includes(memberId)
+        ? prevSelected.filter((id) => id !== memberId)
+        : [...prevSelected, memberId],
+    );
+  }
+  const selectedMemberDetails = board.members.filter((member) =>
+    selectedMembers.includes(member.id),
+  );
+
+    function hello(unicorn) {
+      setChecklistItems(unicorn);
+    }
 
   const maxChars = 150;
 
@@ -37,67 +61,92 @@ export default function AddCard({ list, onClose }) {
     setCardDesc(e.target.value);
   }
 
-  function handleAddChecklistItem(item) {
-    setChecklist((prevChecklist) => [...prevChecklist, item]);
-  }
-
   useEffect(() => {
     console.log(cards);
-  }, [cards]);
+  }, [cards, ]);
 
   function handleAddCardSubmit(event) {
     event.preventDefault();
-    const newCardInfo = {
-      id: 100,
+    const cardInfo = {
+      id: cards.length + 1,
       category: categoryName,
       title: cardTitle,
       description: cardDesc,
-      checklist,
-      progress: "0/8",
+      checklist: checklistItems,
+      members: selectedMemberDetails,
       watchers: 5,
       comments: 2,
       files: 3,
     };
-    dispatch(addCard(newCardInfo));
+
+    dispatch(addCard(cardInfo));
+    dispatch(addBoardCard({ boardId: parseInt(boardId), listId: list.id, cardInfo: cardInfo }));
+
+    formRef.current.reset();
+    onClose();
   }
 
   return (
     <div className="flex flex-col">
       <div className="flex-1 p-4">
-        <form onSubmit={handleAddCardSubmit}>
+        <form onSubmit={handleAddCardSubmit} ref={formRef}>
           <div className="space-y-12">
-            <div className="">
-              <div className="flex items-center gap-4">
-                <h2 className="text-lg font-semibold leading-7">
-                  Add a new task
-                </h2>
-                <div
-                  className="flex w-fit cursor-pointer items-center gap-2 rounded-md bg-slate-300 px-2 py-1.5 text-black dark:bg-slate-700 dark:text-drkcol"
-                  onClick={() => setWatching((prev) => !prev)}
-                >
-                  {watching ? (
-                    <>
-                      <PiEyeBold />
-                      <p className="text-sm">Watching</p>
-                    </>
-                  ) : (
-                    <>
-                      <PiEyeSlashBold />
-                      <p className="text-sm">Watch</p>
-                    </>
-                  )}
+            <div>
+              <div className="flex flex-col gap-3">
+                <div>
+                  <div className="flex items-center gap-4">
+                    <h2 className="text-lg font-semibold leading-7">
+                      Add a new task
+                    </h2>
+                    <div
+                      className="flex w-fit cursor-pointer items-center gap-2 rounded-md bg-slate-300 px-2 py-1.5 text-black dark:bg-slate-700 dark:text-drkcol"
+                      onClick={() => setWatching((prev) => !prev)}
+                    >
+                      {watching ? (
+                        <>
+                          <PiEyeBold />
+                          <p className="text-sm">Watching</p>
+                        </>
+                      ) : (
+                        <>
+                          <PiEyeSlashBold />
+                          <p className="text-sm">Watch</p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <p>In list: </p>
+                    <div className="flex items-center gap-1">
+                      <span
+                        style={{ backgroundColor: list.color }}
+                        className="inline-block h-[10px] w-[10px] rounded-full"
+                      ></span>
+                      <p className="font-medium">{list.name}</p>
+                    </div>
+                  </div>
+                </div>
+                <div id="members-section">
+                  <p className="text-xs">
+                    Select members for this card: {selectedMemberDetails.length}
+                  </p>
+                  <div className="relative flex">
+                    {board.members.map((member) => (
+                      <img
+                        key={member.id}
+                        src={member.img}
+                        alt={member.name}
+                        width={35}
+                        height={35}
+                        title={member.name}
+                        className={`cursor-pointer rounded-md border-[1px] bg-white ${selectedMembers.includes(member.id) ? `grayscale-0` : `grayscale`}`}
+                        onClick={() => toggleMemberSelection(member.id)}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-2 text-sm">
-                <p>In list: </p>
-                <div className="flex items-center gap-1">
-                  <span
-                    style={{ backgroundColor: list.color }}
-                    className="inline-block h-[10px] w-[10px] rounded-full"
-                  ></span>
-                  <p className="font-medium">{list.name}</p>
-                </div>
-              </div>
+
               <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-full">
                   <div className="flex items-center gap-2">
@@ -189,13 +238,11 @@ export default function AddCard({ list, onClose }) {
                       Checklist
                     </label>
                   </div>
-                  <CardChecklist onAddItem={handleAddChecklistItem} />
+                  <CardChecklist onAddItem={hello} />
                 </div>
               </div>
             </div>
           </div>
-
-          {/* buttons */}
           <div className="mt-6 flex items-center justify-end gap-x-6">
             <button
               type="button"
@@ -206,9 +253,12 @@ export default function AddCard({ list, onClose }) {
             </button>
             <button
               type="submit"
-              className="cursor-pointer rounded-md bg-[#365dff] px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              disabled={
+                !cardTitle.trim() || !cardDesc.trim() || !categoryName.trim()
+              }
+              className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${cardTitle.trim() && cardDesc.trim() && categoryName.trim() ? "bg-[#365dff] text-white" : "bg-gray-400 text-white"}`}
             >
-              Add Task
+              Submit
             </button>
           </div>
         </form>

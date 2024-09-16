@@ -1,4 +1,4 @@
-export default function MemberCircles({ imgs, size, side = "left" }) {
+export default function MemberCircles({ imgs = [], size, side = "left" }) {
   return (
     <>
       {imgs.map((i, index) => {

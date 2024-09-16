@@ -7,7 +7,7 @@ export default function OpenCard() {
           <div className="flex flex-col">
             <p>Card title editable on click to input field</p>
             <p>in list todo (trello has options)</p>
-          </div>
+          </div>  
           <div>
             <PiXBold />
           </div>

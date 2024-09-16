@@ -9,7 +9,6 @@ const cards = [
     title: "Wireframing",
     description:
       "Create low-fidelity designs that outline the basic structure and layout of the product or service.",
-    checklist: "0/8",
     members: getMembersByIds([1, 2]),
     watchers: 5,
     comments: 2,
@@ -21,7 +20,6 @@ const cards = [
     title: "First design concepts",
     description:
       "Create a concept based on the research and insights gathered during the discovery phase of the project.",
-    checklist: "1/5",
     members: getMembersByIds([3]),
     watchers: 3,
     comments: 4,
@@ -33,7 +31,6 @@ const cards = [
     title: "Customer Journey Mapping",
     description:
       "Identify the key touchpoints and pain points in the customer journey, and develop strategies to improve the overall customer experience.",
-    checklist: "3/10",
     members: getMembersByIds([4, 5]),
     watchers: 4,
     comments: 5,
@@ -45,7 +42,6 @@ const cards = [
     title: "Branding visual identity",
     description:
       "Create a brand identity system that includes a logo, typography, color palette, and brand guidelines.",
-    checklist: "2/6",
     members: getMembersByIds([6]),
     watchers: 2,
     comments: 3,
@@ -57,7 +53,6 @@ const cards = [
     title: "Competitor research",
     description:
       "Research competitors and identify weaknesses and strengths of each of them. Compare their product features, quality, and more.",
-    checklist: "7/7",
     members: getMembersByIds([1, 2]),
     watchers: 6,
     comments: 2,
@@ -69,7 +64,6 @@ const cards = [
     title: "This is a test card",
     description:
       "Find out how to handle an unknown category label, technically this shouldn't be possible as users picking from predefined categories.",
-    checklist: "7/7",
     members: getMembersByIds([3]),
     watchers: 6,
     comments: 2,
@@ -81,7 +75,6 @@ const cards = [
     title: "Marketing materials",
     description:
       "Create branded materials such as business cards, flyers, brochures, and social media graphics.",
-    checklist: "5/5",
     members: getMembersByIds([4, 5]),
     watchers: 7,
     comments: 5,
@@ -93,7 +86,6 @@ const cards = [
     title: "Design library",
     description:
       "Develop a comprehensive design library that includes UI components, patterns, and guidelines.",
-    checklist: "0/12",
     members: getMembersByIds([5, 6]),
     watchers: 4,
     comments: 3,
@@ -105,7 +97,6 @@ const cards = [
     title: "Social media branding",
     description:
       "Create branding assets for social media platforms including profile images, cover photos, and post templates.",
-    checklist: "4/8",
     members: getMembersByIds([1, 3]),
     watchers: 5,
     comments: 2,
@@ -117,7 +108,6 @@ const cards = [
     title: "Usability testing",
     description:
       "Conduct usability testing sessions to gather feedback on the user interface and identify areas for improvement.",
-    checklist: "5/7",
     members: getMembersByIds([2, 4]),
     watchers: 3,
     comments: 1,
@@ -129,7 +119,6 @@ const cards = [
     title: "UI refinement",
     description:
       "Refine the user interface based on feedback and best practices to enhance usability and visual appeal.",
-    checklist: "6/6",
     members: getMembersByIds([5, 6]),
     watchers: 6,
     comments: 4,
@@ -141,7 +130,6 @@ const cards = [
     title: "Setup development environment",
     description:
       "Prepare the development environment by installing necessary tools and dependencies.",
-    checklist: "0/5",
     members: getMembersByIds([3, 4]),
     watchers: 2,
     comments: 1,
@@ -153,7 +141,6 @@ const cards = [
     title: "Mobile app wireframes",
     description:
       "Create wireframes for the mobile application to outline the structure and layout of key screens.",
-    checklist: "2/6",
     members: getMembersByIds([4, 5]),
     watchers: 4,
     comments: 3,
@@ -165,7 +152,6 @@ const cards = [
     title: "App icon design",
     description:
       "Design an app icon that reflects the brand and stands out in the app store.",
-    checklist: "3/4",
     members: getMembersByIds([6]),
     watchers: 5,
     comments: 2,
@@ -177,7 +163,6 @@ const cards = [
     title: "Prototyping",
     description:
       "Develop interactive prototypes to simulate the user experience and gather feedback.",
-    checklist: "5/5",
     members: getMembersByIds([1, 3]),
     watchers: 6,
     comments: 4,
@@ -189,7 +174,6 @@ const cards = [
     title: "Campaign strategy",
     description:
       "Develop a comprehensive strategy for the social media campaign including goals, target audience, and key messages.",
-    checklist: "0/10",
     members: getMembersByIds([2, 4]),
     watchers: 5,
     comments: 3,
@@ -201,7 +185,6 @@ const cards = [
     title: "Content calendar",
     description:
       "Create a content calendar that outlines the timing and content of posts for the campaign.",
-    checklist: "2/8",
     members: getMembersByIds([3, 6]),
     watchers: 4,
     comments: 2,
@@ -213,7 +196,6 @@ const cards = [
     title: "Social media graphics",
     description:
       "Design visual assets for the social media campaign including banners, infographics, and video thumbnails.",
-    checklist: "3/7",
     members: getMembersByIds([5]),
     watchers: 6,
     comments: 4,
@@ -225,7 +207,6 @@ const cards = [
     title: "Hashtag research",
     description:
       "Research popular and relevant hashtags to use in the campaign for maximum reach and engagement.",
-    checklist: "5/5",
     members: getMembersByIds([1]),
     watchers: 3,
     comments: 1,
@@ -237,7 +218,6 @@ const cards = [
     title: "Campaign launch",
     description:
       "Execute the campaign launch, monitor performance, and make adjustments as needed.",
-    checklist: "8/8",
     members: getMembersByIds([3, 5, 6]),
     watchers: 7,
     comments: 5,
