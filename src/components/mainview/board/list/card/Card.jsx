@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import DropMenu from "../../../../ui-components/DropMenu";
 import MemberCircles from "../../../../ui-components/MemberCircles";
 import categories from "../../../../../data/categories";
@@ -23,9 +23,13 @@ export default function Card({ cardId, zen }) {
   useEffect(() => {
     console.log(boards);
   }, [boards]);
+
   const card = useSelector((state) =>
     state.cards.find((card) => card.id === cardId),
   );
+
+  const completedCount = card.checklist ? card.checklist.filter(item => item.checked).length : "";
+  const totalCount = card.checklist ? card.checklist.length : "";
 
   if (!card) {
     return null;
@@ -90,13 +94,15 @@ export default function Card({ cardId, zen }) {
             pos={`right-[0px]`}
           >
             <nav className="flex flex-col items-start gap-2 text-sm">
-              <button>Edit</button>
+              <Link to={"/"}>Edit</Link>
               <button onClick={() => handleDeleteCard(card.id)}>Delete</button>
             </nav>
           </DropMenu>
         </div>
         <div className="flex flex-col gap-3">
-          <p className={`font-medium ${zen ? `text-sm` : ``}`}>{card.id} - {card.title}</p>
+          <p className={`font-medium ${zen ? `text-sm` : ``}`}>
+            {card.id} - {card.title}
+          </p>
           {!zen ? (
             <p className="text-xs text-[#8f959f] dark:text-drkcol">
               {card.description}
@@ -107,7 +113,7 @@ export default function Card({ cardId, zen }) {
           >
             <PiListChecksBold className="text-[#a4a6a8] dark:text-drkcol" />
             <p className="text-sm text-[#a4a6a8] dark:text-drkcol">
-              {card.checklist}
+              {`${completedCount}/${totalCount}`}
             </p>
           </div>
         </div>

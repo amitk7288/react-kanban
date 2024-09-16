@@ -16,13 +16,12 @@ export default function List({ list, zen }) {
       </div>
       <div className="no-scrollbar h-[100%] overflow-auto rounded-lg">
         <div className="relative top-[0px] flex flex-col gap-3">
-          {list.cards.map((card) => (
-            <Card
-              key={card.id}
-              cardId={card.id}
-              zen={zen}
-            />
-          ))}
+          {list.cards
+            .slice()
+            .reverse()
+            .map((card) => (
+              <Card key={card.id} cardId={card.id} zen={zen} />
+            ))}
         </div>
       </div>
     </li>

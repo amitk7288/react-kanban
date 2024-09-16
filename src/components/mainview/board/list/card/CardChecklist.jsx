@@ -22,7 +22,6 @@ export default function CardChecklist({onAddItem}) {
       setNextId((prevId) => prevId + 1);
       setTodoValue("");
       setShowItemInput(true);
-      onAddItem(newTodo);
     }
   }
 
@@ -48,10 +47,16 @@ export default function CardChecklist({onAddItem}) {
   }, [todos]);
 
   function handleCheckedItem(item) {
-    setTodos(
-      todos.map((t) => (t.id === item.id ? { ...t, checked: !t.checked } : t)),
+    setTodos((prevTodos) =>
+      prevTodos.map((t) =>
+        t.id === item.id ? { ...t, checked: !t.checked } : t,
+      ),
     );
   }
+
+  useEffect(() => {
+    onAddItem(todos)
+  }, [onAddItem, todos]);
 
   return (
     <>
