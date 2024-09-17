@@ -49,7 +49,7 @@ export default function Overview() {
 
   return (
     <MainContainerWithHeader>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 border p-4 rounded-lg dark:border-drkbrd">
         <p className="text-md font-medium">{board.name} Overview:</p>
         <p>
           Completion:{" "}

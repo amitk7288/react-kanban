@@ -1,6 +1,5 @@
 import SidebarMenuItem from "../SidebarMenuItem";
 
-import { PiCaretDown, } from "react-icons/pi";
 import { GoDotFill } from "react-icons/go";
 
 export default function MemberItem({img, name}) {
@@ -22,7 +21,6 @@ export default function MemberItem({img, name}) {
           </div>
         </div>
       </div>
-      <PiCaretDown />
     </SidebarMenuItem>
   );
 }
