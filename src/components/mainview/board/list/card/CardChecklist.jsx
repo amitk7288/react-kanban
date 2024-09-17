@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-
+import { v4 as uuidv4 } from "uuid";
 import { PiTrashBold } from "react-icons/pi";
 
-export default function CardChecklist({onAddItem}) {
+export default function CardChecklist({ onAddItem }) {
   const [todoProgress, setTodoProgress] = useState(0);
   const [showItemInput, setShowItemInput] = useState(false);
   const [todoValue, setTodoValue] = useState("");
-  const [nextId, setNextId] = useState(0);
+  // const [nextId, setNextId] = useState(0);
   const [todos, setTodos] = useState([]);
 
   const inputAddItemRef = useRef(null);
@@ -14,12 +14,12 @@ export default function CardChecklist({onAddItem}) {
   function handleClickAddItem() {
     if (todoValue.trim() !== "") {
       const newTodo = {
-        id: nextId,
+        id: uuidv4(),
         text: todoValue,
         checked: false,
       };
       setTodos((prevTodos) => [...prevTodos, newTodo]);
-      setNextId((prevId) => prevId + 1);
+      // setNextId((prevId) => prevId + 1);
       setTodoValue("");
       setShowItemInput(true);
     }
@@ -55,12 +55,12 @@ export default function CardChecklist({onAddItem}) {
   }
 
   useEffect(() => {
-    onAddItem(todos)
+    onAddItem(todos);
   }, [onAddItem, todos]);
 
   return (
     <>
-      <div className="flex items-center gap-2">
+      <div id="cardChecklist" className="flex items-center gap-2">
         <span className="text-xs">{Math.round(todoProgress)}%</span>
         <div className="h-2.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
           <div

@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -16,10 +17,10 @@ import {
 import CardChecklist from "./CardChecklist";
 
 export default function AddCard({ list, onClose }) {
-  const {boardId} = useParams();
-    const board = useSelector((state) =>
-      state.boards.find((board) => board.id === parseInt(boardId)),
-    );
+  const { boardId } = useParams();
+  const board = useSelector((state) =>
+    state.boards.find((board) => board.id === parseInt(boardId)),
+  );
   const cards = useSelector((state) => state.cards);
   const dispatch = useDispatch();
 
@@ -44,9 +45,9 @@ export default function AddCard({ list, onClose }) {
     selectedMembers.includes(member.id),
   );
 
-    function hello(unicorn) {
-      setChecklistItems(unicorn);
-    }
+  function updateChecklist(fullList) {
+    setChecklistItems(fullList);
+  }
 
   const maxChars = 150;
 
@@ -63,32 +64,44 @@ export default function AddCard({ list, onClose }) {
 
   useEffect(() => {
     console.log(cards);
-  }, [cards, ]);
+  }, [cards]);
 
   function handleAddCardSubmit(event) {
     event.preventDefault();
     const cardInfo = {
-      id: cards.length + 1,
+      id: uuidv4(),
       category: categoryName,
       title: cardTitle,
       description: cardDesc,
       checklist: checklistItems,
       members: selectedMemberDetails,
+      watching: watching,
       watchers: 5,
       comments: 2,
       files: 3,
     };
 
     dispatch(addCard(cardInfo));
-    dispatch(addBoardCard({ boardId: parseInt(boardId), listId: list.id, cardInfo: cardInfo }));
+    dispatch(
+      addBoardCard({
+        boardId: parseInt(boardId),
+        listId: list.id,
+        cardInfo: cardInfo,
+      }),
+    );
 
     formRef.current.reset();
     onClose();
+
+    console.log(`CARD ADDED INFO`);
+    console.log(`BOARD: `, board);
+    console.log(`LIST: `, list);
+    console.log(`CARD: `, cards);
   }
 
   return (
     <div className="flex flex-col">
-      <div className="flex-1 p-4">
+      <div className="flex-1 px-4 pt-0 pb-0">
         <form onSubmit={handleAddCardSubmit} ref={formRef}>
           <div className="space-y-12">
             <div>
@@ -127,10 +140,13 @@ export default function AddCard({ list, onClose }) {
                   </div>
                 </div>
                 <div id="members-section">
-                  <p className="text-xs">
-                    Select members for this card: {selectedMemberDetails.length}
+                  <p className="mb-1 text-sm">
+                    Select members for this card:{" "}
+                    <span className="font-semibold">
+                      {selectedMemberDetails.length}
+                    </span>
                   </p>
-                  <div className="relative flex">
+                  <div className="relative flex gap-2">
                     {board.members.map((member) => (
                       <img
                         key={member.id}
@@ -139,7 +155,7 @@ export default function AddCard({ list, onClose }) {
                         width={35}
                         height={35}
                         title={member.name}
-                        className={`cursor-pointer rounded-md border-[1px] bg-white ${selectedMembers.includes(member.id) ? `grayscale-0` : `grayscale`}`}
+                        className={`cursor-pointer bg-white ${selectedMembers.includes(member.id) ? `rounded-full grayscale-0` : `grayscale`} ${!selectedMembers.includes(member.id) && `rounded-md`}`}
                         onClick={() => toggleMemberSelection(member.id)}
                       />
                     ))}
@@ -238,7 +254,7 @@ export default function AddCard({ list, onClose }) {
                       Checklist
                     </label>
                   </div>
-                  <CardChecklist onAddItem={hello} />
+                  <CardChecklist onAddItem={updateChecklist} />
                 </div>
               </div>
             </div>
@@ -254,9 +270,12 @@ export default function AddCard({ list, onClose }) {
             <button
               type="submit"
               disabled={
-                !cardTitle.trim() || !cardDesc.trim() || !categoryName.trim()
+                !cardTitle.trim() ||
+                !cardDesc.trim() ||
+                !categoryName.trim() ||
+                selectedMembers.length === 0
               }
-              className={`cursor-pointer rounded-md px-3 py-2 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${cardTitle.trim() && cardDesc.trim() && categoryName.trim() ? "bg-[#365dff] text-white" : "bg-gray-400 text-white"}`}
+              className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${cardTitle.trim() && cardDesc.trim() && categoryName.trim() && selectedMembers.length !== 0 ? "bg-[#365dff] text-white" : "bg-gray-400 text-white"}`}
             >
               Submit
             </button>

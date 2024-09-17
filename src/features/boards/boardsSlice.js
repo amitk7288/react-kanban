@@ -68,6 +68,21 @@ const boardsSlice = createSlice({
         }
       }
     },
+    editBoardCard: (state, action) => {
+      const { boardId, cardId, newInfo } = action.payload;
+      const board = state.find((board) => board.id === boardId);
+      if (board) {
+        const list = board.lists.find((list) =>
+          list.cards.find((card) => card.id === cardId),
+        );
+        if (list) {
+          const card = list.cards.find((card) => card.id === cardId);
+          if (card) {
+            Object.assign(card, newInfo);
+          }
+        }
+      }
+    },
   },
 });
 
@@ -80,5 +95,6 @@ export const {
   addReactionToNote,
   deleteBoardCard,
   addBoardCard,
+  editBoardCard,
 } = boardsSlice.actions;
 export default boardsSlice.reducer;

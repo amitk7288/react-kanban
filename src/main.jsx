@@ -10,11 +10,11 @@ import ErrorPage from "./components/ui-components/ErrorPage.jsx";
 import MainView from "./components/mainview/MainView.jsx";
 import Overview from "./routes/Overview.jsx";
 import Notes from "./routes/notes/Notes.jsx";
-import Questions from "./routes/Questions.jsx";
 import ListView from "./routes/listview/ListView.jsx";
 import AllProjects from "./routes/AllProjects.jsx";
 import AllMembers from "./routes/AllMembers.jsx";
 import Board from "./components/mainview/board/Board.jsx";
+import EditCard from "./components/mainview/board/list/card/EditCard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,10 +43,6 @@ const router = createBrowserRouter([
             element: <Notes />,
           },
           {
-            path: "project/:boardId/questions",
-            element: <Questions />,
-          },
-          {
             path: "project/:boardId/tasks/listview",
             element: <ListView />,
           },
@@ -57,6 +53,10 @@ const router = createBrowserRouter([
           {
             path: "/members",
             element: <AllMembers />,
+          },
+          {
+            path: "project/:boardId/tasks/:cardOpenId",
+            element: <EditCard />,
           },
         ],
       },

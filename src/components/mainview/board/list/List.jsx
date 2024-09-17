@@ -20,7 +20,7 @@ export default function List({ list, zen }) {
             .slice()
             .reverse()
             .map((card) => (
-              <Card key={card.id} cardId={card.id} zen={zen} />
+              <Card key={card.id} cardId={card.id} list={list} zen={zen} />
             ))}
         </div>
       </div>

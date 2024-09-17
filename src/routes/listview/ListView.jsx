@@ -32,6 +32,7 @@ export default function ListView() {
         cardCategory: cardCategory || {},
         cardProgress: card.progress,
         cardMembers: cardMembers,
+        cardId: card.id,
       };
     }),
   );
@@ -88,15 +89,16 @@ export default function ListView() {
               </tr>
             </thead>
             <tbody>
-              {cardsData.map((card, index) => (
-                <ListViewRow
-                  key={index}
-                  status={card.listName}
-                  title={card.cardTitle}
-                  category={card.cardCategory}
-                  tasks={card.cardProgress}
-                  members={card.cardMembers}
-                />
+              {cardsData.map((card) => (
+                  <ListViewRow
+                    key={card.cardId}
+                    status={card.listName}
+                    title={card.cardTitle}
+                    category={card.cardCategory}
+                    tasks={card.cardProgress}
+                    members={card.cardMembers}
+                    id={card.cardId}
+                  />
               ))}
             </tbody>
           </table>
@@ -106,8 +108,14 @@ export default function ListView() {
           <PiSmileySadBold className="text-3xl text-[#365dff] dark:text-drkcol" />
           <p className="text-xl">No tasks</p>
           <p className="text-center">
-            There are currently no tasks, head back to the <Link to={`/project/${boardId}/tasks`} className="underline font-semibold">board view</Link> to add
-            some tasks! Then return here to see the list view.
+            There are currently no tasks, head back to the{" "}
+            <Link
+              to={`/project/${boardId}/tasks`}
+              className="font-semibold underline"
+            >
+              board view
+            </Link>{" "}
+            to add some tasks! Then return here to see the list view.
           </p>
         </div>
       )}
