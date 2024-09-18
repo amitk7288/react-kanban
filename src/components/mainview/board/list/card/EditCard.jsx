@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { editCard } from "../../../../../features/cards/cardsSlice";
 import { editBoardCard } from "../../../../../features/boards/boardsSlice";
-// import CardChecklist from "./CardChecklist";
 
 import {PiTrashBold} from "react-icons/pi";
 

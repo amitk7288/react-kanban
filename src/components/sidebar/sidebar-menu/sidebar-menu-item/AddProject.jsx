@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { useNavigation } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import { addBoard } from "../../../../features/boards/boardsSlice";
 
 import Modal from "../../../ui-components/Modal";
@@ -15,7 +16,7 @@ import {
 
 export default function AddProject() {
   const dispatch = useDispatch();
-  const boardsLength = useSelector((state) => state.boards.length);
+  const navigate = useNavigation();
 
   const [projName, setProjName] = useState("");
   const [projImg, setProjImg] = useState(null);
@@ -50,12 +51,13 @@ export default function AddProject() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const newBoardId = uuidv4();
     const formInfo = {
-      id: boardsLength + 1,
+      id: newBoardId,
       name: projName,
       img: projImg,
-      complete: 0,
       members: [],
+      notes: [],
       lists: [
         {
           id: 1,
@@ -85,6 +87,7 @@ export default function AddProject() {
     };
     dispatch(addBoard(formInfo));
     handleClickCancelBtn();
+    navigate(`/project/${newBoardId}/tasks`);
   }
 
   return (

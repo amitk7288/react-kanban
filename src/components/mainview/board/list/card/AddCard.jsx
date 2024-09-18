@@ -272,10 +272,9 @@ export default function AddCard({ list, onClose }) {
               disabled={
                 !cardTitle.trim() ||
                 !cardDesc.trim() ||
-                !categoryName.trim() ||
-                selectedMembers.length === 0
+                !categoryName.trim()
               }
-              className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${cardTitle.trim() && cardDesc.trim() && categoryName.trim() && selectedMembers.length !== 0 ? "bg-[#365dff] text-white" : "bg-gray-400 text-white"}`}
+              className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${cardTitle.trim() && cardDesc.trim() && categoryName.trim() ? "bg-[#365dff] text-white" : "bg-gray-400 text-white"}`}
             >
               Submit
             </button>

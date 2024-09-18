@@ -30,7 +30,7 @@ export default function ListView() {
         listColour: list.color,
         cardTitle: card.title,
         cardCategory: cardCategory || {},
-        cardProgress: card.progress,
+        cardChecklist: card.checklist,
         cardMembers: cardMembers,
         cardId: card.id,
       };
@@ -95,7 +95,7 @@ export default function ListView() {
                     status={card.listName}
                     title={card.cardTitle}
                     category={card.cardCategory}
-                    tasks={card.cardProgress}
+                    tasks={card.cardChecklist}
                     members={card.cardMembers}
                     id={card.cardId}
                   />

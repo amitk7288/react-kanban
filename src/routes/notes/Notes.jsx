@@ -18,8 +18,6 @@ export default function Notes() {
   const notes = board ? board.notes : [];
   const notesLength = board ? board.notes.length : 0;
 
-  // ERROR WHEN ADDING A NEW CARD AND THEN CLICKING NOTES, .length issue
-
   function handleKeyPress(e) {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
