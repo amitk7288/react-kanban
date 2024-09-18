@@ -37,8 +37,12 @@ export default function ProjectProgress() {
 
   return (
     <div className="col-start-1 col-end-2 row-start-1 row-end-2 grid grid-cols-[50px_auto] items-center gap-3">
-      <div className="col-start-1 col-end-2 row-start-1 row-end-2 flex h-[50px] w-[50px] items-center justify-center rounded-md bg-blue-200">
-        <img src={board.img} alt={board.name} className="rounded-md" />
+      <div className={`col-start-1 col-end-2 row-start-1 row-end-2 flex h-[50px] w-[50px] items-center justify-center rounded-md`}>
+        <img
+          src={board.img}
+          alt={`${board.name} board image`}
+          className="h-full w-full rounded-md object-cover"
+        />
       </div>
       <div className="flex w-[100%] flex-col justify-between gap-1">
         <div className="flex items-center gap-3">

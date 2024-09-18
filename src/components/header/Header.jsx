@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import DropMenu from "../ui-components/DropMenu";
 import useDarkMode from "../../hooks/usedarkMode";
+import SearchResults from "./SearchResults";
 
 import {
   PiList,
@@ -30,6 +31,8 @@ export default function Header() {
     settings: false,
     notifications: false,
   });
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchInputRef = useRef(null);
 
 const menuIconLinks = [
   {
@@ -74,27 +77,36 @@ const menuIconLinks = [
   },
 ];
 
-  const handleClick = (btn) => {
-    setIsOpen(prevState => ({
-      ...prevState,
-      [btn]: !prevState[btn],
-    }));
-  }
+const handleClick = (btn) => {
+  setIsOpen(prevState => ({
+    ...prevState,
+    [btn]: !prevState[btn],
+  }));
+}
 
   return (
     <header className="fixed right-0 top-0 h-[80px] w-full border-b bg-white p-5 sm:border-x lg:w-[calc(100%_-_25vw)] 2xl:w-[calc(100%_-_20vw)] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol">
       <div className="flex items-center justify-between gap-4">
         <img className="h-auto w-[45px] lg:hidden" src={logo} alt="logo" />
-
-        <div className="flex h-[40px] w-[100%] items-center gap-2 rounded-md bg-[#f7f7f7] px-2 py-3 lg:w-[60%] dark:bg-drkbg2 dark:text-drkcol">
+        <div className="relative flex h-[40px] w-[100%] items-center gap-2 rounded-md bg-[#f7f7f7] px-2 py-3 lg:w-[60%] dark:bg-drkbg2 dark:text-drkcol">
           <PiMagnifyingGlassBold className="text-lg" />
           <input
-            className="w-[100%] border-none bg-[transparent] p-0 text-sm outline-none focus:ring-0"
+            className="w-[100%] border-none bg-[transparent] p-0 text-sm font-medium text-black outline-none focus:ring-0 dark:text-drkcol"
             type="search"
             name="searchcards"
             id="searchcards"
-            placeholder="Search"
+            placeholder="Search cards..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            ref={searchInputRef}
           />
+          <div className="absolute left-0 top-[35px] w-full rounded-b-md bg-[#f7f7f7] dark:bg-drkbg2 dark:text-drkcol">
+            <SearchResults
+              search={searchQuery}
+              setSearch={setSearchQuery}
+              searchInputRef={searchInputRef}
+            />
+          </div>
         </div>
 
         <div className="flex items-center justify-between gap-3">

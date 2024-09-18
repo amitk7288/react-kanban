@@ -55,7 +55,7 @@ const router = createBrowserRouter([
             element: <AllMembers />,
           },
           {
-            path: "project/:boardId/tasks/:cardOpenId",
+            path: "project/:boardId/tasks/:cardId",
             element: <EditCard />,
           },
         ],

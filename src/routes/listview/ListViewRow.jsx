@@ -12,6 +12,12 @@ export default function ListViewRow({ id, status, title, category, tasks, member
     dispatch(deleteBoardCard({ boardId: parseInt(boardId), cardId: id }));
   }
 
+    const completedCount = tasks
+      ? tasks.filter((item) => item.checked).length
+      : "";
+    const totalCount = tasks ? tasks.length : "";
+    const allCompleted = tasks && completedCount === totalCount;
+
   return (
     <>
       <tr className="cursor-pointer border-b border-t bg-white even:bg-gray-50 hover:bg-gray-100 dark:border-drkbrd dark:bg-drkbg dark:even:bg-[#1e2229] dark:hover:bg-[#191d22]">
@@ -54,7 +60,9 @@ export default function ListViewRow({ id, status, title, category, tasks, member
             {category.name}
           </span>
         </td>
-        <td className="px-6 py-4">{tasks}</td>
+        <td
+          className={`px-6 py-4 ${allCompleted && `text-green-600 dark:text-emerald-400 font-semibold`} text-sm text-[#a4a6a8] dark:text-drkcol`}
+        >{`${completedCount}/${totalCount}`}</td>
         <td className="px-6 py-4">
           <div className="relative flex -space-x-2">
             {members.map((member) => (
