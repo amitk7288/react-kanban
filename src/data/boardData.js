@@ -15,10 +15,10 @@ const getCardsByIds = (ids) =>
 const boards = [
   {
     id: 1,
-    name: "PaperClip Ltd",
-    img: "/src/assets/DDLogo.png",
-    members: getMembersByIds([1, 2, 3, 4, 5, 6]),
-    notes: getNotesByIds([]),
+    name: "Plant Ltd",
+    img: "/src/assets/logo-1.png",
+    members: getMembersByIds([1, 2, 3, 4, 9]),
+    notes: getNotesByIds([1]),
     lists: [
       {
         id: 1,
@@ -51,7 +51,7 @@ const boards = [
     name: "Web Platform",
     img: "/src/assets/DDLogo.png",
     members: getMembersByIds([1, 3, 5, 6]),
-    notes: getNotesByIds([]),
+    notes: getNotesByIds([1]),
     lists: [
       {
         id: 1,
@@ -84,7 +84,7 @@ const boards = [
     name: "Dev Dreamer",
     img: "/src/assets/DDLogo.png",
     members: getMembersByIds([1, 2, 11]),
-    notes: getNotesByIds([]),
+    notes: getNotesByIds([1]),
     lists: [
       {
         id: 1,
@@ -115,9 +115,9 @@ const boards = [
   {
     id: 4,
     name: "Social Campaign",
-    img: "/src/assets/DDLogo.png",
-    members: getMembersByIds([3, 4, 5, 6]),
-    notes: getNotesByIds([]),
+    img: "/src/assets/fb-logo.png",
+    members: getMembersByIds([1, 2, 3, 4, 6, 7, 8]),
+    notes: getNotesByIds([1]),
     lists: [
       {
         id: 1,

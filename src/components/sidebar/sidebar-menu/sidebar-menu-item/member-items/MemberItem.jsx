@@ -1,9 +1,19 @@
+import { useState, useEffect } from "react";
 import SidebarMenuItem from "../SidebarMenuItem";
-
 import { GoDotFill } from "react-icons/go";
 
 export default function MemberItem({img, name}) {
+  const [time, setTime] = useState(
+    new Date().toLocaleTimeString("eo", { hour12: false })
+  );
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTime(new Date().toLocaleTimeString("eo", { hour12: false }));
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [])
 
   return (
     <SidebarMenuItem>
@@ -17,7 +27,7 @@ export default function MemberItem({img, name}) {
           </div>
           <div className="flex items-start gap-1">
             <GoDotFill className="text-green-400" />
-            <span className="text-xs">Online - 11:03:48</span>
+            <span className="text-xs">Online - {time}</span>
           </div>
         </div>
       </div>

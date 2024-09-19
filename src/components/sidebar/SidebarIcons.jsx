@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import {
   PiSquaresFour,
@@ -36,7 +36,7 @@ const sidebarIcons = [
     activeIcon: <PiColumnsDuotone />,
     iconText: "Board",
     path: "/project/1/tasks",
-    active: true,
+    active: false,
   },
   {
     id: 3,
@@ -75,13 +75,29 @@ const sidebarIcons = [
     icon: <PiChartBar />,
     activeIcon: <PiChartBarDuotone />,
     iconText: "Analytics",
-    path: `/stats`,
+    path: "/stats",
     active: false,
   },
 ];
 
 export default function SidebarIcons() {
+  const location = useLocation();
   const [icons, setIcons] = useState(sidebarIcons);
+
+ 
+  useEffect(() => {
+    const isBoardTasksPage = /^\/project\/\d+\/tasks$/.test(location.pathname);
+
+    setIcons((prevState) =>
+      prevState.map((icon) => {
+        const isActive =
+          icon.path === location.pathname ||
+          (icon.iconText === "Board" && isBoardTasksPage);
+
+        return { ...icon, active: isActive };
+      }),
+    );
+  }, [location.pathname]);
 
   function handleClickIcon(clickedIconID) {
     setIcons((prevState) =>
@@ -98,18 +114,21 @@ export default function SidebarIcons() {
       <div className="flex w-full flex-col items-center gap-[5vh]">
         <div className="w-[40px]">
           <Link to={`/`}>
-            <img src={logo} alt="" />
+            <img src={logo} alt="Kanban Logo" />
           </Link>
         </div>
         <div className="flex w-full flex-col items-center gap-[4vh] text-3xl text-[#959697] dark:text-drkcol">
           {icons.map((icon) => (
             <Link
-              to={`${icon.path}`}
-              href="#"
+              to={icon.path}
+              key={icon.id}
               alt={icon.iconText}
               title={icon.iconText}
-              key={icon.id}
-              className={`${icon.active ? `border-l-[6px] border-l-[#365dff] text-[#365dff]` : null} duration-400 flex h-[50px] w-full cursor-pointer items-center justify-center transition-all ease-in-out`}
+              className={`${
+                icon.active
+                  ? `border-l-[6px] border-l-[#365dff] text-[#365dff]`
+                  : ""
+              } duration-400 flex h-[50px] w-full cursor-pointer items-center justify-center transition-all ease-in-out`}
               onClick={() => handleClickIcon(icon.id)}
             >
               {icon.active ? icon.activeIcon : icon.icon}

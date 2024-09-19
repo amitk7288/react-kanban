@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 import {
   PiDiamondsFourBold,
@@ -10,45 +8,41 @@ import {
 } from "react-icons/pi";
 
 export default function MainViewNav() {
-
   const { boardId } = useParams();
-
+  const location = useLocation();
   const [items, setItems] = useState([]);
 
-  useEffect(() => {    
+  useEffect(() => {
     const navItems = [
       {
         id: 1,
         name: "Overview",
-        path: `project/${boardId}/overview`,
-        active: false,
+        path: `/project/${boardId}/overview`,
         icon: <PiDiamondsFourBold className="text-xl" />,
       },
       {
         id: 2,
         name: "Tasks",
-        path: `project/${boardId}/tasks`,
-        active: true,
+        path: `/project/${boardId}/tasks`, // Base path for Tasks
         icon: <PiCheckCircleBold className="text-xl" />,
       },
       {
         id: 3,
         name: "Notes",
-        path: `project/${boardId}/notes`,
-        active: false,
+        path: `/project/${boardId}/notes`,
         icon: <PiPenNibBold className="text-lg" />,
       },
-    ]
+    ];
     setItems(navItems);
-}, [boardId])
+  }, [boardId]);
 
-
-  function handleNavItemClick(itemId) {
-    setItems((prevState) => (
-      prevState.map((item => (
-        item.id === itemId ? {...item, active: true} : {...item, active: false}
-      )))
-    ))
+  function isActive(path) {
+    if (path === `/project/${boardId}/tasks`) {
+      return (
+        location.pathname === path || location.pathname === `${path}/listview`
+      );
+    }
+    return location.pathname === path;
   }
 
   return (
@@ -57,8 +51,7 @@ export default function MainViewNav() {
         <Link
           key={item.id}
           to={item.path}
-          className={`flex h-full cursor-pointer items-center justify-center ${item.active ? `border-b-2 border-[#365dff]` : null}`}
-          onClick={() => handleNavItemClick(item.id)}
+          className={`flex h-full cursor-pointer items-center justify-center ${isActive(item.path) ? `border-b-2 border-[#365dff]` : null}`}
         >
           <div className="flex w-fit items-center gap-1.5 rounded-md px-2 py-2">
             {item.icon}

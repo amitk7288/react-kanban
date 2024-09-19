@@ -8,7 +8,6 @@ export default function ProjectProgress() {
   const board = useSelector((state) =>
     state.boards.find((board) => board.id === parseInt(boardId)),
   );
-
    if (!boardId || !board) {
      return null;
    }
@@ -19,6 +18,7 @@ export default function ProjectProgress() {
   );
   const completedCards = board.lists[3].cards.length;
   const percentageComplete = Math.round((completedCards / totalCards) * 100);
+  
 
   let progressColour;
   if (percentageComplete < 20) {
@@ -35,9 +35,12 @@ export default function ProjectProgress() {
     progressColour = `#22c55e`;
   }
 
+
   return (
     <div className="col-start-1 col-end-2 row-start-1 row-end-2 grid grid-cols-[50px_auto] items-center gap-3">
-      <div className={`col-start-1 col-end-2 row-start-1 row-end-2 flex h-[50px] w-[50px] items-center justify-center rounded-md`}>
+      <div
+        className={`col-start-1 col-end-2 row-start-1 row-end-2 flex h-[50px] w-[50px] items-center justify-center rounded-md`}
+      >
         <img
           src={board.img}
           alt={`${board.name} board image`}

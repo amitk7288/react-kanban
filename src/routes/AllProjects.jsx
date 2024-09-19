@@ -19,7 +19,6 @@ export default function AllProjects() {
     return percentageComplete;
   };
 
-
   return (
     <>
       <CardView title={`All Projects`}>
