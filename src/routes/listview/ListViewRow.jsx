@@ -21,24 +21,14 @@ export default function ListViewRow({ id, status, title, category, tasks, member
   return (
     <>
       <tr className="cursor-pointer border-b border-t bg-white even:bg-gray-50 hover:bg-gray-100 dark:border-drkbrd dark:bg-drkbg dark:even:bg-[#1e2229] dark:hover:bg-[#191d22]">
-        <td className="w-4 p-4">
-          <div className="flex items-center">
-            <input
-              id="checkbox-table-search-1"
-              type="checkbox"
-              className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
-            />
-            <label htmlFor="checkbox-table-search-1" className="sr-only">
-              checkbox
-            </label>
-          </div>
+        <td className="">
         </td>
-        <th
+        <td
           scope="row"
           className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
         >
           {status}
-        </th>
+        </td>
         <td className="px-6 py-4">{title}</td>
         <td className="px-6 py-4 text-[12px] font-medium">
           <span
@@ -61,7 +51,7 @@ export default function ListViewRow({ id, status, title, category, tasks, member
           </span>
         </td>
         <td
-          className={`px-6 py-4 ${allCompleted && `text-green-600 dark:text-emerald-400 font-semibold`} text-sm text-[#a4a6a8] dark:text-drkcol`}
+          className={`px-6 py-4 ${allCompleted && totalCount !== 0 && `font-semibold text-green-600 dark:text-emerald-400`} text-sm text-[#a4a6a8] dark:text-drkcol`}
         >{`${completedCount}/${totalCount}`}</td>
         <td className="px-6 py-4">
           <div className="relative flex -space-x-2">

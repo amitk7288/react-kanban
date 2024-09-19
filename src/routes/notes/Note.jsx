@@ -3,6 +3,14 @@ import { MdOutlineAddReaction } from "react-icons/md";
 import EmojiPicker from "emoji-picker-react";
 import img from "/src/assets/DDLogo.png";
 
+export default function Note({
+  id,
+  text,
+  emojis,
+  onAddReaction,
+  timestamp,
+  handleNoteDelete,
+}) {
   const timeAgo = (timestamp) => {
     const now = new Date();
     const noteDate = new Date(timestamp);
@@ -10,24 +18,23 @@ import img from "/src/assets/DDLogo.png";
 
     if (diffInSeconds < 60) return `${diffInSeconds}s ago`;
     if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`;
-    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`;
+    if (diffInSeconds < 86400)
+      return `${Math.floor(diffInSeconds / 3600)}h ago`;
     return `${Math.floor(diffInSeconds / 86400)}d ago`;
   };
 
-export default function Note({ id, text, emojis, onAddReaction, timestamp }) {
   const [showPicker, setShowPicker] = useState(false);
   const [time, setTime] = useState(timeAgo(timestamp));
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(timeAgo(timestamp));
-    }, 4000); 
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [timestamp]);
 
   const handleEmojiClick = (emojiObject) => {
-    console.log("Emoji clicked:", emojiObject);
     onAddReaction(id, emojiObject.emoji);
     setShowPicker(false);
   };
@@ -42,7 +49,7 @@ export default function Note({ id, text, emojis, onAddReaction, timestamp }) {
             className="h-[30px] w-[30px] rounded-full object-cover"
           />
         </div>
-        <div className="flex w-full flex-col gap-1 rounded-md border dark:border-drkbrd bg-white p-1.5 dark:bg-drkbg2">
+        <div className="flex w-full flex-col gap-1 rounded-md border bg-white p-1.5 dark:border-drkbrd dark:bg-drkbg2">
           <p className="text-sm font-semibold dark:text-white">
             Amit Kadara
             <span className="text-xs font-normal text-[#878686] dark:text-drkcol">
@@ -73,19 +80,18 @@ export default function Note({ id, text, emojis, onAddReaction, timestamp }) {
               />
             </div>
             <div className="flex items-center gap-3 text-xs">
-              <button>Edit</button>
-              <button>Delete</button>
+              <button onClick={handleNoteDelete}>Delete</button>
             </div>
           </div>
-          {emojis.length > 0 && (
-            <div className="flex gap-2">
+          {emojis && emojis.length !== 0 ? (
+            <div className="flex items-center gap-2">
               {emojis.map((reaction, index) => (
-                <span key={index} className="mt-1">
+                <span key={index} className="">
                   {reaction}
                 </span>
               ))}
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

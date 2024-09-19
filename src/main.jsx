@@ -15,6 +15,10 @@ import AllProjects from "./routes/AllProjects.jsx";
 import AllMembers from "./routes/AllMembers.jsx";
 import Board from "./components/mainview/board/Board.jsx";
 import EditCard from "./components/mainview/board/list/card/EditCard.jsx";
+import Analytics from "./routes/Analytics.jsx";
+import Faq from "./routes/Faq.jsx";
+import Chat from "./routes/Chat.jsx";
+import Time from "./routes/Time.jsx";
 
 const router = createBrowserRouter([
   {
@@ -51,8 +55,24 @@ const router = createBrowserRouter([
             element: <AllProjects />,
           },
           {
+            path: "/time",
+            element: <Time />,
+          },
+          {
             path: "/members",
             element: <AllMembers />,
+          },
+          {
+            path: "/chat",
+            element: <Chat />,
+          },
+          {
+            path: "/faq",
+            element: <Faq />,
+          },
+          {
+            path: "/stats",
+            element: <Analytics />,
           },
           {
             path: "project/:boardId/tasks/:cardId",

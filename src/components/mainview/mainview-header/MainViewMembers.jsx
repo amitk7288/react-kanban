@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 import { addMember } from "../../../features/members/membersSlice";
 import { addBoardMember } from "../../../features/boards/boardsSlice";
 
@@ -24,7 +25,6 @@ export default function MainViewMembers() {
   );
 
   const members = board ? board.members : [];
-  const membersLength = board ? board.members.length : null;
   
   const [memberName, setMemberName] = useState("");
   const [memberImg, setMemberImg] = useState(null);
@@ -60,7 +60,7 @@ export default function MainViewMembers() {
   function handleSubmit(e) {
     e.preventDefault();
     const memberInfo = {
-      id: membersLength + 1,
+      id: uuidv4(),
       name: memberName,
       img: memberImg,
     };

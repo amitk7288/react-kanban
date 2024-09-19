@@ -12,7 +12,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -31,7 +31,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -50,7 +50,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -69,7 +69,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -88,7 +88,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -107,7 +107,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -126,7 +126,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -145,7 +145,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -164,7 +164,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -183,7 +183,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -202,7 +202,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -221,7 +221,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: true,
       },
     ],
@@ -240,7 +240,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: true,
       },
     ],
@@ -259,7 +259,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: true,
       },
     ],
@@ -278,7 +278,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: true,
       },
     ],
@@ -297,7 +297,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -316,7 +316,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -335,7 +335,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -354,7 +354,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],
@@ -373,7 +373,7 @@ const cards = [
     checklist: [
       {
         id: 0,
-        text: "This is a checklist task, feel free to add more",
+        text: "This is a checklist task, feel free to add more below",
         checked: false,
       },
     ],

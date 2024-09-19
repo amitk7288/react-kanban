@@ -35,6 +35,13 @@ const boardsSlice = createSlice({
         board.notes.push(newNote);
       }
     },
+    deleteBoardNote: (state, action) => {
+      const { boardId, noteId } = action.payload;
+      const board = state.find((board) => board.id === boardId);
+      if (board) {
+        board.notes = board.notes.filter((note) => note.id !== noteId);
+      }
+    },
     addReactionToNote: (state, action) => {
       const { boardId, noteId, emoji } = action.payload;
       const board = state.find((board) => board.id === boardId);
@@ -92,6 +99,7 @@ export const {
   addBoard,
   addBoardMember,
   addBoardNote,
+  deleteBoardNote,
   addReactionToNote,
   deleteBoardCard,
   addBoardCard,
