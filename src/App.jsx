@@ -9,6 +9,10 @@ function App() {
       <Outlet />
       <Sidebar />
       {/*
+      ICON WHEN LIST ETC.
+      - web platform https://dribbble.com/shots/23272954-LogoIcon-folio-15
+      - plant ltd - https://dribbble.com/shots/24410107-Plantea-Logo-Design-Concept
+      
         - additional views/components needed
         D - modal comp child content, used react-dom portal to place it in the body tag as other elements were intefering with it due to their positions sticky etc
         - dark mode (system)

@@ -17,7 +17,7 @@ export default function MemberItem({img, name}) {
 
   return (
     <SidebarMenuItem>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 p-2">
         <div className="basis-[40px] rounded-full">
           <img src={img} alt={name} className="rounded-md" />
         </div>

@@ -49,7 +49,7 @@ const boards = [
   {
     id: 2,
     name: "Web Platform",
-    img: "/src/assets/DDLogo.png",
+    img: "/src/assets/web-platform-logo.png",
     members: getMembersByIds([1, 3, 5, 6]),
     notes: getNotesByIds([1]),
     lists: [
@@ -115,7 +115,7 @@ const boards = [
   {
     id: 4,
     name: "Social Campaign",
-    img: "/src/assets/fb-logo.png",
+    img: "/src/assets/social-campaign.png",
     members: getMembersByIds([1, 2, 3, 4, 6, 7, 8]),
     notes: getNotesByIds([1]),
     lists: [

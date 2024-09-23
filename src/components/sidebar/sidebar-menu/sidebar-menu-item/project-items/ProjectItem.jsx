@@ -51,46 +51,59 @@ export default function ProjectItem({ projectName, handleDeleteProj, boardId, bo
   }, [isEditing, boardId, newName, dispatch, projectName]);
 
   return (
-    <Link to={`/project/${boardId}/tasks`}>
-      <SidebarMenuItem className="relative">
-        <div className="flex items-center gap-2">
-          <div
-            className={`col-start-1 col-end-2 row-start-1 row-end-2 flex h-[30px] w-[30px] items-center justify-center rounded-md bg-blue-200 ${isEditing ? `basis-[40px]` : `basis-[30px]`}`}
-          >
-            <img
-              src={boardImage}
-              alt={`${projectName} board image`}
-              className="h-full w-full rounded-md object-cover"
-            />
+    <SidebarMenuItem className="relative">
+      <div className="flex w-full items-center justify-between">
+        <Link
+          to={`/project/${boardId}/tasks`}
+          className="basis-[95%] cursor-pointer p-2"
+        >
+          <div className="flex items-center gap-2">
+            <div
+              className={`col-start-1 col-end-2 row-start-1 row-end-2 flex h-[30px] w-[30px] items-center justify-center rounded-md bg-blue-200 ${isEditing ? `basis-[40px]` : `basis-[30px]`}`}
+            >
+              <img
+                src={boardImage}
+                alt={`${projectName} board image`}
+                className="h-full w-full rounded-md object-cover"
+              />
+            </div>
+            {isEditing ? (
+              <input
+                type="text"
+                value={newName}
+                onChange={handleInputChange}
+                ref={inputRef}
+                className="block w-full rounded-md border-0 py-1.5 text-sm shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6 dark:text-drkbg"
+              />
+            ) : (
+              <p className="text-xs font-medium xl:text-sm">
+                {truncatedProjectName}
+              </p>
+            )}
           </div>
-          {isEditing ? (
-            <input
-              type="text"
-              value={newName}
-              onChange={handleInputChange}
-              ref={inputRef}
-              className="block w-full rounded-md border-0 py-1.5 text-sm shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6 dark:text-drkbg"
-            />
-          ) : (
-            <p className="text-xs font-medium xl:text-sm">
-              {truncatedProjectName}
-            </p>
-          )}
+        </Link>
+        <div className="flex pr-2">
+          {!isEditing ? (
+            <DropMenu
+              trigger={
+                <PiDotsThreeOutlineVerticalFill className="cursor-pointer" />
+              }
+              pos={`right-[0px]`}
+            >
+              <nav className="flex flex-col items-start gap-2 text-sm">
+                <button onClick={() => setIsEditing(true)}>Edit</button>
+                <button
+                  onClick={() => {
+                    handleDeleteProj(boardId);
+                  }}
+                >
+                  Delete
+                </button>
+              </nav>
+            </DropMenu>
+          ) : null}
         </div>
-        {!isEditing ? (
-          <DropMenu
-            trigger={
-              <PiDotsThreeOutlineVerticalFill className="cursor-pointer" />
-            }
-            pos={`right-[0px]`}
-          >
-            <nav className="flex flex-col items-start gap-2 text-sm">
-              <button onClick={() => setIsEditing(true)}>Edit</button>
-              <button onClick={() => handleDeleteProj(boardId)}>Delete</button>
-            </nav>
-          </DropMenu>
-        ) : null}
-      </SidebarMenuItem>
-    </Link>
+      </div>
+    </SidebarMenuItem>
   );
 }

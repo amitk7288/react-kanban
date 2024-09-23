@@ -1,9 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import {
   deleteBoard
 } from "../../../../../features/boards/boardsSlice";
-
-import { Link } from "react-router-dom";
 
 import SidebarMenuItem from "../SidebarMenuItem";
 import ProjectItem from "./ProjectItem";
@@ -14,9 +13,11 @@ import { PiSquaresFourBold } from "react-icons/pi";
 export default function ProjectItems() {
   const boards = useSelector(state => state.boards);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function deleteProj(boardId) {
     dispatch(deleteBoard(boardId));
+    navigate(`/projects`)
   }
 
   return (
@@ -43,7 +44,7 @@ export default function ProjectItems() {
       <Link to={`/projects`}>
         <div className="text-[#365dff]">
           <SidebarMenuItem>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 p-2">
               <div className="col-start-1 col-end-2 row-start-1 row-end-2 flex h-[30px] w-[30px] items-center justify-center rounded-md">
                 <PiSquaresFourBold className="h-[30px] w-[30px] rounded-md bg-[#365dff] p-1.5 text-2xl text-white" />
               </div>

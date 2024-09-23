@@ -19,7 +19,7 @@ export default function MemberItems() {
       <Link to={`/members`}>
         <div className="text-[#365dff]">
           <SidebarMenuItem>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 p-2">
               <div className="col-start-1 col-end-2 row-start-1 row-end-2 flex h-[30px] w-[30px] items-center justify-center rounded-md">
                 <PiUsersThreeBold className="h-[30px] w-[30px] rounded-md bg-blue-200 p-1.5 text-2xl dark:text-[#365dff]" />
               </div>
