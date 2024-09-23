@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { addBoard } from "../../../../features/boards/boardsSlice";
 
 import Modal from "../../../ui-components/Modal";
@@ -16,7 +16,7 @@ import {
 export default function AddProject() {
   const dispatch = useDispatch();
   const boardsLength = useSelector((state) => state.boards.length);
-  const navigate = useNavigation();
+  const navigate = useNavigate();
 
   const [projName, setProjName] = useState("");
   const [projImg, setProjImg] = useState(null);

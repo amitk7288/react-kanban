@@ -2,14 +2,12 @@ import MainContainer from "../components/ui-components/MainContainer";
 import { useSelector } from "react-redux";
 
 export default function Chat() {
-  const notes = useSelector((state) => state.notes);
   const boards = useSelector((state) => state.boards);
   
 
   return (
     <MainContainer title={`Chat`}>
       <div className="flex flex-col gap-4">
-        Total no. of notes across all boards: {notes.length}
         {boards.map((board) => (
           <div
             key={board.id}

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 import boardsData from "../../data/boardData";
 
 const boardsSlice = createSlice({
@@ -41,6 +40,7 @@ const boardsSlice = createSlice({
       if (board) {
         board.notes = board.notes.filter((note) => note.id !== noteId);
       }
+
     },
     addReactionToNote: (state, action) => {
       const { boardId, noteId, emoji } = action.payload;
