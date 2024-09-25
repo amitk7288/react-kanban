@@ -1,7 +1,10 @@
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import DropMenu from "../ui-components/DropMenu";
 import useDarkMode from "../../hooks/usedarkMode";
 import SearchResults from "./SearchResults";
+import AddProject from "../sidebar/sidebar-menu/sidebar-menu-item/AddProject"
+import { useSelector } from "react-redux";
 
 import {
   PiList,
@@ -13,11 +16,17 @@ import {
   PiMoonStars,
   PiSquaresFour,
   PiColumns,
+  PiColumnsDuotone,
   PiTimer,
-  PiCalendarDots,
+  PiTimerDuotone,
+  PiUsers,
+  PiUsersDuotone,
   PiChatsCircle,
+  PiChatsCircleDuotone,
   PiQuestion,
+  PiQuestionDuotone,
   PiChartBar,
+  PiChartBarDuotone,
   PiSignOut,
 } from "react-icons/pi";
 
@@ -25,7 +34,74 @@ import prof from "../../assets/DDLogo.png";
 import logo from "../../assets/kanban-logo.png"
 
 export default function Header() {
-  const [mobMenu, setMobMenu] = useState(false);
+  const mobMenuIcons = [
+    // {
+    //   id: 1,
+    //   icon: <PiSquaresFour />,
+    //   activeIcon: <PiSquaresFourDuotone />,
+    //   iconText: "Projects",
+    //   path: "/projects",
+    //   active: false,
+    // },
+    {
+      id: 1,
+      icon: <PiColumns />,
+      activeIcon: <PiColumnsDuotone />,
+      iconText: "Board",
+      path: "/project/1/tasks",
+      active: false,
+    },
+    {
+      id: 2,
+      icon: <PiTimer />,
+      activeIcon: <PiTimerDuotone />,
+      iconText: "Time Management",
+      path: "/time",
+      active: false,
+    },
+    {
+      id: 3,
+      icon: <PiUsers />,
+      activeIcon: <PiUsersDuotone />,
+      iconText: "Members",
+      path: "/members",
+      active: false,
+    },
+    {
+      id: 4,
+      icon: <PiChatsCircle />,
+      activeIcon: <PiChatsCircleDuotone />,
+      iconText: "Chat",
+      path: "/chat",
+      active: false,
+    },
+    {
+      id: 5,
+      icon: <PiQuestion />,
+      activeIcon: <PiQuestionDuotone />,
+      iconText: "FAQ's",
+      path: "/faq",
+      active: false,
+    },
+    {
+      id: 6,
+      icon: <PiChartBar />,
+      activeIcon: <PiChartBarDuotone />,
+      iconText: "Analytics",
+      path: "/stats",
+      active: false,
+    },
+    {
+      id: 7,
+      icon: <PiSignOut />,
+      iconText: "Log out",
+      path: "/",
+      active: false,
+    },
+  ];
+
+  const [mobMenuIsOpen, setMobMenuIsOpen] = useState(false);
+  const [mobMenu, setMobMenu] = useState(mobMenuIcons);
   const [theme, toggleTheme] = useDarkMode();
   const [isOpen, setIsOpen] = useState({
     settings: false,
@@ -33,61 +109,40 @@ export default function Header() {
   });
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef(null);
+  const boards = useSelector((state) => state.boards);
 
-const menuIconLinks = [
-  {
-    id: 1,
-    icon: <PiSquaresFour />,
-    linkText: "Projects",
-  },
-  {
-    id: 2,
-    icon: <PiColumns />,
-    linkText: "Board",
-  },
-  {
-    id: 3,
-    icon: <PiTimer />,
-    linkText: "Time Management",
-  },
-  {
-    id: 4,
-    icon: <PiCalendarDots />,
-    linkText: "Timeline",
-  },
-  {
-    id: 5,
-    icon: <PiChatsCircle />,
-    linkText: "Chat",
-  },
-  {
-    id: 6,
-    icon: <PiQuestion />,
-    linkText: "FAQ's",
-  },
-  {
-    id: 7,
-    icon: <PiChartBar />,
-    linkText: "Analytics",
-  },
-  {
-    id: 8,
-    icon: <PiSignOut />,
-    linkText: "Log out",
-  },
-];
+  const handleClick = (btn) => {
+    setIsOpen(prevState => ({
+      ...prevState,
+      [btn]: !prevState[btn],
+    }));
+  }
 
-const handleClick = (btn) => {
-  setIsOpen(prevState => ({
-    ...prevState,
-    [btn]: !prevState[btn],
-  }));
-}
+  const handleClickIcon = (clickedIconID) => {
+    setMobMenu((prevState) =>
+      prevState.map((icon) =>
+        icon.id === clickedIconID
+          ? { ...icon, active: true }
+          : { ...icon, active: false },
+      ),
+    );
+    setTimeout(() => {
+      setMobMenuIsOpen(false);
+    }, 275)
+  }
+
+  const handleMobProjClick = () => {
+    setMobMenuIsOpen(false);
+  }
 
   return (
     <header className="fixed right-0 top-0 h-[80px] w-full border-b bg-white p-5 sm:border-x lg:w-[calc(100%_-_25vw)] 2xl:w-[calc(100%_-_20vw)] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol">
       <div className="flex items-center justify-between gap-4">
-        <img className="h-auto w-[45px] lg:hidden" src={logo} alt="logo" />
+        <div className="lg:hidden flex-shrink-0">
+          <Link to={`/`}>
+            <img src={logo} alt="Kanban Logo" className="h-auto w-[45px]" />
+          </Link>
+        </div>
         <div className="relative flex h-[40px] w-[100%] items-center gap-2 rounded-md bg-[#f7f7f7] px-2 py-3 lg:w-[60%] dark:bg-drkbg2 dark:text-drkcol">
           <PiMagnifyingGlassBold className="text-lg" />
           <input
@@ -100,7 +155,7 @@ const handleClick = (btn) => {
             onChange={(e) => setSearchQuery(e.target.value)}
             ref={searchInputRef}
           />
-          <div className="absolute left-0 top-[35px] w-full rounded-b-md bg-[#f7f7f7] dark:bg-drkbg2 dark:text-drkcol">
+          <div className="absolute left-[-81px] top-[55px] w-[100vw] rounded-b-md bg-[#f7f7f7] sm:left-0 sm:top-[35px] sm:w-full dark:bg-drkbg2 dark:text-drkcol">
             <SearchResults
               search={searchQuery}
               setSearch={setSearchQuery}
@@ -112,39 +167,59 @@ const handleClick = (btn) => {
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 lg:hidden">
             {theme === "dark" ? (
-              <PiSun
+              <div
                 onClick={toggleTheme}
-                className="cursor-pointer text-[25px] dark:text-drkcol"
-              />
+                className="hover:bg-hvrcol dark:hover:bg-drkhvrcol relative cursor-pointer rounded-full bg-transparent p-2 text-[25px] dark:text-drkcol"
+              >
+                <PiSun />
+              </div>
             ) : (
-              <PiMoonStars
+              <div
                 onClick={toggleTheme}
-                className="cursor-pointer text-[25px] dark:text-drkcol"
-              />
+                className="hover:bg-hvrcol dark:hover:bg-drkhvrcol relative cursor-pointer rounded-full bg-transparent p-2 text-[25px] dark:text-drkcol"
+              >
+                <PiMoonStars />
+              </div>
             )}
-            {mobMenu ? (
-              <PiX
-                onClick={() => setMobMenu((prevState) => !prevState)}
-                className="z-50 text-3xl"
-              />
+            {mobMenuIsOpen ? (
+              <div
+                onClick={() => setMobMenuIsOpen((prevState) => !prevState)}
+                className="hover:bg-hvrcol dark:hover:bg-drkhvrcol relative cursor-pointer rounded-full bg-transparent p-2 text-3xl dark:text-drkcol"
+              >
+                <PiX className="z-50" />
+              </div>
             ) : (
-              <PiList
-                onClick={() => setMobMenu((prevState) => !prevState)}
-                className="z-50 text-3xl"
-              />
+              <div
+                onClick={() => setMobMenuIsOpen((prevState) => !prevState)}
+                className="hover:bg-hvrcol dark:hover:bg-drkhvrcol relative cursor-pointer rounded-full bg-transparent p-2 text-3xl dark:text-drkcol"
+              >
+                <PiList className="z-50" />
+              </div>
             )}
           </div>
           <div className="hidden lg:flex lg:items-center lg:gap-4">
-            <PiGear
-              onClick={() => handleClick("settings")}
-              className="relative cursor-pointer bg-transparent text-[25px] dark:text-drkcol"
-            />
             <DropMenu
               trigger={
-                <PiBell
+                <div
+                  onClick={() => handleClick("settings")}
+                  className="hover:bg-hvrcol dark:hover:bg-drkhvrcol relative cursor-pointer rounded-full bg-transparent p-2 text-[25px] dark:text-drkcol"
+                >
+                  <PiGear />
+                </div>
+              }
+              pos={`left-0`}
+              isOpen={isOpen.notifications}
+            >
+              <p className="text-sm">Settings</p>
+            </DropMenu>
+            <DropMenu
+              trigger={
+                <div
                   onClick={() => handleClick("notifications")}
-                  className="cursor-pointer text-[25px] dark:text-drkcol"
-                />
+                  className="hover:bg-hvrcol dark:hover:bg-drkhvrcol relative cursor-pointer rounded-full bg-transparent p-2 text-[25px] dark:text-drkcol"
+                >
+                  <PiBell />
+                </div>
               }
               pos={`left-0`}
               isOpen={isOpen.notifications}
@@ -152,15 +227,19 @@ const handleClick = (btn) => {
               <p className="text-sm">Notifcations</p>
             </DropMenu>
             {theme === "dark" ? (
-              <PiSun
+              <div
                 onClick={toggleTheme}
-                className="cursor-pointer text-[25px] dark:text-drkcol"
-              />
+                className="hover:bg-hvrcol dark:hover:bg-drkhvrcol relative cursor-pointer rounded-full bg-transparent p-2 text-[25px] dark:text-drkcol"
+              >
+                <PiSun />
+              </div>
             ) : (
-              <PiMoonStars
+              <div
                 onClick={toggleTheme}
-                className="cursor-pointer text-[25px] dark:text-drkcol"
-              />
+                className="hover:bg-hvrcol dark:hover:bg-drkhvrcol relative cursor-pointer rounded-full bg-transparent p-2 text-[25px] dark:text-drkcol"
+              >
+                <PiMoonStars />
+              </div>
             )}
             <DropMenu
               trigger={
@@ -213,8 +292,8 @@ const handleClick = (btn) => {
       </div>
 
       {/* Mob menu */}
-      {mobMenu && (
-        <div className="no-scrollbar absolute left-0 top-[80px] flex h-[calc(100vh_-_80px)] w-[100vw] flex-col gap-[50px] overflow-y-scroll bg-[#f7f7f7] p-6 lg:hidden dark:bg-drkbg">
+      {mobMenuIsOpen && (
+        <div className="no-scrollbar absolute left-0 top-[80px] z-[-1] flex h-[calc(100vh_-_80px)] w-[100vw] flex-col gap-[50px] overflow-y-scroll bg-[#f7f7f7] p-6 lg:hidden dark:bg-drkbg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="h-7 w-7 overflow-hidden rounded-full">
@@ -222,7 +301,6 @@ const handleClick = (btn) => {
               </div>
               <p>Dev Dreamer</p>
             </div>
-
             <div className="flex items-center gap-4">
               <div className="text-2xl">
                 <PiGear />
@@ -232,15 +310,52 @@ const handleClick = (btn) => {
               </div>
             </div>
           </div>
-          <nav className="flex flex-col gap-8">
-            {menuIconLinks.map((item) => (
+          <nav className="flex flex-col gap-7">
+            <div className="dark:text-drkcol">
+              <div className="mb-2 flex items-center gap-3">
+                <div className="rounded-md p-1 text-2xl">
+                  <PiSquaresFour />
+                </div>
+                <p>Projects</p>
+              </div>
+              <div
+                id="mobProjects"
+                className="flex flex-wrap items-center gap-5 rounded-md border p-3 dark:border-drkbrd"
+              >
+                {boards.map((board) => (
+                  <Link
+                    key={board.id}
+                    to={`/project/${board.id}/tasks`}
+                    onClick={handleMobProjClick}
+                  >
+                    <div className="h-[30px] w-[30px] cursor-pointer">
+                      <img
+                        src={board.img}
+                        alt={board.name}
+                        className="h-full w-full rounded-full object-cover"
+                      />
+                    </div>
+                  </Link>
+                ))}
+                <AddProject />
+              </div>
+            </div>
+            {mobMenu.map((item) => (
               <div key={item.id} className="dark:text-drkcol">
-                <a href="#" className="flex items-center gap-3">
-                  <div className="rounded-md bg-blue-200 p-1 text-2xl text-black">
-                    {item.icon}
+                <Link
+                  to={item.path}
+                  className={`flex items-center gap-3 ${
+                    item.active
+                      ? `border-l-[6px] border-l-[#365dff] text-[#365dff]`
+                      : ""
+                  } duration-400 transition-all ease-in-out`}
+                  onClick={() => handleClickIcon(item.id)}
+                >
+                  <div className="rounded-md p-1 text-2xl">
+                    {item.active ? item.activeIcon : item.icon}
                   </div>
-                  <p>{item.linkText}</p>
-                </a>
+                  <p>{item.iconText}</p>
+                </Link>
               </div>
             ))}
           </nav>

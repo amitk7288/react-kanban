@@ -103,7 +103,7 @@ const cards = [
     category: "Testing",
     title: "This is a test card",
     description:
-      "Find out how to handle an unknown category label, technically this shouldn't be possible as users picking from predefined categories.",
+      "I hope you enjoy going through this project - Amit 😎",
     checklist: [
       {
         id: 0,
@@ -111,7 +111,7 @@ const cards = [
         checked: false,
       },
     ],
-    members: getMembersByIds([3]),
+    members: getMembersByIds([11]),
     watchers: 6,
     watching: false,
     comments: 2,

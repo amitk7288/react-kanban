@@ -6,7 +6,6 @@ export default function CardChecklist({ onAddItem }) {
   const [todoProgress, setTodoProgress] = useState(0);
   const [showItemInput, setShowItemInput] = useState(false);
   const [todoValue, setTodoValue] = useState("");
-  // const [nextId, setNextId] = useState(0);
   const [todos, setTodos] = useState([]);
 
   const inputAddItemRef = useRef(null);
@@ -19,7 +18,6 @@ export default function CardChecklist({ onAddItem }) {
         checked: false,
       };
       setTodos((prevTodos) => [...prevTodos, newTodo]);
-      // setNextId((prevId) => prevId + 1);
       setTodoValue("");
       setShowItemInput(true);
     }
@@ -73,7 +71,7 @@ export default function CardChecklist({ onAddItem }) {
         <div className="flex flex-col gap-1">
           {todos.map((item) => (
             <div key={item.id} className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 basis-[90%]">
                 <label
                   htmlFor={`task-${item.id}`}
                   className="flex items-center gap-2"
@@ -92,12 +90,14 @@ export default function CardChecklist({ onAddItem }) {
                   </p>
                 </label>
               </div>
-              <PiTrashBold
-                className="cursor-pointer"
-                onClick={() => {
-                  setTodos(todos.filter((t) => t.id !== item.id));
-                }}
-              />
+              <div className="flex-shrink-0 basis-[5%]">
+                <PiTrashBold
+                  className="cursor-pointer"
+                  onClick={() => {
+                    setTodos(todos.filter((t) => t.id !== item.id));
+                  }}
+                />
+              </div>
             </div>
           ))}
         </div>

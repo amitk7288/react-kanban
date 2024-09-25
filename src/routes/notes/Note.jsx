@@ -40,24 +40,29 @@ export default function Note({
   };
 
   return (
-    <div className="w-[50%] px-3 py-1.5">
-      <div className="flex items-start gap-2">
-        <div className="mt-1 flex-shrink-0 basis-[30px]">
+    <div className="w-full px-3 py-1.5 sm:w-[60%] md:w-[50%] xl:w-[50%] 2xl:w-[30%]">
+      <div className="flex items-start sm:gap-2">
+        <div className="mt-1 flex-shrink-0 sm:basis-[30px]">
           <img
             src={img}
             alt="name"
-            className="h-[30px] w-[30px] rounded-full object-cover"
+            className="hidden h-[30px] w-[30px] rounded-full object-cover sm:block"
           />
         </div>
-        <div className="flex w-full flex-col gap-1 rounded-md border bg-white p-1.5 dark:border-drkbrd dark:bg-drkbg2">
+        <div className="flex w-full flex-col gap-1 rounded-md border bg-white p-3 dark:border-drkbrd dark:bg-drkbg2">
+          <img
+            src={img}
+            alt="name"
+            className="h-[20px] w-[20px] rounded-full object-cover sm:hidden"
+          />
           <p className="text-sm font-semibold dark:text-white">
             Amit Kadara
             <span className="text-xs font-normal text-[#878686] dark:text-drkcol">
               &nbsp; {time}
             </span>
           </p>
-          <div className="break-all">
-            <p className="whitespace-pre-wrap text-[13px] leading-normal text-[#545355] dark:text-white">
+          <div className="break-words">
+            <p className="whitespace-normal text-[13px] leading-normal text-[#545355] dark:text-white">
               {text}
             </p>
           </div>
@@ -68,7 +73,7 @@ export default function Note({
               searchDisabled
               allowExpandReactions={false}
               reactionsDefaultOpen={true}
-              style={{ fontSize: `10px` }}
+              style={{ "--epr-emoji-size": `20px` }}
               className="duration-400 transition-all ease-in-out"
             />
           )}

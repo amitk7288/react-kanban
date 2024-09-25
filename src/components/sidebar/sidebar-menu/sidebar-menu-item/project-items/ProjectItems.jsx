@@ -39,7 +39,6 @@ export default function ProjectItems() {
               boardImage={board.img}
             />
         ))}
-        {console.log(boards)}
       </div>
       <Link to={`/projects`}>
         <div className="text-[#365dff]">
@@ -48,7 +47,7 @@ export default function ProjectItems() {
               <div className="col-start-1 col-end-2 row-start-1 row-end-2 flex h-[30px] w-[30px] items-center justify-center rounded-md">
                 <PiSquaresFourBold className="h-[30px] w-[30px] rounded-md bg-[#365dff] p-1.5 text-2xl text-white" />
               </div>
-              <p className="text-xs font-medium xl:text-sm">See all projects</p>
+              <p className="text-xs font-medium xl:text-sm">See all projects [{boards.length}]</p>
             </div>
           </SidebarMenuItem>
         </div>

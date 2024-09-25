@@ -114,7 +114,7 @@ export default function SidebarIcons() {
       <div className="flex w-full flex-col items-center gap-[5vh]">
         <div className="w-[40px]">
           <Link to={`/`}>
-            <img src={logo} alt="Kanban Logo" />
+            <img src={logo} alt="logo" />
           </Link>
         </div>
         <div className="flex w-full flex-col items-center gap-[4vh] text-3xl text-[#959697] dark:text-drkcol">

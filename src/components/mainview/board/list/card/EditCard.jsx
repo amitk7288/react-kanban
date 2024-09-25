@@ -121,7 +121,7 @@ export default function EditCard({list, cardId, onClose}) {
             <div>
               <div className="flex flex-col gap-3">
                 <div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex w-[95%] items-center gap-4">
                     <h2 className="text-lg font-semibold leading-7">
                       Edit Task - {card.title}
                     </h2>
@@ -132,12 +132,12 @@ export default function EditCard({list, cardId, onClose}) {
                       {watchingState ? (
                         <>
                           <PiEyeBold />
-                          <p className="text-sm">Watching</p>
+                          <p className="hidden text-sm sm:block">Watching</p>
                         </>
                       ) : (
                         <>
                           <PiEyeSlashBold />
-                          <p className="text-sm">Watch</p>
+                          <p className="hidden text-sm sm:block">Watch</p>
                         </>
                       )}
                     </div>
@@ -289,7 +289,7 @@ export default function EditCard({list, cardId, onClose}) {
                             key={item.id}
                             className="flex items-center justify-between"
                           >
-                            <div className="flex items-center gap-2">
+                            <div className="flex basis-[90%] items-center gap-2">
                               <label
                                 htmlFor={`task-${item.id}`}
                                 className="flex items-center gap-2"
@@ -309,16 +309,18 @@ export default function EditCard({list, cardId, onClose}) {
                                 </p>
                               </label>
                             </div>
-                            <PiTrashBold
-                              className="cursor-pointer"
-                              onClick={() => {
-                                setChecklistItems(
-                                  checklistItems.filter(
-                                    (t) => t.id !== item.id,
-                                  ),
-                                );
-                              }}
-                            />
+                            <div className="flex-shrink-0 basis-[5%]">
+                              <PiTrashBold
+                                className="cursor-pointer"
+                                onClick={() => {
+                                  setChecklistItems(
+                                    checklistItems.filter(
+                                      (t) => t.id !== item.id,
+                                    ),
+                                  );
+                                }}
+                              />
+                            </div>
                           </div>
                         ))}
                       </div>

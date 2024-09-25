@@ -88,7 +88,7 @@ export default function Overview() {
           Cards outstanding:{" "}
           <span className="font-semibold">{outstandingCards}</span>
         </p>
-        <div className="flex items-center gap-3">
+        <div className="flex items-start gap-3 flex-col xs:flex-row xs:items-center">
           <p>
             Active members{" "}
             <span className="font-semibold">({board.members.length})</span>:{" "}
