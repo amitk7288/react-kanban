@@ -7,7 +7,7 @@ export default function SidebarMenu() {
     <div className="relative overflow-scroll h-[100%] flex flex-col items-center justify-between gap-6 px-5 py-10 no-scrollbar w-[80%]">
       <ProjectItems />
       <MemberItems />
-      <TimeItem />
+      <TimeItem title={`Time`} />
     </div>
   );
 }

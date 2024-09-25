@@ -51,7 +51,7 @@ export default function MainViewNav() {
         <Link
           key={item.id}
           to={item.path}
-          className={`flex h-full cursor-pointer items-center justify-center border-[#365dff] hover:border-b-2 ${isActive(item.path) ? `border-b-2 border-[#365dff]` : null}`}
+          className={`flex h-full cursor-pointer items-center justify-center border-[#365dff] ${isActive(item.path) ? `border-b-2 border-[#365dff]` : null}`}
         >
           <div
             className={`flex w-fit items-center gap-1.5 rounded-md px-2 py-2`}
