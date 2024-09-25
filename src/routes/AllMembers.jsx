@@ -20,6 +20,7 @@ export default function AllMembers() {
             key={member.id}
             img={member.img}
             name={member.name}
+            role={member.role}
             activeBoardsCount={activeBoards.length}
           />
         );

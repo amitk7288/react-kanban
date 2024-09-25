@@ -50,6 +50,15 @@ export default function ProjectItem({ projectName, handleDeleteProj, boardId, bo
     };
   }, [isEditing, boardId, newName, dispatch, projectName]);
 
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        if (newName.trim() !== projectName.trim()) {
+          dispatch(editBoardName({ id: boardId, newName }));
+        }
+        setIsEditing(false);
+    }
+  }
+
   return (
     <SidebarMenuItem className="relative">
       <div className="flex w-full items-center justify-between">
@@ -59,7 +68,7 @@ export default function ProjectItem({ projectName, handleDeleteProj, boardId, bo
         >
           <div className="flex items-center gap-2">
             <div
-              className={`col-start-1 col-end-2 row-start-1 row-end-2 flex h-[35px] w-[35px] items-center justify-center rounded-md bg-blue-200 ${isEditing ? `basis-[45px]` : `basis-[35px]`}`}
+              className={`col-start-1 col-end-2 row-start-1 row-end-2 flex h-[35px] w-[35px] items-center justify-center rounded-md ${isEditing ? `basis-[45px]` : `basis-[35px]`}`}
             >
               <img
                 src={boardImage}
@@ -73,6 +82,7 @@ export default function ProjectItem({ projectName, handleDeleteProj, boardId, bo
                 value={newName}
                 onChange={handleInputChange}
                 ref={inputRef}
+                onKeyDown={handleKeyPress}
                 className="block w-full rounded-md border-0 py-1.5 text-sm shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6 dark:text-drkbg"
               />
             ) : (

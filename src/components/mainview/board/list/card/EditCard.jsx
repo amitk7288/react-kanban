@@ -266,10 +266,6 @@ export default function EditCard({list, cardId, onClose}) {
                       Checklist
                     </label>
                   </div>
-                  {/* <CardChecklist
-                    currentTodos={checklistItems}
-                    onAddItem={updateChecklist}
-                  /> */}
                   <>
                     <div id="cardChecklist" className="flex items-center gap-2">
                       <span className="text-xs">

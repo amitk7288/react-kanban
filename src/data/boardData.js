@@ -83,7 +83,7 @@ const boards = [
     id: 3,
     name: "Dev Dreamer",
     img: "/src/assets/DDLogo.png",
-    members: getMembersByIds([1, 2, 11]),
+    members: getMembersByIds([1, 2, 3]),
     notes: getNotesByIds([1]),
     lists: [
       {
