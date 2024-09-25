@@ -23,7 +23,7 @@ export default function MainViewNav() {
       {
         id: 2,
         name: "Tasks",
-        path: `/project/${boardId}/tasks`, // Base path for Tasks
+        path: `/project/${boardId}/tasks`,
         icon: <PiCheckCircleBold className="text-xl" />,
       },
       {
@@ -51,9 +51,11 @@ export default function MainViewNav() {
         <Link
           key={item.id}
           to={item.path}
-          className={`flex h-full cursor-pointer items-center justify-center ${isActive(item.path) ? `border-b-2 border-[#365dff]` : null}`}
+          className={`flex h-full cursor-pointer items-center justify-center border-[#365dff] hover:border-b-2 ${isActive(item.path) ? `border-b-2 border-[#365dff]` : null}`}
         >
-          <div className="flex w-fit items-center gap-1.5 rounded-md px-2 py-2">
+          <div
+            className={`flex w-fit items-center gap-1.5 rounded-md px-2 py-2`}
+          >
             {item.icon}
             <p className="hidden text-sm font-normal md:block">{item.name}</p>
           </div>

@@ -58,7 +58,7 @@ export default function Notes() {
     <MainContainerWithHeader>
       <p className="text-md mb-5 h-[5%] font-medium">{board.name} notes</p>
       <div id="container" className="flex h-[90%] flex-col justify-between">
-        <div className="mb-5 flex h-full flex-col-reverse gap-3 overflow-scroll rounded-md border dark:border-drkbrd">
+        <div className="no-scrollbar mb-5 flex h-full flex-col-reverse gap-3 overflow-scroll rounded-md border dark:border-drkbrd py-3">
           {notes
             .slice()
             .reverse()

@@ -120,7 +120,7 @@ export default function Card({ cardId, zen, list }) {
               </p>
             ) : null}
             <div
-              className={`flex w-fit items-center gap-2.5 rounded-lg dark:border-drkbrd ${!zen ? `border bg-white p-1.5 dark:bg-drkbg2` : ``} ${allCompleted && totalCount !== 0 && !zen ? `border-green-600 bg-green-200 dark:border-0 dark:bg-green-600` : null}`}
+              className={`flex w-fit items-center gap-2.5 rounded-lg dark:border-drkbrd ${!zen ? `border bg-white p-1.5 dark:bg-drkbg2` : ``} ${allCompleted && totalCount !== 0 && !zen ? `border-green-600 bg-[#e6efea] dark:border-0 dark:bg-green-600` : null}`}
             >
               <PiListChecksBold
                 className={`text-[#a4a6a8] dark:text-drkcol ${allCompleted && totalCount !== 0 && `text-green-600 dark:text-green-200`}`}

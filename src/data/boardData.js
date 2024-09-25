@@ -17,7 +17,7 @@ const boards = [
     id: 1,
     name: "Plant Ltd",
     img: "/src/assets/logo-1.png",
-    members: getMembersByIds([1, 2, 3, 4, 9]),
+    members: getMembersByIds([1, 2, 3, 4, 9, 11]),
     notes: getNotesByIds([1]),
     lists: [
       {

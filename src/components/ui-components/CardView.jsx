@@ -14,7 +14,7 @@ export default function CardView({children, title}) {
         />
         <h1 className="text-xl font-medium">{title}</h1>
       </div>
-      <div className="grid grid-cols-4 gap-3">{children}</div>
+      <div className="grid grid-cols-1 gap-3 xs:grid-cols-2 sm:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">{children}</div>
     </div>
   );
 }

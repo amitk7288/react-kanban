@@ -77,7 +77,7 @@ export default function SearchResults({ search, setSearch, searchInputRef }) {
                     onClick={() => handleCardClick(card.id)}
                     className="w-full"
                   >
-                    <div className="flex w-[100%] cursor-pointer items-center gap-2 overflow-hidden border-t border-t-[#e5e7eb] p-4 hover:bg-[#c6c8cb] dark:border-t dark:border-t-[rgba(136,136,136,0.3)] dark:hover:bg-slate-900">
+                    <div className="flex w-[100%] cursor-pointer items-center gap-2 overflow-hidden border-t border-t-[#e5e7eb] p-4 hover:bg-[#c6c8cb] dark:border-t dark:border-t-[rgba(136,136,136,0.3)] dark:hover:bg-slate-900 z-[1000]">
                       <div
                         className={`col-start-1 col-end-2 row-start-1 row-end-2 flex h-[30px] w-[30px] items-center justify-center`}
                       >

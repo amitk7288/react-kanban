@@ -59,7 +59,7 @@ export default function ProjectItem({ projectName, handleDeleteProj, boardId, bo
         >
           <div className="flex items-center gap-2">
             <div
-              className={`col-start-1 col-end-2 row-start-1 row-end-2 flex h-[30px] w-[30px] items-center justify-center rounded-md bg-blue-200 ${isEditing ? `basis-[40px]` : `basis-[30px]`}`}
+              className={`col-start-1 col-end-2 row-start-1 row-end-2 flex h-[35px] w-[35px] items-center justify-center rounded-md bg-blue-200 ${isEditing ? `basis-[45px]` : `basis-[35px]`}`}
             >
               <img
                 src={boardImage}
