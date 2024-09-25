@@ -88,6 +88,7 @@ export default function AddProject() {
     dispatch(addBoard(formInfo));
     handleClickCancelBtn();
     navigate(`/project/${newBoardId}/tasks`);
+    
   }
 
   return (

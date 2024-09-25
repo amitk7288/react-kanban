@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import { Link, useLocation, matchPath } from "react-router-dom";
 import DropMenu from "../ui-components/DropMenu";
 import useDarkMode from "../../hooks/usedarkMode";
 import SearchResults from "./SearchResults";
@@ -15,6 +15,7 @@ import {
   PiSun,
   PiMoonStars,
   PiSquaresFour,
+  PiSquaresFourDuotone,
   PiColumns,
   PiColumnsDuotone,
   PiTimer,
@@ -35,20 +36,12 @@ import logo from "../../assets/kanban-logo.png"
 
 export default function Header() {
   const mobMenuIcons = [
-    // {
-    //   id: 1,
-    //   icon: <PiSquaresFour />,
-    //   activeIcon: <PiSquaresFourDuotone />,
-    //   iconText: "Projects",
-    //   path: "/projects",
-    //   active: false,
-    // },
     {
       id: 1,
-      icon: <PiColumns />,
-      activeIcon: <PiColumnsDuotone />,
-      iconText: "Board",
-      path: "/project/1/tasks",
+      icon: <PiSquaresFour />,
+      activeIcon: <PiSquaresFourDuotone />,
+      iconText: "All Projects",
+      path: "/projects",
       active: false,
     },
     {
@@ -109,7 +102,21 @@ export default function Header() {
   });
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef(null);
+  const location = useLocation();
   const boards = useSelector((state) => state.boards);
+
+  useEffect(() => {
+  const isProjectPage = matchPath({ path: "/project/*" }, location.pathname);
+    setMobMenu((prevState) =>
+      prevState.map((icon) => {
+        const isActive =
+          icon.path === location.pathname ||
+          (icon.iconText === "Board" && isProjectPage);
+
+        return { ...icon, active: isActive };
+      }),
+    );
+  }, [location.pathname]);
 
   const handleClick = (btn) => {
     setIsOpen(prevState => ({
@@ -135,10 +142,12 @@ export default function Header() {
     setMobMenuIsOpen(false);
   }
 
+  const isProjectPage = matchPath({ path: "/project/*" }, location.pathname);
+
   return (
     <header className="fixed right-0 top-0 h-[80px] w-full border-b bg-white p-5 sm:border-x lg:w-[calc(100%_-_25vw)] 2xl:w-[calc(100%_-_20vw)] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol">
       <div className="flex items-center justify-between gap-4">
-        <div className="lg:hidden flex-shrink-0">
+        <div className="flex-shrink-0 lg:hidden">
           <Link to={`/`}>
             <img src={logo} alt="Kanban Logo" className="h-auto w-[45px]" />
           </Link>
@@ -313,10 +322,20 @@ export default function Header() {
           <nav className="flex flex-col gap-7">
             <div className="dark:text-drkcol">
               <div className="mb-2 flex items-center gap-3">
-                <div className="rounded-md p-1 text-2xl">
-                  <PiSquaresFour />
+                <div
+                  className={`duration-400 flex items-center gap-3 transition-all ease-in-out`}
+                >
+                  {isProjectPage ? (
+                    <div className="border-l-[6px] border-l-[#365dff] p-1 text-2xl">
+                      <PiColumnsDuotone className="text-[#365dff]" />
+                    </div>
+                  ) : (
+                    <div className="rounded-md p-1 text-2xl">
+                      <PiColumns />
+                    </div>
+                  )}
                 </div>
-                <p>Projects</p>
+                <p>Projects:</p>
               </div>
               <div
                 id="mobProjects"
