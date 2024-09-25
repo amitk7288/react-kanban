@@ -6,7 +6,7 @@ export default function Chat() {
   
 
   return (
-    <MainContainer title={`Chat`}>
+    <MainContainer title={`Chat`} subtitle={`A list of the total notes in each project`}>
       <div className="flex flex-col gap-4">
         {boards.map((board) => (
           <div
@@ -23,10 +23,8 @@ export default function Chat() {
               />
             </div>
             <div className="flex flex-col">
-              <p>{board.name}</p>
-              <p className="text-sm">
-                Board notes: {board.notes.length}
-              </p>
+              <p className="font-medium">{board.name}</p>
+              <p className="text-sm">Project notes: {board.notes.length}</p>
             </div>
           </div>
         ))}
