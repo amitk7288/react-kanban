@@ -16,7 +16,7 @@ import AllMembers from "./routes/AllMembers.jsx";
 import Board from "./components/mainview/board/Board.jsx";
 import EditCard from "./components/mainview/board/list/card/EditCard.jsx";
 import Analytics from "./routes/Analytics.jsx";
-import Faq from "./routes/Faq.jsx";
+import Faq from "./routes/faqs/Faq.jsx";
 import Chat from "./routes/Chat.jsx";
 import Time from "./routes/Time.jsx";
 
