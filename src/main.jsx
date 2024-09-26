@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 import "./index.css";
 import store from "./app/store.js";
 import { Provider } from "react-redux";
@@ -19,6 +23,7 @@ import Analytics from "./routes/Analytics.jsx";
 import Faq from "./routes/faqs/Faq.jsx";
 import Chat from "./routes/Chat.jsx";
 import Time from "./routes/Time.jsx";
+import Dnd from "./routes/dndtest/Dnd.jsx";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +78,10 @@ const router = createBrowserRouter([
           {
             path: "/stats",
             element: <Analytics />,
+          },
+          {
+            path: "/dnd",
+            element: <Dnd />,
           },
           {
             path: "project/:boardId/tasks/:cardId",

@@ -40,7 +40,6 @@ const boardsSlice = createSlice({
       if (board) {
         board.notes = board.notes.filter((note) => note.id !== noteId);
       }
-
     },
     addReactionToNote: (state, action) => {
       const { boardId, noteId, emoji } = action.payload;
@@ -90,6 +89,21 @@ const boardsSlice = createSlice({
         }
       }
     },
+    updateCardsInList: (state, action) => {
+      console.log(`A`);
+      const { boardId, listId, updatedCards } = action.payload;
+      console.log(`B`);
+      const board = state.find((board) => board.id === boardId);
+      console.log(`C`);
+      if (board) {
+        console.log(`D`);
+        const list = board.lists.find((list) => list.id === listId)
+        if (list) {
+          console.log(`E`);
+          list.cards = updatedCards;
+        }
+      }
+    },
   },
 });
 
@@ -104,5 +118,6 @@ export const {
   deleteBoardCard,
   addBoardCard,
   editBoardCard,
+  updateCardsInList,
 } = boardsSlice.actions;
 export default boardsSlice.reducer;

@@ -1,8 +1,57 @@
+import { useParams } from "react-router-dom";
+import { updateCardsInList } from "../../../../features/boards/boardsSlice";
+import { useDispatch } from "react-redux";
+import {
+  DndContext,
+  closestCenter,
+  useSensors,
+  useSensor,
+  PointerSensor,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  verticalListSortingStrategy,
+  SortableContext,
+} from "@dnd-kit/sortable";
 import ListTitle from "./list-title/ListTitle";
 import AddTaskBtn from "./add-task/AddTaskBtn";
 import Card from "./card/Card";
 
-export default function List({ list, zen }) {  
+export default function List({ list, zen }) {
+  const {boardId} = useParams();
+  const dispatch = useDispatch();
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+  );
+
+  const listId = list.id;
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+
+    if (!over) {
+      return;
+    }
+
+    const oldIndex = list.cards.findIndex((card) => card.id === active.id);
+    const newIndex = list.cards.findIndex((card) => card.id === over.id);
+
+    // Debugging logs
+    console.log("Active ID:", active.id);
+    console.log("Over ID:", over.id);
+    console.log("Old Index:", oldIndex);
+    console.log("New Index:", newIndex);
+
+    if (oldIndex !== newIndex) {
+      const updatedCards = arrayMove(list.cards, oldIndex, newIndex);
+      dispatch(updateCardsInList({ boardId: parseInt(boardId), listId, updatedCards }));
+    }
+  };
 
   return (
     <li className="no-scrollbar flex h-[100%] w-[300px] flex-col items-center gap-5 overflow-y-auto rounded-lg border p-5 md:w-[350px] dark:border-drkbrd dark:bg-drkbg2">
@@ -14,17 +63,80 @@ export default function List({ list, zen }) {
         />
         <AddTaskBtn list={list} />
       </div>
-      <div className="no-scrollbar h-[100%] overflow-auto rounded-lg">
-        <div className="relative top-[0px] flex flex-col gap-3">
-          {list.cards.length === 0 ? <p className="text-sm">Currently no cards</p> : null}
-          {list.cards
-            .slice()
-            .reverse()
-            .map((card) => (
-              <Card key={card.id} cardId={card.id} list={list} zen={zen} />
-            ))}
+      <DndContext
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+        sensors={sensors}
+      >
+        <div className="no-scrollbar h-[100%] overflow-auto rounded-lg">
+          <div className="relative top-[0px] flex flex-col gap-3">
+            {list.cards.length === 0 ? (
+              <p className="text-sm">Currently no cards</p>
+            ) : null}
+            <SortableContext
+              items={list.cards}
+              strategy={verticalListSortingStrategy}
+            >
+              {list.cards.map((card) => (
+                <Card key={card.id} cardId={card.id} list={list} zen={zen} />
+              ))}
+            </SortableContext>
+          </div>
         </div>
-      </div>
+      </DndContext>
     </li>
   );
 }
+
+// import ListTitle from "./list-title/ListTitle";
+// import AddTaskBtn from "./add-task/AddTaskBtn";
+// import Card from "./card/Card";
+
+// export default function List({ list, zen }) {
+
+//   return (
+//     <li className="no-scrollbar flex h-[100%] w-[300px] flex-col items-center gap-5 overflow-y-auto rounded-lg border p-5 md:w-[350px] dark:border-drkbrd dark:bg-drkbg2">
+//       <div className="sticky flex flex-col gap-3 rounded-lg bg-[#f7f7f7] dark:bg-drkbg2 dark:text-drkcol">
+//         <ListTitle
+//           title={list.name}
+//           listColor={list.color}
+//           numCards={list.cards.length}
+//         />
+//         <AddTaskBtn list={list} />
+//       </div>
+//       <div className="no-scrollbar h-[100%] overflow-auto rounded-lg">
+//         <div className="relative top-[0px] flex flex-col gap-3">
+//           {list.cards.length === 0 ? <p className="text-sm">Currently no cards</p> : null}
+//           {list.cards
+//             .slice()
+//             .reverse()
+//             .map((card) => (
+//               <Card key={card.id} cardId={card.id} list={list} zen={zen} />
+//             ))}
+//         </div>
+//       </div>
+//     </li>
+//   );
+// }
+
+// function handleDragEnd(e) {
+//   const { active, over } = e;
+//   if (active.id !== over.id) {
+//     setCards((currentCards) => {
+//       const activeIndex = currentCards.findIndex(
+//         (card) => card.id === active.id,
+//       );
+//       const overIndex = currentCards.findIndex((card) => card.id === over.id);
+//       console.log("active:", activeIndex);
+//       console.log("over:", overIndex);
+
+//       return arrayMove(currentCards, activeIndex, overIndex);
+//     });
+//   }
+// }
+
+// useEffect(() => {
+//   setCards(list.cards);
+//   console.log("useffect sort cards");
+//   console.log("this:", list.cards);
+// }, [list.cards]);
