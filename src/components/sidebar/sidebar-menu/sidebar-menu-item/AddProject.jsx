@@ -93,11 +93,13 @@ export default function AddProject() {
 
   return (
     <>
-      <button className="btn-transition flex cursor-pointer items-center whitespace-nowrap rounded-md bg-[#365dff] p-1 text-lg text-white" onClick={() => setIsOpen(true)}>
+      <button
+        className="btn-transition flex cursor-pointer items-center whitespace-nowrap rounded-md bg-[#365dff] p-1 text-lg text-white hover:bg-[#1c49ff]"
+        onClick={() => setIsOpen(true)}
+      >
         <PiPlusBold className="font-" />
       </button>
-      {isOpen 
-        ? ( 
+      {isOpen ? (
         <Modal closeModal={() => setIsOpen(false)}>
           <form
             ref={formRef}
@@ -194,15 +196,14 @@ export default function AddProject() {
               <button
                 type="submit"
                 disabled={!projName || !projImg}
-                className={`rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${projName && projImg ? "bg-[#365dff] text-white" : "bg-gray-400 text-white"}`}
+                className={`rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${projName && projImg ? "bg-[#365dff] text-white " : "bg-gray-400 text-white"}`}
               >
                 Add Project
               </button>
             </div>
           </form>
         </Modal>
-        ) : null
-      }
+      ) : null}
     </>
   );
 }

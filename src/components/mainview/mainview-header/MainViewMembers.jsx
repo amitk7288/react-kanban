@@ -82,7 +82,7 @@ export default function MainViewMembers() {
       <div>
         <>
           <button
-            className="btn-transition flex cursor-pointer items-center whitespace-nowrap rounded-md bg-[#365dff] p-3 text-sm font-normal text-white"
+            className="btn-transition flex cursor-pointer items-center whitespace-nowrap rounded-md bg-[#365dff] p-3 text-sm font-normal text-white hover:bg-[#1c49ff]"
             onClick={() => setIsOpen(true)}
           >
             <div className="hidden items-center md:flex">

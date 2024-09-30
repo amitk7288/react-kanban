@@ -96,7 +96,9 @@ export default function ProjectItem({ projectName, handleDeleteProj, boardId, bo
           {!isEditing ? (
             <DropMenu
               trigger={
-                <PiDotsThreeOutlineVerticalFill className="cursor-pointer" />
+                <div className="relative cursor-pointer rounded-full bg-transparent p-2 hover:bg-hvrcol dark:text-drkcol dark:hover:bg-drkhvrcol">
+                  <PiDotsThreeOutlineVerticalFill />
+                </div>
               }
               pos={`right-[0px]`}
             >

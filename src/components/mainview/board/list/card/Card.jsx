@@ -10,6 +10,8 @@ import { deleteCard } from "../../../../../features/cards/cardsSlice";
 import { deleteBoardCard } from "../../../../../features/boards/boardsSlice";
 import {
   PiDotsThreeOutlineVerticalFill,
+  PiNotePencilBold,
+  PiTrashBold,
   PiListChecksBold,
   PiEyeBold,
   PiChatCircleDotsBold,
@@ -74,7 +76,7 @@ export default function Card({ cardInfo, cardId, zen, list }) {
     <>
       {isDragging && (
         <div
-          className={`flex w-[240px] cursor-pointer flex-col rounded-lg border-2 border-blue-600 border-dashed bg-white opacity-30 hover:ring-blue-600 md:w-[300px] dark:border-2 dark:border-dashed dark:border-lime-400 dark:bg-drkbg dark:text-drkcol`}
+          className={`flex w-[240px] cursor-pointer flex-col rounded-lg border-2 border-dashed border-blue-600 bg-white opacity-30 hover:ring-blue-600 md:w-[300px] dark:border-2 dark:border-dashed dark:border-lime-400 dark:bg-drkbg dark:text-drkcol`}
           style={style}
           ref={setNodeRef}
           {...attributes}
@@ -236,14 +238,26 @@ export default function Card({ cardInfo, cardId, zen, list }) {
               )}
               <DropMenu
                 trigger={
-                  <PiDotsThreeOutlineVerticalFill className="cursor-pointer" />
+                  <div className="relative cursor-pointer rounded-full bg-transparent p-2 hover:bg-hvrcol dark:text-drkcol dark:hover:bg-drkhvrcol">
+                    <PiDotsThreeOutlineVerticalFill />
+                  </div>
                 }
                 pos={`right-[0px]`}
               >
-                <nav className="flex flex-col items-start gap-2 text-sm">
-                  <button onClick={() => setIsOpen(true)}>Edit</button>
-                  <button onClick={() => handleDeleteCard(card.id)}>
-                    Delete
+                <nav className="flex flex-col items-start gap-1 text-sm">
+                  <button
+                    onClick={() => setIsOpen(true)}
+                    className="relative flex cursor-pointer items-center gap-x-2 rounded-md bg-transparent hover:bg-hvrcol dark:text-drkcol dark:hover:bg-drkhvrcol w-full"
+                  >
+                    <PiNotePencilBold />
+                    <span>Edit</span>
+                  </button>
+                  <button
+                    onClick={() => handleDeleteCard(card.id)}
+                    className="relative flex cursor-pointer items-center gap-x-2 rounded-md bg-transparent hover:bg-hvrcol dark:text-drkcol dark:hover:bg-drkhvrcol"
+                  >
+                    <PiTrashBold />
+                    <span>Delete</span>
                   </button>
                 </nav>
               </DropMenu>
