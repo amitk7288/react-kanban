@@ -60,25 +60,25 @@ export default function AddProject() {
       notes: [],
       lists: [
         {
-          id: 1,
+          id: "list-1",
           name: "To Do",
           color: listColors["To Do"],
           cards: [],
         },
         {
-          id: 2,
+          id: "list-2",
           name: "In Progress",
           color: listColors["In Progress"],
           cards: [],
         },
         {
-          id: 3,
+          id: "list-3",
           name: "Review",
           color: listColors["Review"],
           cards: [],
         },
         {
-          id: 4,
+          id: "list-4",
           name: "Done",
           color: listColors["Done"],
           cards: [],

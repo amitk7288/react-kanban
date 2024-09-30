@@ -7,6 +7,8 @@ const cardsSlice = createSlice({
   reducers: {
     addCard: (state, action) => {
       state.push(action.payload);
+      console.log("redux cards", cardsData);
+            
     },
     deleteCard: (state, action) => {
       return state.filter((card) => card.id !== action.payload);

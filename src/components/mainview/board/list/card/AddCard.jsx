@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -63,13 +62,24 @@ export default function AddCard({ list, onClose }) {
   }
 
   useEffect(() => {
-    console.log(cards);
-  }, [cards]);
+    console.log("UP TO DATE CARDS:", cards);
+    console.log("UP TO DATE BOARD:", board);
+  }, [cards, board]);
+
+  function generateUniqueId(existingIds) {
+    let newId;
+    do {
+      newId = Math.floor(10000 + Math.random() * 90000); // Generates a number between 10000 and 99999
+    } while (existingIds.includes(newId)); // Repeat if the ID already exists
+    return newId;
+  }
 
   function handleAddCardSubmit(event) {
     event.preventDefault();
+    const existingCardIds = cards.map((card) => card.id);
+    const uniqueId = generateUniqueId(existingCardIds);
     const cardInfo = {
-      id: uuidv4(),
+      id: uniqueId,
       category: categoryName,
       title: cardTitle,
       description: cardDesc,
@@ -80,7 +90,6 @@ export default function AddCard({ list, onClose }) {
       comments: 2,
       files: 3,
     };
-
     dispatch(addCard(cardInfo));
     dispatch(
       addBoardCard({
@@ -93,7 +102,7 @@ export default function AddCard({ list, onClose }) {
     formRef.current.reset();
     onClose();
 
-    console.log(`CARD ADDED INFO`);
+    console.log(`ADD BOARD CARD`);
     console.log(`BOARD: `, board);
     console.log(`LIST: `, list);
     console.log(`CARD: `, cards);

@@ -90,20 +90,61 @@ const boardsSlice = createSlice({
       }
     },
     updateCardsInList: (state, action) => {
-      console.log(`A`);
       const { boardId, listId, updatedCards } = action.payload;
-      console.log(`B`);
       const board = state.find((board) => board.id === boardId);
-      console.log(`C`);
       if (board) {
-        console.log(`D`);
-        const list = board.lists.find((list) => list.id === listId)
+        const list = board.lists.find((list) => list.id === listId);
         if (list) {
-          console.log(`E`);
           list.cards = updatedCards;
         }
       }
     },
+    updateLists: (state, action) => {
+      const {
+        boardId,
+        oldListId,
+        newListId,
+        updatedOldCards,
+        updatedNewCards,
+      } = action.payload;
+      const board = state.find((board) => board.id === boardId);
+      if (!board) return;
+
+      const oldList = board.lists.find((list) => list.id === oldListId);
+      const newList = board.lists.find((list) => list.id === newListId);
+
+      if (!oldList || !newList) return;
+
+      if (oldListId === newListId) {
+        oldList.cards = updatedOldCards;
+      } else {
+        oldList.cards = updatedOldCards;
+        newList.cards = updatedNewCards;
+      }
+    },
+    tempUpdatedLists: (state, action) => {
+      const {
+        boardId,
+        oldListId,
+        newListId,
+        updatedOldCards,
+        updatedNewCards,
+      } = action.payload;
+      const board = state.find((board) => board.id === boardId);
+      if (!board) return;
+
+      const oldList = board.lists.find((list) => list.id === oldListId);
+      const newList = board.lists.find((list) => list.id === newListId);
+
+      if (!oldList || !newList) return;
+
+      if (oldListId === newListId) {
+        oldList.cards = updatedOldCards;
+      } else {
+        oldList.cards = updatedOldCards;
+        newList.cards = updatedNewCards;
+      }
+    }
   },
 });
 
@@ -119,5 +160,7 @@ export const {
   addBoardCard,
   editBoardCard,
   updateCardsInList,
+  updateLists,
+  tempUpdatedLists,
 } = boardsSlice.actions;
 export default boardsSlice.reducer;

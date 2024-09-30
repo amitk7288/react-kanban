@@ -23,7 +23,7 @@ import Analytics from "./routes/Analytics.jsx";
 import Faq from "./routes/faqs/Faq.jsx";
 import Chat from "./routes/Chat.jsx";
 import Time from "./routes/Time.jsx";
-import Dnd from "./routes/dndtest/Dnd.jsx";
+import DndBoard from "./routes/dndTest/DndBoard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -80,8 +80,8 @@ const router = createBrowserRouter([
             element: <Analytics />,
           },
           {
-            path: "/dnd",
-            element: <Dnd />,
+            path: "/dnd/:boardId",
+            element: <DndBoard />,
           },
           {
             path: "project/:boardId/tasks/:cardId",
