@@ -9,7 +9,7 @@ export default function AddTaskBtn({list}) {
   return (
     <>
       <button
-        className="flex w-[250px] items-center justify-center rounded-lg border bg-white p-4 font-medium text-[#365dff] md:w-[300px] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol"
+        className="flex w-[250px] items-center justify-center rounded-lg border bg-white p-4 font-medium text-[#365dff] transition-all ease-in-out hover:bg-[#365dff] hover:text-white md:w-[300px] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol duration-400"
         onClick={() => setIsOpen(true)}
       >
         <PiPlusBold />
