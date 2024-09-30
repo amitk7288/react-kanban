@@ -102,8 +102,7 @@ const cards = [
     id: 6,
     category: "Testing",
     title: "This is a test card",
-    description:
-      "I hope you enjoy going through this project - Amit 😎",
+    description: "I hope you enjoy going through this project - Amit 😎",
     checklist: [
       {
         id: 0,

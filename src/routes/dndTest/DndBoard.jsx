@@ -1,7 +1,9 @@
-import { useState } from "react";
 import { createPortal } from "react-dom";
-import { useParams } from "react-router-dom";
+import MainContainer from "../../components/ui-components/MainContainer";
+import List from "../../components/mainview/board/list/List";
+import Card from "../../components/mainview/board/list/card/Card";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import {
   DndContext,
   useSensor,
@@ -16,15 +18,14 @@ import {
   updateCardsInList,
   updateLists,
   tempUpdatedLists,
-} from "../../../features/boards/boardsSlice";
-import List from "./list/List";
-import Card from "./list/card/Card";
+} from "../../features/boards/boardsSlice";
+import { useState } from "react";
 import { PiFlowerLotusDuotone } from "react-icons/pi";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 
-export default function Board() {
+export default function DndBoard() {
   const [activeCard, setActiveCard] = useState(null);
-  const [isZenMode, setIsZenMode] = useState(false);
+  const [isZenMode, setIsZenMode] = useState(true);
   const { boardId } = useParams();
   const dispatch = useDispatch();
   const board = useSelector((state) =>
@@ -226,10 +227,7 @@ export default function Board() {
   };
 
   return (
-    <div
-      id="board"
-      className="#181a1f fixed right-0 top-[230px] z-[-1] h-[calc(100%_-_230px)] w-full overflow-x-auto overflow-y-hidden border-l bg-[#f7f7f7] p-5 pt-3 lg:w-[calc(100%_-_25vw)] 2xl:w-[calc(100%_-_20vw)] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol"
-    >
+    <MainContainer>
       <div className="mb-2 flex h-[5%] items-center gap-2 pl-2">
         {isZenMode ? (
           <PiFlowerLotusDuotone
@@ -249,7 +247,7 @@ export default function Board() {
           )}
         </button>
       </div>
-      <ol className="no-scrollbar grid h-[95%] w-auto grid-flow-col gap-4 overflow-x-auto overflow-y-hidden md:auto-cols-[minmax(350px,300px)]">
+      <ol className="m-auto flex min-h-screen w-full overflow-x-auto overflow-y-hidden px-[40px]">
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -257,10 +255,13 @@ export default function Board() {
           onDragOver={handleDragOver}
           onDragEnd={handleDragEnd}
         >
-          {board &&
-            board.lists.map((list) => (
-              <List key={list.id} id={list.id} list={list} zen={isZenMode} />
-            ))}
+          <div className="m-auto flex gap-4">
+            <div className="flex gap-4">
+                {board.lists.map((list) => (
+                  <List key={list.id} id={list.id} list={list} zen={isZenMode} />
+                ))}
+            </div>
+          </div>
           {createPortal(
             <DragOverlay>
               {activeCard && (
@@ -275,6 +276,232 @@ export default function Board() {
           )}
         </DndContext>
       </ol>
-    </div>
+    </MainContainer>
   );
 }
+
+
+
+// import { createPortal } from "react-dom";
+// import MainContainer from "../../components/ui-components/MainContainer";
+// import List from "../../components/mainview/board/list/List";
+// import Card from "../../components/mainview/board/list/card/Card";
+// import { useSelector } from "react-redux";
+// import { useParams } from "react-router-dom";
+// import {
+//   DndContext,
+//   useSensor,
+//   useSensors,
+//   PointerSensor,
+//   closestCenter,
+//   DragOverlay,
+// } from "@dnd-kit/core";
+// import { arrayMove, SortableContext } from "@dnd-kit/sortable";
+// import { useDispatch } from "react-redux";
+// import {
+//   updateCardsInList,
+//   updateLists,
+//   tempUpdatedLists,
+// } from "../../features/boards/boardsSlice";
+// import { useState, useMemo } from "react";
+// import { PiFlowerLotusDuotone } from "react-icons/pi";
+// import { BsToggleOff, BsToggleOn } from "react-icons/bs";
+
+// export default function DndBoard() {
+//   const [activeCard, setActiveCard] = useState(null);
+//   const [isZenMode, setIsZenMode] = useState(true);
+//   const { boardId } = useParams();
+//   const dispatch = useDispatch();
+//   const board = useSelector((state) =>
+//     state.boards.find((board) => board.id === parseInt(boardId)),
+//   );
+
+//   const listIds = useMemo(() => {
+//     return board.lists.map((list) => list.id);
+//   }, [board.lists]);
+
+//   const sensors = useSensors(
+//     useSensor(PointerSensor, {
+//       activationConstraint: {
+//         distance: 8,
+//       },
+//     }),
+//   );
+
+//   const handleDragStart = (event) => {
+//     console.log("DRAG START: ", event.active.data.current.cardInfo);
+//     setActiveCard(event.active.data.current.cardInfo);
+//   };
+
+//   const handleDragOver = (event) => {
+// console.log(event);
+
+// const { active, over } = event;
+// if (!over) return;
+
+// const activeId = active.id;
+// const overId = over.id;
+// console.log("active id:", activeId);
+// console.log("over container ID:", over.data.current.sortable.containerId);
+
+// // Find the list and card where the drag started (active list)
+// const activeList = board.lists.find((list) =>
+//   list.cards.some((card) => card.id === parseInt(activeId)),
+// );
+
+// const overList = board.lists.find((list) =>
+//   list.cards.some((card) => card.id === parseInt(overId)),
+// );
+// console.log("over list", overList);
+
+// // Find the card indexes in their respective lists
+// const activeIndex = activeList.cards.findIndex(
+//   (card) => card.id === parseInt(activeId),
+// );
+// const overIndex = overList.cards.findIndex(
+//   (card) => card.id === parseInt(overId),
+// );
+
+// console.log("active index", activeIndex);
+// console.log("over index", overIndex);
+
+// if (activeList.id !== overList.id) {
+//   // Handle case if the card is moved to a different list
+//   const movedCard = activeList.cards[activeIndex];
+
+//   // Remove the card from the old list
+//   const updatedOldCards = [...activeList.cards];
+//   updatedOldCards.splice(activeIndex, 1);
+
+//   // Add the card to the new list
+//   const updatedNewCards = [...overList.cards];
+//   updatedNewCards.splice(overIndex, 0, movedCard);
+
+//   dispatch(
+//     tempUpdatedLists({
+//       boardId: parseInt(boardId),
+//       oldListId: activeList.id,
+//       newListId: overList.id,
+//       updatedOldCards,
+//       updatedNewCards,
+//     }),
+//   );
+// }
+//   };
+
+//   const handleDragEnd = (event) => {
+//     const { active, over } = event;
+//     if (!over) return;
+
+//     const activeId = active.id;
+//     const overId = over.id;
+
+//     // Find the list and card where the drag started (active list)
+//     const activeList = board.lists.find((list) =>
+//       list.cards.some((card) => card.id === parseInt(activeId)),
+//     );
+//     const overList = board.lists.find((list) =>
+//       list.cards.some((card) => card.id === parseInt(overId)),
+//     );
+
+//     // Find the card indexes in their respective lists
+//     const activeIndex = activeList.cards.findIndex(
+//       (card) => card.id === parseInt(activeId),
+//     );
+//     const overIndex = overList.cards.findIndex(
+//       (card) => card.id === parseInt(overId),
+//     );
+
+//     // Handle case if the card is moved within the same list
+//     if (activeList.id === overList.id && activeIndex !== overIndex) {
+//       const updatedCards = arrayMove(activeList.cards, activeIndex, overIndex);
+//       dispatch(
+//         updateCardsInList({
+//           boardId: parseInt(boardId),
+//           listId: activeList.id,
+//           updatedCards,
+//         }),
+//       );
+//       console.log(activeList.cards);
+//     } else if (activeList.id !== overList.id) {
+//       // Handle case if the card is moved to a different list
+//       const movedCard = activeList.cards[activeIndex];
+
+//       // Remove the card from the old list
+//       const updatedOldCards = [...activeList.cards];
+//       updatedOldCards.splice(activeIndex, 1);
+
+//       // Add the card to the new list
+//       const updatedNewCards = [...overList.cards];
+//       updatedNewCards.splice(overIndex, 0, movedCard);
+
+//       dispatch(
+//         updateLists({
+//           boardId: parseInt(boardId),
+//           oldListId: activeList.id,
+//           newListId: overList.id,
+//           updatedOldCards,
+//           updatedNewCards,
+//         }),
+//       );
+//     }
+
+//     // Clear the active card after the drag ends
+//     setActiveCard(null);
+//   };
+
+//   return (
+//     <MainContainer>
+//       <div className="mb-2 flex h-[5%] items-center gap-2 pl-2">
+//         {isZenMode ? (
+//           <PiFlowerLotusDuotone
+//             className={`text-2xl text-[#365dff] dark:text-[#b0ccff]`}
+//           />
+//         ) : (
+//           <PiFlowerLotusDuotone className="text-2xl" />
+//         )}
+//         <button
+//           className="text-2xl"
+//           onClick={() => setIsZenMode((prevState) => !prevState)}
+//         >
+//           {isZenMode ? (
+//             <BsToggleOn className="text-[#365dff] dark:text-[#b0ccff]" />
+//           ) : (
+//             <BsToggleOff />
+//           )}
+//         </button>
+//       </div>
+//       <ol className="m-auto flex min-h-screen w-full overflow-x-auto overflow-y-hidden px-[40px]">
+//         <DndContext
+//           sensors={sensors}
+//           collisionDetection={closestCenter}
+//           onDragStart={handleDragStart}
+//           onDragOver={handleDragOver}
+//           onDragEnd={handleDragEnd}
+//         >
+//           <div className="m-auto flex gap-4">
+//             <div className="flex gap-4">
+//               <SortableContext items={listIds}>
+//                 {board.lists.map((list) => (
+//                   <List key={list.id} list={list} zen={isZenMode} />
+//                 ))}
+//               </SortableContext>
+//             </div>
+//           </div>
+//           {createPortal(
+//             <DragOverlay>
+//               {activeCard && (
+//                 <Card
+//                   cardId={activeCard.id}
+//                   cardInfo={activeCard}
+//                   zen={isZenMode}
+//                 />
+//               )}
+//             </DragOverlay>,
+//             document.body,
+//           )}
+//         </DndContext>
+//       </ol>
+//     </MainContainer>
+//   );
+// }

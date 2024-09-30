@@ -21,25 +21,25 @@ const boards = [
     notes: getNotesByIds([1]),
     lists: [
       {
-        id: 1,
+        id: "list-1",
         name: "To Do",
         color: listColors["To Do"],
         cards: getCardsByIds([1, 2]),
       },
       {
-        id: 2,
+        id: "list-2",
         name: "In Progress",
         color: listColors["In Progress"],
         cards: getCardsByIds([3, 4]),
       },
       {
-        id: 3,
+        id: "list-3",
         name: "Review",
         color: listColors["Review"],
         cards: getCardsByIds([5, 6]),
       },
       {
-        id: 4,
+        id: "list-4",
         name: "Done",
         color: listColors["Done"],
         cards: getCardsByIds([7]),
@@ -54,25 +54,25 @@ const boards = [
     notes: getNotesByIds([1]),
     lists: [
       {
-        id: 1,
+        id: "list-1",
         name: "To Do",
         color: listColors["To Do"],
         cards: getCardsByIds([8]),
       },
       {
-        id: 2,
+        id: "list-2",
         name: "In Progress",
         color: listColors["In Progress"],
         cards: getCardsByIds([9]),
       },
       {
-        id: 3,
+        id: "list-3",
         name: "Review",
         color: listColors["Review"],
         cards: getCardsByIds([10]),
       },
       {
-        id: 4,
+        id: "list-4",
         name: "Done",
         color: listColors["Done"],
         cards: getCardsByIds([11]),
@@ -87,25 +87,25 @@ const boards = [
     notes: getNotesByIds([1]),
     lists: [
       {
-        id: 1,
+        id: "list-1",
         name: "To Do",
         color: listColors["To Do"],
         cards: getCardsByIds([]),
       },
       {
-        id: 2,
+        id: "list-2",
         name: "In Progress",
         color: listColors["In Progress"],
         cards: getCardsByIds([]),
       },
       {
-        id: 3,
+        id: "list-3",
         name: "Review",
         color: listColors["Review"],
         cards: getCardsByIds([]),
       },
       {
-        id: 4,
+        id: "list-4",
         name: "Done",
         color: listColors["Done"],
         cards: getCardsByIds([12, 13, 14, 15]),
@@ -120,25 +120,25 @@ const boards = [
     notes: getNotesByIds([1]),
     lists: [
       {
-        id: 1,
+        id: "list-1",
         name: "To Do",
         color: listColors["To Do"],
         cards: getCardsByIds([16, 17]),
       },
       {
-        id: 2,
+        id: "list-2",
         name: "In Progress",
         color: listColors["In Progress"],
         cards: getCardsByIds([18]),
       },
       {
-        id: 3,
+        id: "list-3",
         name: "Review",
         color: listColors["Review"],
         cards: getCardsByIds([19]),
       },
       {
-        id: 4,
+        id: "list-4",
         name: "Done",
         color: listColors["Done"],
         cards: getCardsByIds([20]),
