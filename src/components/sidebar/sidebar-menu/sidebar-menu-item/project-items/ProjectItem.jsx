@@ -9,6 +9,8 @@ import useTruncate from "../../../../../hooks/useTruncate";
 
 import {
   PiDotsThreeOutlineVerticalFill,
+  PiNotePencilBold,
+  PiTrashBold,
 } from "react-icons/pi";
 
 export default function ProjectItem({ projectName, handleDeleteProj, boardId, boardImage }) {
@@ -103,13 +105,21 @@ export default function ProjectItem({ projectName, handleDeleteProj, boardId, bo
               pos={`right-[0px]`}
             >
               <nav className="flex flex-col items-start gap-2 text-sm">
-                <button onClick={() => setIsEditing(true)}>Edit</button>
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="relative flex w-full cursor-pointer items-center gap-x-2 rounded-md bg-transparent"
+                >
+                  <PiNotePencilBold />
+                  <span>Edit</span>
+                </button>
                 <button
                   onClick={() => {
                     handleDeleteProj(boardId);
                   }}
+                  className="relative flex cursor-pointer items-center gap-x-2 rounded-md bg-transparent"
                 >
-                  Delete
+                  <PiTrashBold />
+                  <span>Delete</span>
                 </button>
               </nav>
             </DropMenu>

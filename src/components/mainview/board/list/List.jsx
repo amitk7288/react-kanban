@@ -27,7 +27,7 @@ export default function List({ list, id, zen }) {
             {list.cards.length === 0 ? (
               <p className="text-sm">Currently no cards</p>
             ) : null}
-            {list.cards.map((card) => (
+            {list.cards.slice().reverse().map((card) => (
               <Card
                 key={card.id}
                 cardId={card.id}
