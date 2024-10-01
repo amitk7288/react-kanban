@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { RiMedal2Fill } from "react-icons/ri";
+import test from "../../../assets/logo-1.png"
 
 export default function ProjectProgress() {
   const { boardId } = useParams();
@@ -46,6 +47,7 @@ export default function ProjectProgress() {
           alt={`${board.name} board image`}
           className="h-full w-full rounded-md object-cover"
         />
+        <img src={test} className="h-full w-full rounded-md object-cover" />
       </div>
       <div className="flex w-[100%] flex-col justify-between gap-1">
         <div className="flex items-center gap-3">
