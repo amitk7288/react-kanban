@@ -16,7 +16,7 @@ const boards = [
   {
     id: 1,
     name: "Plant Ltd",
-    img: "/src/assets/logo-1.png",
+    img: "/assets/logo-1.png",
     members: getMembersByIds([1, 2, 3, 4, 9, 11]),
     notes: getNotesByIds([1]),
     lists: [
@@ -49,7 +49,7 @@ const boards = [
   {
     id: 2,
     name: "Web Platform",
-    img: "/src/assets/web-platform-logo.png",
+    img: "/assets/web-platform-logo.png",
     members: getMembersByIds([1, 3, 5, 6]),
     notes: getNotesByIds([1]),
     lists: [
@@ -82,7 +82,7 @@ const boards = [
   {
     id: 3,
     name: "Dev Dreamer",
-    img: "/src/assets/DDLogo.png",
+    img: "/assets/DDLogo.png",
     members: getMembersByIds([1, 2, 3]),
     notes: getNotesByIds([1]),
     lists: [
@@ -115,7 +115,7 @@ const boards = [
   {
     id: 4,
     name: "Social Campaign",
-    img: "/src/assets/social-campaign.png",
+    img: "/assets/social-campaign.png",
     members: getMembersByIds([1, 2, 3, 4, 6, 7, 8]),
     notes: getNotesByIds([1]),
     lists: [
