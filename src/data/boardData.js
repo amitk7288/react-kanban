@@ -12,11 +12,16 @@ const getNotesByIds = (ids) =>
 const getCardsByIds = (ids) =>
   cards.filter((card) => ids.includes(card.id));
 
+import plantLtd from "../assets/plant-ltd.png";
+import webPlatform from "../assets/web-platform-logo.png";
+import devDreamer from "../assets/DDLogo.png";
+import socialCampaign from "../assets/social-campaign.png";
+
 const boards = [
   {
     id: 1,
     name: "Plant Ltd",
-    img: "/assets/logo-1.png",
+    img: plantLtd,
     members: getMembersByIds([1, 2, 3, 4, 9, 11]),
     notes: getNotesByIds([1]),
     lists: [
@@ -49,7 +54,7 @@ const boards = [
   {
     id: 2,
     name: "Web Platform",
-    img: "/assets/web-platform-logo.png",
+    img: webPlatform,
     members: getMembersByIds([1, 3, 5, 6]),
     notes: getNotesByIds([1]),
     lists: [
@@ -82,7 +87,7 @@ const boards = [
   {
     id: 3,
     name: "Dev Dreamer",
-    img: "/assets/DDLogo.png",
+    img: devDreamer,
     members: getMembersByIds([1, 2, 3]),
     notes: getNotesByIds([1]),
     lists: [
@@ -115,7 +120,7 @@ const boards = [
   {
     id: 4,
     name: "Social Campaign",
-    img: "/assets/social-campaign.png",
+    img: socialCampaign,
     members: getMembersByIds([1, 2, 3, 4, 6, 7, 8]),
     notes: getNotesByIds([1]),
     lists: [
