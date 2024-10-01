@@ -1,3 +1,11 @@
+import reactIcon from "../assets/React-icon.png";
+import reduxIcon from "../assets/redux-icon.webp";
+import reactRouterIcon from "../assets/react-router.svg";
+import tailwindIcon from "../assets/tailwind-icon.png";
+import githubIcon from "../assets/github-logo.png";
+import reactIconsIcon from "../assets/react-icons-icon.svg";
+import dndKitIcon from "../assets/dndkit-icon.png";
+
 const faqs = [
   {
     id: 1,
@@ -5,13 +13,13 @@ const faqs = [
     answer:
       "This project was built from scratch using a modern web stack including React JS for the front end, Redux for global state management, React Router Dom for navigation, and Tailwind CSS for styling. I also used tools like Git/GitHub for version control, React Icons, uuid for generating unique id's and React Dnd-Kit for the drag n drop feature for the cards.",
     icons: [
-      { id: 1, src: "/src/assets/React-icon.png", title: "React JS" },
-      { id: 2, src: "/src/assets/redux-icon.webp", title: "Redux" },
-      { id: 3, src: "/src/assets/react-router.svg", title: "React Router DOM" },
-      { id: 3, src: "/src/assets/tailwind-icon.png", title: "Tailwind CSS" },
-      { id: 3, src: "/src/assets/github-logo.png", title: "Git/Github" },
-      { id: 3, src: "/src/assets/react-icons-icon.svg", title: "React Icons" },
-      { id: 3, src: "/src/assets/dndkit-icon.png", title: "dnd kit" },
+      { id: 1, src: reactIcon, title: "React JS" },
+      { id: 2, src: reduxIcon, title: "Redux" },
+      { id: 3, src: reactRouterIcon, title: "React Router DOM" },
+      { id: 4, src: tailwindIcon, title: "Tailwind CSS" },
+      { id: 5, src: githubIcon, title: "Git/Github" },
+      { id: 6, src: reactIconsIcon, title: "React Icons" },
+      { id: 7, src: dndKitIcon, title: "dnd kit" },
     ],
   },
   {

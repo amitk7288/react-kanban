@@ -1,68 +1,80 @@
+import amit from "../assets/members/amit.jpg";
+import sonic from "../assets/members/sonic.webp";
+import mario from "../assets/members/mario.jpeg";
+import eric from "../assets/members/2.jpg";
+import sarah from "../assets/members/3.jpg";
+import ian from "../assets/members/4.jpg";
+import joe from "../assets/members/5.jpg";
+import jane from "../assets/members/6.jpg";
+import mikey from "../assets/members/7.jpg";
+import beth from "../assets/members/8.jpg";
+import john from "../assets/members/1.jpg";
+
 const members = [
   {
     id: 1,
     name: "Amit",
-    img: "/src/assets/members/amit.jpg",
+    img: amit,
     role: "Technical Lead",
   },
   {
     id: 2,
     name: "Sonic",
-    img: "/src/assets/members/sonic.webp",
+    img: sonic,
     role: "Tester",
   },
   {
     id: 3,
     name: "Mario",
-    img: "/src/assets/members/mario.jpeg",
+    img: mario,
     role: "UI/UX Designer",
   },
   {
     id: 4,
     name: "Eric",
-    img: "/src/assets/members/2.jpg",
+    img: eric,
     role: "Backend Developer",
   },
   {
     id: 5,
     name: "Sarah",
-    img: "/src/assets/members/3.jpg",
+    img: sarah,
     role: "Project Manager",
   },
   {
     id: 6,
     name: "Ian",
-    img: "/src/assets/members/4.jpg",
+    img: ian,
     role: "Tester",
   },
   {
     id: 7,
     name: "Joe",
-    img: "/src/assets/members/5.jpg",
+    img: joe,
     role: "Frontend Developer",
   },
   {
     id: 8,
     name: "Jane",
-    img: "/src/assets/members/6.jpg",
+    img: jane,
     role: "Tester",
   },
   {
     id: 9,
     name: "Mikey",
-    img: "/src/assets/members/7.jpg",
+    img: mikey,
     role: "DevOps Engineer",
   },
   {
     id: 10,
     name: "Beth",
-    img: "/src/assets/members/8.jpg",
+    img: beth,
     role: "Tester",
   },
   {
     id: 11,
     name: "John",
-    img: "/src/assets/members/1.jpg",
+    img: john,
     role: "UI/UX Designer",
   },
 ];
