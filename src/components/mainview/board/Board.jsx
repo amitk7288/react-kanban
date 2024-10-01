@@ -40,7 +40,7 @@ export default function Board() {
     }),
     useSensor(TouchSensor, {
       activationConstraint: {
-        delay: 250,
+        delay: 500,
         tolerance: 5,
       },
     }),
