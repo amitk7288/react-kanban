@@ -69,8 +69,8 @@ export default function AddCard({ list, onClose }) {
   function generateUniqueId(existingIds) {
     let newId;
     do {
-      newId = Math.floor(10000 + Math.random() * 90000); // Generates a number between 10000 and 99999
-    } while (existingIds.includes(newId)); // Repeat if the ID already exists
+      newId = Math.floor(10000 + Math.random() * 90000);
+    } while (existingIds.includes(newId));
     return newId;
   }
 
