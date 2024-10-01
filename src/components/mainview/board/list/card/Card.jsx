@@ -74,7 +74,7 @@ export default function Card({ cardInfo, cardId, zen, list }) {
     <>
       {isDragging && (
         <div
-          className={`flex w-[240px] cursor-pointer flex-col rounded-lg border-2 border-dashed border-blue-600 bg-white opacity-30 hover:ring-blue-600 md:w-[300px] dark:border-2 dark:border-dashed dark:border-lime-400 dark:bg-drkbg dark:text-drkcol`}
+          className={`flex w-[240px] cursor-pointer flex-col rounded-lg border-2 border-dashed border-blue-600 bg-white opacity-30 hover:ring-blue-600 md:w-[300px] dark:border-2 dark:border-dashed dark:border-lime-400 dark:bg-drkbg dark:text-drkcol touch-none`}
           style={style}
           ref={setNodeRef}
           {...attributes}
@@ -187,7 +187,7 @@ export default function Card({ cardInfo, cardId, zen, list }) {
       )}
       {!isDragging && (
         <div
-          className={`duration-400 flex w-[240px] cursor-pointer flex-col rounded-lg border bg-white transition-all ease-in-out hover:ring-2 hover:ring-inset hover:ring-blue-600 md:w-[300px] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol`}
+          className={`duration-400 flex w-[240px] cursor-pointer flex-col rounded-lg border bg-white transition-all ease-in-out hover:ring-2 hover:ring-inset hover:ring-blue-600 md:w-[300px] dark:border-drkbrd dark:bg-drkbg dark:text-drkcol touch-none`}
           onClick={handleCardClick}
           style={style}
           ref={setNodeRef}
