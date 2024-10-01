@@ -12,9 +12,9 @@ export default function FaqItem({question, answer, icons}) {
           {answer}
         </p>
         {icons && (
-          <div className="flex items-center justify-between rounded-md p-2 dark:border-drkbrd dark:bg-white">
+          <div className="flex items-center justify-between rounded-md p-2 dark:border-drkbrd">
             {icons.map((icon) => (
-              <div key={icon.id}>
+              <div key={icon.id} className="dark:bg-[#ffffff] rounded-xs p-0.5">
                 <img
                   width={30}
                   height={30}
